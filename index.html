@@ -86,6 +86,33 @@
       min-height: max(884px, 100dvh);
     }
   </style>
+<style>
+.social-icons a i,
+    .social-icons a span {
+      transition: color 0.3s ease-in-out;
+    }
+    .social-icons a:hover .fa-linkedin-in {
+      color: #0077B5;
+    }
+    .social-icons a:hover .fa-dribbble {
+      color: #EA4C89;
+    }
+    .social-icons a:hover .fa-github {
+      color: #333;
+    }
+    .dark .social-icons a:hover .fa-github {
+      color: #fff;
+    }
+    .social-icons a:hover .fa-instagram {
+      color: #E1306C;
+    }
+     .social-icons a:hover .fa-telegram {
+      color: #24A1DE;
+    }
+    .social-icons a:hover .material-symbols-outlined {
+      color: #D44638;
+    }
+</style>
   </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300">
 <div class="container mx-auto p-4 md:p-8 max-w-4xl flex flex-col min-h-[max(884px,100dvh)]">
@@ -99,20 +126,6 @@
 <button class="text-text-light dark:text-text-dark p-2" id="shareButton">
 <span class="material-symbols-outlined">share</span>
 </button>
-<div class="absolute right-0 mt-2 w-48 bg-background-light dark:bg-gray-800 rounded-md shadow-lg py-1 z-10 hidden" id="shareDialog">
-<a class="flex items-center px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-gray-100 dark:hover:bg-gray-700" href="#">
-<span class="material-symbols-outlined mr-2">link</span>
-              Copy Link
-            </a>
-<a class="flex items-center px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-gray-100 dark:hover:bg-gray-700" href="#">
-<i class="fab fa-facebook-f mr-2"></i>
-              Share on Facebook
-            </a>
-<a class="flex items-center px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-gray-100 dark:hover:bg-gray-700" href="#">
-<i class="fab fa-twitter mr-2"></i>
-              Share on Twitter
-            </a>
-</div>
 </div>
 <label class="relative inline-block w-12 h-6" for="darkModeToggle">
 <input class="opacity-0 w-0 h-0" id="darkModeToggle" type="checkbox"/>
@@ -122,9 +135,8 @@
 </header>
 <main class="flex-grow space-y-8">
 <div class="space-y-4">
-<p class="text-secondary-text-light dark:text-secondary-text-dark">Published on January 15, 2024</p>
 <h1 class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark">The Future of Web Design</h1>
-<p class="text-lg text-secondary-text-light dark:text-secondary-text-dark">A deep dive into upcoming trends and technologies shaping the future of web development.</p>
+<p class="text-secondary-text-light dark:text-secondary-text-dark">Published on January 15, 2024</p>
 </div>
 <div class="space-y-6 text-text-light dark:text-text-dark leading-relaxed">
 <p>In the ever-evolving landscape of digital technology, web design stands as a cornerstone of user experience. As we look towards the future, several key trends are emerging that promise to redefine how we interact with the web. This article explores the most significant developments, from the rise of artificial intelligence to the increasing importance of accessibility.</p>
@@ -136,9 +148,8 @@
 <p>Artificial intelligence is no longer a futuristic concept but a present-day reality that's transforming the design process. AI-powered tools can now generate layouts, suggest color palettes, and even write code, significantly accelerating the development workflow. This allows designers to focus more on strategic thinking and creating truly unique user experiences, rather than getting bogged down in repetitive tasks.</p>
 <div class="py-4">
 <video class="rounded-lg mx-auto" controls="" poster="https://lh3.googleusercontent.com/aida-public/AB6AXuA_cg-wVlyOwtrhrkXaJYv-hAvVLKFNBESeAGofa5o5mlyP_OaoGMurCyv2V75YzTLgAw-6ERwybKYawKeWdnU8OGGpu-r8SLpu5tTirEzYAqj48c_l9iVxLtEmGDeuaXGfY59GdPn5mabkav4LrOOtoorH4N6Dg-zxfhJlUSe4LK7QAePyzqhf8D4K7zEzsMlBiw14_OPnf_F98xtmtGCzcHNIMll9LXaFQt7mOHTNvpghl0UHOe9914-IV8TlU9xTE-PJFRxj7Mgb">
-<source src="your-video-file.mp4" type="video/mp4"/>
-              Your browser does not support the video tag.
-            </video>
+<source src="your-video-file.mp4" type="video/mp4"/> Your browser does not support the video tag.
+          </video>
 <p class="text-center text-sm text-secondary-text-light dark:text-secondary-text-dark mt-2">A short clip demonstrating an AI-powered design tool in action.</p>
 </div>
 <h2 class="text-2xl font-bold pt-4">Immersive Experiences with AR and VR</h2>
@@ -152,9 +163,69 @@
 <p>In conclusion, the future of web design is dynamic and exciting. By embracing these emerging trends, designers and developers can create web experiences that are not only more beautiful and efficient but also more inclusive and engaging for all users.</p>
 </div>
 </main>
-<footer class="mt-16 pt-8 border-t border-border-light dark:border-border-dark text-center text-secondary-text-light dark:text-secondary-text-dark">
-<p class="text-sm">© 2024 Jane Doe. All rights reserved.</p>
+<footer class="mt-16 pt-8 border-t border-border-light dark:border-border-dark flex justify-between items-center">
+<p class="text-xs text-secondary-text-light dark:text-secondary-text-dark">© SASHA MOZDIR 2024</p>
+<div class="flex items-center space-x-3 social-icons text-sm">
+<a class="text-secondary-text-light dark:text-secondary-text-dark" href="#">
+<i class="fa-brands fa-linkedin-in"></i>
+</a>
+<a class="text-secondary-text-light dark:text-secondary-text-dark" href="#">
+<i class="fa-brands fa-dribbble"></i>
+</a>
+<a class="text-secondary-text-light dark:text-secondary-text-dark" href="#">
+<i class="fa-brands fa-github"></i>
+</a>
+<a class="text-secondary-text-light dark:text-secondary-text-dark" href="#">
+<i class="fa-brands fa-instagram"></i>
+</a>
+<a class="text-secondary-text-light dark:text-secondary-text-dark" href="#">
+<i class="fa-brands fa-telegram"></i>
+</a>
+<a class="text-secondary-text-light dark:text-secondary-text-dark flex items-center" href="#">
+<span class="material-symbols-outlined text-base">mail</span>
+</a>
+</div>
 </footer>
+</div>
+<div class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-end justify-center" id="shareModal">
+<div class="bg-background-light dark:bg-gray-800 w-full rounded-t-lg p-4 transition-transform transform translate-y-full" id="shareModalContent">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-semibold text-text-light dark:text-text-dark">Share</h2>
+<button class="p-2 text-text-light dark:text-text-dark" id="closeModal">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="grid grid-cols-4 gap-4 text-center">
+<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
+<i class="fas fa-link text-2xl mb-1"></i>
+<span class="text-xs">Copy Link</span>
+</a>
+<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
+<i class="fab fa-facebook-f text-2xl mb-1 text-[#1877F2]"></i>
+<span class="text-xs">Facebook</span>
+</a>
+<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
+<i class="fab fa-instagram text-2xl mb-1 text-[#E4405F]"></i>
+<span class="text-xs">Instagram</span>
+</a>
+<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
+<i class="fab fa-whatsapp text-2xl mb-1 text-[#25D366]"></i>
+<span class="text-xs">WhatsApp</span>
+</a>
+<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
+<i class="fab fa-linkedin-in text-2xl mb-1 text-[#0A66C2]"></i>
+<span class="text-xs">LinkedIn</span>
+</a>
+<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
+<i class="fab fa-twitter text-2xl mb-1 text-[#1DA1F2]"></i>
+<span class="text-xs">X</span>
+</a>
+<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">more_horiz</span>
+<span class="text-xs">More</span>
+</a>
+</div>
+</div>
 </div>
 <script>
     const darkModeToggle = document.getElementById('darkModeToggle');
@@ -173,14 +244,31 @@
       }
     });
     const shareButton = document.getElementById('shareButton');
-    const shareDialog = document.getElementById('shareDialog');
-    shareButton.addEventListener('click', () => {
-      shareDialog.classList.toggle('hidden');
+    const shareModal = document.getElementById('shareModal');
+    const shareModalContent = document.getElementById('shareModalContent');
+    const closeModal = document.getElementById('closeModal');
+    function openModal() {
+      shareModal.classList.remove('hidden');
+      shareModal.classList.add('flex');
+      setTimeout(() => {
+        shareModalContent.classList.remove('translate-y-full');
+      }, 10);
+    }
+    function hideModal() {
+      shareModalContent.classList.add('translate-y-full');
+      setTimeout(() => {
+        shareModal.classList.add('hidden');
+        shareModal.classList.remove('flex');
+      }, 300);
+    }
+    shareButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openModal();
     });
-    // Close the dialog if clicked outside
-    document.addEventListener('click', (event) => {
-      if (!shareButton.contains(event.target) && !shareDialog.contains(event.target)) {
-        shareDialog.classList.add('hidden');
+    closeModal.addEventListener('click', hideModal);
+    shareModal.addEventListener('click', (event) => {
+      if (event.target === shareModal) {
+        hideModal();
       }
     });
   </script>
