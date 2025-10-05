@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>All Articles</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#F8F8F8",
+            "background-light": "#FFFFFF",
+            "background-dark": "#121212",
+            "text-light": "#121212",
+            "text-dark": "#F8F8F8",
+            "secondary-text-light": "#6B7280",
+            "secondary-text-dark": "#9CA3AF",
+            "border-light": "#E5E7EB",
+            "border-dark": "#374151"
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 20px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="%23f59e0b" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>');
+      background-size: 80%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    #darkModeToggle:checked + .slider {
+      background-color: #1f2937;
+    }
+    #darkModeToggle:checked + .slider:before {
+      transform: translateX(20px);
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="%2338bdf8" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>');
+      animation: spin 0.5s linear;
+    }
+    @keyframes spin {
+      from {
+        transform: translateX(20px) rotate(0deg);
+      }
+      to {
+        transform: translateX(20px) rotate(360deg);
+      }
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    .tag-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .tag-scroll {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300">
+<div class="container mx-auto p-4 md:p-8 max-w-4xl flex flex-col min-h-[max(884px,100dvh)]">
+<header class="flex justify-between items-center mb-8">
+<a class="text-text-light dark:text-text-dark p-2 -ml-2" href="#">
+<span class="material-symbols-outlined">arrow_back</span>
+</a>
+<h1 class="text-xl font-bold text-center text-text-light dark:text-text-dark flex-grow">All Articles</h1>
+<label class="relative inline-block w-12 h-6" for="darkModeToggle">
+<input class="opacity-0 w-0 h-0" id="darkModeToggle" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</header>
+<div class="mb-6">
+<div class="flex space-x-3 overflow-x-auto pb-2 tag-scroll" id="tag-container">
+<button class="px-4 py-1.5 text-sm font-medium text-white bg-gray-800 dark:bg-gray-700 rounded-full flex-shrink-0" data-tag="all">All</button>
+<button class="px-4 py-1.5 text-sm font-medium text-secondary-text-light dark:text-secondary-text-dark bg-gray-100 dark:bg-gray-800 rounded-full flex-shrink-0" data-tag="design">Design</button>
+<button class="px-4 py-1.5 text-sm font-medium text-secondary-text-light dark:text-secondary-text-dark bg-gray-100 dark:bg-gray-800 rounded-full flex-shrink-0" data-tag="content">Content</button>
+<button class="px-4 py-1.5 text-sm font-medium text-secondary-text-light dark:text-secondary-text-dark bg-gray-100 dark:bg-gray-800 rounded-full flex-shrink-0" data-tag="research">Research</button>
+<button class="px-4 py-1.5 text-sm font-medium text-secondary-text-light dark:text-secondary-text-dark bg-gray-100 dark:bg-gray-800 rounded-full flex-shrink-0" data-tag="development">Development</button>
+<button class="px-4 py-1.5 text-sm font-medium text-secondary-text-light dark:text-secondary-text-dark bg-gray-100 dark:bg-gray-800 rounded-full flex-shrink-0" data-tag="ux-ui">UX/UI</button>
+</div>
+</div>
+<main class="space-y-6 flex-grow" id="article-list">
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="design">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTppVsyzsCZvU7WwG1ED3Iz436P_nHzdx1wrGm8hhPMTFdbGv55MK0W2BdWh5Vd004H2v_aiETZ9rPZstCKP6tJNp_0EsY_jYzB4A7Wd32D-WOxUK3u9wMkY9zusS1non4ZVu5kJYKNZDXecgQ3-C3c205sn77eQU9XDRqcNJJGj_-2Oap2mGy6iiNAe2ruZg8IOqoH3rCg6q3-RyuJR-QoeFzRrVxGH9-rakxrWc7jjto5gASYlzRAFdSLbq9pKazuud15npZXPIC"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Design</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">The Future of Web Design</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">A deep dive into upcoming trends and technologies shaping the future of web development.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="content">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_cg-wVlyOwtrhrkXaJYv-hAvVLKFNBESeAGofa5o5mlyP_OaoGMurCyv2V75YzTLgAw-6ERwybKYawKeWdnU8OGGpu-r8SLpu5tTirEzYAqj48c_l9iVxLtEmGDeuaXGfY59GdPn5mabkav4LrOOtoorH4N6Dg-zxfhJlUSe4LK7QAePyzqhf8D4K7zEzsMlBiw14_OPnf_F98xtmtGCzcHNIMll9LXaFQt7mOHTNvpghl0UHOe9914-IV8TlU9xTE-PJFRxj7Mgb"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Content</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">Content Strategy for Startups</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">Learn how to build a powerful content strategy that drives growth and establishes your brand's authority.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="research">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmIOqOrB-lwGZYG4LTKFWlGOhCIjuyqyQMGvR73XkIzbw5kFHcSsQ-OlGccjA2HVR6vWr29H2khyMDF1DBTTYfDOvrpdQf0Jfd70J_ANLIS-C2hE-yBgolWNxYGrQBjSzBAJHAc7Yngfr2oP_HrVexCm28_49yZSh8sGPdhaKJTKsB0npuVAjHGcKKz0LjjZPUoieligMNGZMJdEm_bHzVc4Cn0UYv75OkE6fFojqBc4GQLJM7LPG4yWA1MCsVNzERveREQLDnIOI5"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Research</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">The Importance of User Research</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">Discover why user research is a critical component of successful product design and development.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="development">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcl76mcxk-MWvzcoWLAawcMEvee3uo7LV5wVbmJRNfi7pCoUWET2ZoEyjgh97H9Y6NmSX_Tl3oWgaH8fuUg4LDlH3PjeS6Pp88a2R2Y4CrKTssdP4s4POJ1DzSjkpmrHXyTG8E3S_sCavFvFifEGYZTmatdQcsUqB4fGGe8dRKsXnhOa6lSSDBm5klswpB7wUFC4SXBByLIl9Yns0d0A1TRbIhZ3vqo97tznPIIOZnX_TdWZBajIsrXJPBP0fUhTeBRYcFkoR9JH9z"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Development</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">Modern JavaScript Frameworks</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">An analysis of the most popular JavaScript frameworks to help you choose the right one for your next project.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="ux-ui">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4wMo5aEh-UmtVh6M3wXQFNldQE-7PBQbdtFhSSDQgSgevTMufFEaHa7wlIUoxhDte0yPFT1KXq9rmquGxXSBv8VxhchSTy_Psg9HNAp4noDqaxH61tPsSaePmpNrQ0G93NR-Fm9HXO89QLYZTN8Mtu8qCF9gVC-VEulEfHaYbu2N2rrJu4oYh6Ctn_aQTKiJ_ThUgPCYGSDjfwPUfbYKB9HcXYXyXVsUOjtUIh2ddTtQuSmiqla_6xtp1_pNFfnbOr5pxzOLJKuQw"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">UX/UI</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">UX vs UI: A Comprehensive Guide</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">Understand the key differences and synergies between User Experience and User Interface design.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="design">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmXe6iuwpooUvyW86ddSxJ55g0Wzfg_ilvfn5xt-92nqXPssWKotS5cE749kHTey689SRVslrUPBOewjAHY1UpuopXOckZy7kxDqc_KRXtvTjSKx9LQpsd-1H1loQdUJjoyzdVNhQm-Gk3mS6RgTxF1X-w3MLo_UNXe8EvD8vIHvjs51Q9y0Iev3c5VklmMFCuk_LmGGz61OXNfFaOWy2hXHbKf05PgfxLLO-Ml5gWGIn-hOpdWmtKUshMuFkgspim88uqZrDU-Ra3"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Design</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">Principles of Mobile-First Design</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">Exploring the importance of designing for mobile devices first for a better user experience.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="content">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4ZuV3u6qP_2Pu00HKc2Ds-vDRvb_yQEPZT9qbqLoLErPJo73K_Sni5_3XiSkdbkWLM-2qYnhsnjVoDhSU78cSe9rvLlm_bZEQLmz-fb5IB48DaF2rgTA5TohoYCN58hc2WeIAyi43rVdR36Jff2Pxg0Z2AvDcTzLokOTs1EzWphmCNoVZSrZ0iSmY2w2oVRWdH42yYgqI5_cUmcSYH39uVsXmsY9Xx8Et5Z-_p6DZalYBndh7WYpIzBrmfASLRnwl39PcfcqgeMCo"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Content</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">The Art of Storytelling in Marketing</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">How to use storytelling to create engaging and memorable content for your audience.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="research">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk974nGkkjo_wSIzR4ZFplqnXaYNT6mWSi590WTC_sY5P3PPf4rRYQFGcfDyG3Wr_ThAqKmbAzrzMy-NeaZDI_rAxqcDdR5MKGYq4fZFZzZqSJvVJEPUeTi3KtD2ZxTj9il_MLBMg-aatXohoLxUQjd6Lg1HLMQRKznyChWLsPJAe7DF4NC5jAyOngYX5Ajov4JOj_sqrnaaPD8ixgxYWythlhzFXb_LtFI9HIBvAq8qYds_Ek5ZqfaNKsT6doZhr-mYjVTkxP9M2f"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Research</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">Conducting Effective A/B Testing</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">A practical guide to setting up and analyzing A/B tests to improve your website's performance.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="development">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk0pKzxNV6MawHhELMMi9wbQRVzCqK9NvlWK_-4CemqdaSDZuOCSGzDW9SIBRPEgvjdjPRghCgQ9mbFFwYF8xkvBqk1PguEfNwhS_Bkw_H8PIwOvhvvj6y8I_bGN9ZyQbpYH5fDK-8dJCFq1C8jYhUN4jBfKrnWHDFrTvunqCh6c0rsVgs7IX9-TKjpy35iKp33vq-gLIeJW_WGxSV2XN215kXiVYmR0Hi5kYmc8MkDTmdtucv7jfOTujlGRG1IkNUR_H87nb0FxcH"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Development</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">Getting Started with React Hooks</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">An introduction to React Hooks and how they can simplify your component logic.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="ux-ui">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEdiaffnQsz-j9dOgrIZFH8Z2y_oGPd8TRYaCUgCz5YdqPaylEbWW_bbLv6EDF39eQnCgxmz8ZXH2p1FfRAgUfpOmjxL09uSgegAF3vhJHQdbLBvfTfVrLO4YnZeU665DwkMgKNR8dv4KZOekFlLLGhWX4nrpB0hf6WctJ2u980mrzifA7MptiWvQtRjYcu2R1GNJM2K3FlCFhRG6SN4tNt4oJBrr7wGlElehQm9h1gwpqMahQqt8tkdrdiviGvdSIL_7aVdtJNdzS"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">UX/UI</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">Creating User-Friendly Forms</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">Best practices for designing forms that are intuitive and easy to complete.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="design">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBrKf_ShoXWmxMlIj0HHooGLKS5q0T2Xd31Kxhi9mcLy2fIfkXvafkhRxcgHen0WYi73UfDRvER6cQjRsWpgdoDO4RiFV_4j4sh5ZjFy9t0SMpozm3S1oJ-tR0RNHUdDZxxV0kEO1Rh0dGcOfledun5P18T_poT2CEKUT5u7W07dh0G8JIIIfg3wZw3hFF7-FQHwzFV84b-npUZvImRur6GHRZALxuPt3J0AxUhnH8mFVLwXsgNjDutB2Qu24u-np5O0UexI6bBzqm"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Design</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">The Power of White Space</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">Learn how to effectively use white space to create clean and balanced designs.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="content">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPbzk52-5O3xwje-Gc4VFm1xW3S3XN7VL9wKhMpJV3PhPpUrd2NxesMp4tH28RBvCI7jovKxedkIHnqeQ8rs5O_bRnT0oBGlykcvCCnTgAtXq7WGNBKSrQH2fU4ldOQCLrkbDmTzwIdDOrAsHyPuc_cc_KntE4ycR5-reJw6m5nzXANkM0CVeERo9QxhldZ7laLKqyyyzU6_ygoaAT8-hC2viYXaeWevTxdltRl72GQdXjk_sLqs2rdr7e6XqyvHGFS6ilE9ErulI_"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Content</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">SEO for Content Creators</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">Essential SEO tips to help your content rank higher in search engine results.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="research">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb-UNG43-VCncgB6l-6M4fQc3baXJI5ixNQY4vtaYsrLimULkEVy79B5Oxg6HDfe1S8y1Rj7VkHkCaiJaMYBqsXiG6N1HbiykYG_i3BUG5j3jXbFM-W4g16r0KkrpLb1u17tAgmlfb3dGhy27wIKSJVr2hHv2QMMhu4vLScuZ4HLm4E4zx6b4bqjn_dJkZTQNFIwUlyr-bWTFdbqEkAjpUYT6ps5dpVIRtq4iaY_ImRQavXwHPSruo2ikVD58oupo0tANVMvBja-5O"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Research</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">Understanding User Personas</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">A guide to creating and using user personas to inform your design decisions.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="development">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmS-Zx8neACLuweDOrUEUg_4T6FVHkoSRtk_WF9Y0EowiJaSGG5fiz6oUR87rPyJ9OKbl9yk6KFJEkXN6vNlO1XvkNaT9sw60sYAPbEgXJV8O9xAhD0h--zv9tV3izbM3PYEfqW-9gzCekj2gKVd8IaQ_1PRCCvsrH8NyRP8Wr7CybGitb2CKEd8GgZTK8X0946d_WIO13ClSxbX_1Z12EIPu96qn765Y8tlxl9gcYswEVC7JPb4FmIzbK7k4pai_Bnqjp-wMlIbLm"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">Development</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">Building Accessible Web Apps</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">An overview of web accessibility standards and how to implement them in your projects.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer" data-tag="ux-ui">
+<div class="relative w-24 h-24 flex-shrink-0">
+<img alt="Article thumbnail" class="w-full h-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnyNqhCyFAa3lfC5mTFubaL9XllJs4KM6XK0VOcNbhIxoyOxh2casjUmET2aC-ATQlOm2rcJWl7GgKeihUCIMKOspzy3zO3f8jZHmsmmAQb1dsJNdsAdrtlpvlZZS81N5FASyd54vbct5cBD-DHeuldoLKYlyRBVmTEr_FUXM3G0MKeBFnrO_Csn1uJUY8_BmgfItK_qvCTrKB7WNbBVhHn2ngD1kU5CFZS_pz0t0eji_z0lbzEWVVv_F3aWeHSHogH0nKX4kNCFOj"/>
+<span class="absolute top-0 right-0 inline-block bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm text-secondary-text-light dark:text-secondary-text-dark text-[9px] font-medium px-1 py-0.5 rounded-bl-lg rounded-tr-lg">UX/UI</span>
+</div>
+<div class="flex-grow">
+<h2 class="text-lg font-bold text-text-light dark:text-text-dark mb-1">Microinteractions: The Secret to Great UX</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark text-sm mb-2 line-clamp-2">Discover how small, delightful interactions can significantly improve the user experience.</p>
+</div>
+</div>
+</main>
+<footer class="mt-16 pt-8 border-t border-border-light dark:border-border-dark text-center text-secondary-text-light dark:text-secondary-text-dark">
+<p class="text-sm">© 2024 Jane Doe. All rights reserved.</p>
+</footer>
+</div>
+<script>
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (localStorage.getItem('darkMode') === 'enabled' || (prefersDark && localStorage.getItem('darkMode') !== 'disabled')) {
+      document.documentElement.classList.add('dark');
+      darkModeToggle.checked = true;
+    }
+    darkModeToggle.addEventListener('change', () => {
+      if (darkModeToggle.checked) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
+    const tagContainer = document.getElementById('tag-container');
+    const articleList = document.getElementById('article-list');
+    const articles = Array.from(articleList.children);
+    tagContainer.addEventListener('click', (e) => {
+      if (e.target.tagName === 'BUTTON') {
+        const selectedTag = e.target.dataset.tag;
+        // Update button styles
+        Array.from(tagContainer.children).forEach(button => {
+          button.classList.remove('bg-gray-800', 'dark:bg-gray-700', 'text-white');
+          button.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-secondary-text-light', 'dark:text-secondary-text-dark');
+        });
+        e.target.classList.add('bg-gray-800', 'dark:bg-gray-700', 'text-white');
+        e.target.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-secondary-text-light', 'dark:text-secondary-text-dark');
+        // Filter articles
+        articles.forEach(article => {
+          if (selectedTag === 'all' || article.dataset.tag === selectedTag) {
+            article.style.display = 'flex';
+          } else {
+            article.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+
+</body></html>
