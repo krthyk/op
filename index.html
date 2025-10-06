@@ -85,35 +85,37 @@
     .dark input:checked + .slider:before {
       background-color: #F8F8F8;
     }
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: currentColor; }
     }
-    @keyframes fade-out {
-      from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
+    #dynamic-text {
+      border-right: .15em solid;
+      animation: blink-caret .75s step-end infinite;
     }
-    .fade-in {
-      animation: fade-in 0.5s ease-in-out;
-    }
-    .fade-out {
-      animation: fade-out 0.5s ease-in-out;
-    }
-    .dynamic-text {
-      display: inline-block;
+    #dynamic-text-container {
+        display: inline-block;
+        vertical-align: bottom;
     }
   </style>
 <style>
     body, html {
       height: 100%;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
     }
   </style>
 <style>
@@ -165,7 +167,7 @@
 <div class="fixed inset-0 bg-black opacity-50 z-10" id="overlay"></div>
 <main class="flex flex-col items-center justify-center text-center flex-grow">
 <h1 class="text-4xl font-bold text-text-light dark:text-text-dark leading-tight">
-<span>makemoneyonl.in, a site made with love for: </span><span class="relative inline-block whitespace-nowrap text-navy-blue" id="dynamic-text-container"><span class="dynamic-text" id="dynamic-text">students</span></span>
+<span>makemoneyonl.in, a site made with love for: </span><span id="dynamic-text-container"><span class="text-navy-blue" id="dynamic-text"></span></span>
 </h1>
 <p class="text-secondary-text-light dark:text-secondary-text-dark mt-6 mb-8 max-w-md px-4">
         Discover a world of opportunities to earn online. We provide a comprehensive platform with curated resources, expert guides, and a supportive community to help you navigate the digital landscape and achieve your financial goals, regardless of your background or experience.
@@ -188,8 +190,6 @@
     const menu = document.getElementById('menu');
     const overlay = document.getElementById('overlay');
     const darkModeToggleMenu = document.getElementById('darkModeToggleMenu');
-    const dynamicText = document.getElementById('dynamic-text');
-    const dynamicTextContainer = document.getElementById('dynamic-text-container');
     function toggleMenu() {
       menu.classList.toggle('open');
       overlay.style.display = menu.classList.contains('open') ? 'block' : 'none';
@@ -235,30 +235,41 @@
         }
       }
     });
+    const dynamicText = document.getElementById('dynamic-text');
     const roles = ['students', 'freelancers', 'self-employed', 'housewives'];
-    let currentIndex = 0;
-    function updateText() {
-      dynamicText.classList.add('fade-out');
-      setTimeout(() => {
-        currentIndex = (currentIndex + 1) % roles.length;
-        dynamicText.textContent = roles[currentIndex];
-        // Ensure the container width adjusts
-        dynamicTextContainer.style.width = 'auto'; 
-        const newWidth = dynamicText.offsetWidth;
-        dynamicTextContainer.style.width = `${newWidth}px`;
-        dynamicText.classList.remove('fade-out');
-        dynamicText.classList.add('fade-in');
-      }, 500); // Corresponds to fade-out animation duration
-      setTimeout(() => {
-        dynamicText.classList.remove('fade-in');
-      }, 1000); // Remove after fade-in completes
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    function type() {
+        const currentRole = roles[roleIndex];
+        if (isDeleting) {
+            // Deleting
+            dynamicText.textContent = currentRole.substring(0, charIndex - 1);
+            charIndex--;
+            if (charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                setTimeout(type, 500); // Pause before typing next word
+            } else {
+                setTimeout(type, 100); // Backspacing speed
+            }
+        } else {
+            // Typing
+            dynamicText.textContent = currentRole.substring(0, charIndex + 1);
+            charIndex++;
+            if (charIndex === currentRole.length) {
+                isDeleting = true;
+                setTimeout(type, 7000); // Pause after typing word
+            } else {
+                setTimeout(type, 150); // Typing speed
+            }
+        }
     }
-    // Initial setup
-    dynamicText.textContent = roles[currentIndex];
-    dynamicTextContainer.style.width = 'auto'; 
-    const initialWidth = dynamicText.offsetWidth;
-    dynamicTextContainer.style.width = `${initialWidth}px`;
-    setInterval(updateText, 5000);
-  </script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if(dynamicText) {
+            type();
+        }
+    });
+</script>
 
 </body></html>
