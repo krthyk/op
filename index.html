@@ -127,6 +127,11 @@
       min-height: max(884px, 100dvh);
     }
   </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
   </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 flex flex-col min-h-screen">
 <div class="container mx-auto p-4 max-w-md flex-grow">
@@ -166,7 +171,7 @@
 </div>
 <div class="fixed inset-0 bg-black opacity-50 z-10" id="overlay"></div>
 <main class="mt-8 flex flex-col items-center justify-center text-center">
-<p class="text-secondary-text-light dark:text-secondary-text-dark mb-8">Enjoying my portfolio? Spread the word and share it with your friends!</p>
+<p class="text-secondary-text-light dark:text-secondary-text-dark mb-8">Enjoying this website? Spread the word and share it with your friends!</p>
 <div class="w-full overflow-x-auto pb-4 no-scrollbar">
 <div class="flex space-x-6">
 <a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="facebook" href="#">
@@ -339,8 +344,8 @@
       }
     });
     copyLinkBtn.addEventListener('click', () => {
-      const urlToCopy = window.location.href;
-      navigator.clipboard.writeText(urlToCopy).then(() => {
+        const shareText = "Hey, found this beautiful website where we can find AI generated image prompts all at one place. You should check it out for sure. " + window.location.href;
+      navigator.clipboard.writeText(shareText).then(() => {
         const copyIcon = copyLinkBtn.querySelector('.copy-icon');
         const copyText = document.getElementById('copy-link-text');
         copyIcon.textContent = 'check';
@@ -352,43 +357,45 @@
           copyIcon.classList.remove('copied', 'text-green-500');
         }, 2000);
       }).catch(err => {
-        console.error('Failed to copy link: ', err);
+        console.error('Failed to copy text: ', err);
       });
     });
     const siteUrl = encodeURIComponent(window.location.href);
-    const siteDescription = encodeURIComponent("Check out this awesome portfolio!");
+    const siteDescription = encodeURIComponent("Hey, found this beautiful website where we can find AI generated image prompts all at one place. You should check it out for sure. " + window.location.href);
     document.querySelectorAll('.share-btn').forEach(button => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
         const platform = button.dataset.platform;
         let shareUrl = '';
+        const shareText = "Hey, found this beautiful website where we can find AI generated image prompts all at one place. You should check it out for sure. " + window.location.href;
+        const encodedShareText = encodeURIComponent(shareText);
         switch (platform) {
           case 'facebook':
-            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${siteUrl}`;
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${siteUrl}&quote=${encodedShareText}`;
             break;
           case 'instagram':
             alert('To share on Instagram, copy the link and paste it in your story or bio.');
             return;
           case 'x':
-            shareUrl = `https://twitter.com/intent/tweet?url=${siteUrl}&text=${siteDescription}`;
+            shareUrl = `https://twitter.com/intent/tweet?text=${encodedShareText}`;
             break;
           case 'linkedin':
-            shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${siteUrl}&title=My%20Portfolio&summary=${siteDescription}&source=`;
+            shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${siteUrl}&title=Check%20out%20this%20amazing%20website!&summary=${encodedShareText}`;
             break;
           case 'whatsapp':
-            shareUrl = `https://api.whatsapp.com/send?text=${siteDescription}%20${siteUrl}`;
+            shareUrl = `https://api.whatsapp.com/send?text=${encodedShareText}`;
             break;
           case 'telegram':
-            shareUrl = `https://t.me/share/url?url=${siteUrl}&text=${siteDescription}`;
+            shareUrl = `https://t.me/share/url?url=${siteUrl}&text=${encodedShareText}`;
             break;
           case 'pinterest':
-            shareUrl = `https://pinterest.com/pin/create/button/?url=${siteUrl}&media=&description=${siteDescription}`;
+             shareUrl = `https://pinterest.com/pin/create/button/?url=${siteUrl}&media=&description=${encodedShareText}`;
             break;
           case 'reddit':
-            shareUrl = `https://www.reddit.com/submit?url=${siteUrl}&title=${siteDescription}`;
+             shareUrl = `https://www.reddit.com/submit?url=${siteUrl}&title=${encodeURIComponent("Check out this amazing website!")}`;
             break;
           case 'tumblr':
-            shareUrl = `https://www.tumblr.com/widgets/share/tool?posttype=link&title=${siteDescription}&caption=${siteDescription}&content=${siteUrl}&canonicalUrl=${siteUrl}&shareSource=legacy`;
+             shareUrl = `https://www.tumblr.com/widgets/share/tool?posttype=link&title=${encodeURIComponent("Check out this amazing website!")}&caption=${encodedShareText}&content=${siteUrl}&canonicalUrl=${siteUrl}&shareSource=legacy`;
             break;
           case 'snapchat':
             alert('To share on Snapchat, copy the link and send it in a snap!');
@@ -411,10 +418,12 @@
     sendEmailBtn.addEventListener('click', () => {
       const email = emailInput.value;
       if (email) {
-        const mailtoLink = `mailto:${email}?subject=Check%20out%20this%20portfolio&body=${siteDescription}%0A%0A${decodeURIComponent(siteUrl)}`;
+        const subject = "Check out this amazing website!";
+        const body = "Hey, found this beautiful website where we can find AI generated image prompts all at one place. You should check it out for sure. " + window.location.href;
+        const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailtoLink;
       }
     });
   </script>
 
-</body></html>	
+</body></html>
