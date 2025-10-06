@@ -1,640 +1,80 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Prompts Listing Page</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            primary: "#F8F8F8",
-            "background-light": "#FFFFFF",
-            "background-dark": "#121212",
-            "text-light": "#121212",
-            "text-dark": "#F8F8F8",
-            "secondary-text-light": "#6B7280",
-            "secondary-text-dark": "#9CA3AF",
-            "border-light": "#E5E7EB",
-            "border-dark": "#374151",
-            "tag-bg-light": "transparent",
-            "tag-bg-dark": "transparent",
-            "tag-text-light": "#374151",
-            "tag-text-dark": "#D1D5DB",
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
-          borderRadius: {
-            DEFAULT: "0.5rem",
-          },
-        },
-      },
-    };
-  </script>
-<style>
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 34px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 14px;
-      width: 14px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-    input:checked+.slider {
-      background-color: #4b5563;
-    }
-    input:checked+.slider:before {
-      transform: translateX(24px);
-    }
-    .tag {
-      cursor: pointer;
-      white-space: nowrap;
-      border: 1px solid #E5E7EB;
-    }
-    .dark .tag {
-      border: 1px solid #374151;
-    }
-    .tag.active {
-      background-color: #4B5563;
-      color: #F9FAFB;
-      border-color: #4B5563;
-    }
-    .dark .tag.active {
-      background-color: #9CA3AF;
-      color: #1F2937;
-      border-color: #9CA3AF;
-    }
-    .project-item {
-      display: none;
-    }
-    .project-item.visible {
-      display: flex;
-    }
-    .project-item[data-tags*="all"] {
-      display: flex;
-    }
-    .slider-container::-webkit-scrollbar {
-      display: none;
-    }
-    .slider-container {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    #menu {
-      transform: translateX(-100%);
-      transition: transform 0.3s ease-in-out;
-    }
-    #menu.open {
-      transform: translateX(0);
-    }
-    #overlay {
-      display: none;
-      transition: opacity 0.3s ease-in-out;
-    }
-    #menu.open~#overlay {
-        display: block;
-    }
-     #search-bar-container.active ~ #overlay {
-      display: none;
-    }
-    #info-modal {
-      display: none;
-    }
-    #info-modal.active {
-      display: flex;
-    }
-    .dark .slider:before {
-      background-color: #F8F8F8;
-    }
-    .dark input:checked+.slider {
-      background-color: #4A5568;
-    }
-    .dark input:checked+.slider:before {
-      background-color: #F8F8F8;
-    }
-    @keyframes checkmark {
-      0% {
-        transform: scale(0);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-    .copy-icon.copied {
-      animation: checkmark 0.5s ease-out;
-    }
-    #search-bar-container {
-      display: none;
-      width: calc(100% - 2rem);
-      position: absolute;
-      top: 4.5rem;
-      left: 1rem;
-      right: 1rem;
-      z-index: 10;
-    }
-    #search-bar-container.active {
-      display: flex;
-    }
-    #search-results-header {
-      display: none;
-    }
-    #search-results-header.active {
-      display: flex;
-    }
-    #clear-search-btn {
-        display: none;
-    }
-    #search-input:not(:placeholder-shown) + #clear-search-btn {
-        display: block;
-    }
-    main {
-      transition: filter 0.3s ease-in-out;
-    }
-    .blur-background {
-       filter: blur(4px);
-       pointer-events: none;
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300">
-<div class="container mx-auto p-4 max-w-4xl relative">
-<header class="relative flex justify-center items-center py-6" id="main-header">
-<button class="absolute left-0 w-10 h-10 flex justify-center items-center rounded-full" id="menu-btn">
-<span class="material-symbols-outlined text-text-light dark:text-text-dark">menu</span>
-</button>
-<h1 class="text-2xl font-bold text-center" id="page-title">makemoneyonl.in</h1>
-<div class="absolute right-0 flex items-center">
-<button class="flex items-center" id="search-btn">
-<span class="material-symbols-outlined">search</span>
-</button>
-</div>
-</header>
-<div class="relative items-center rounded-full border border-border-light dark:border-border-dark shadow-sm bg-background-light dark:bg-background-dark" id="search-bar-container">
-<button class="p-3 text-secondary-text-light dark:text-secondary-text-dark flex items-center justify-center" id="back-from-search-btn">
-<span class="material-symbols-outlined">arrow_back</span>
-</button>
-<input class="w-full bg-transparent border-0 focus:ring-0 text-text-light dark:text-text-dark placeholder-secondary-text-light dark:placeholder-secondary-text-dark pr-10" id="search-input" placeholder="Search articles..." type="text"/>
-<button class="absolute right-0 p-3 text-secondary-text-light dark:text-secondary-text-dark flex items-center justify-center" id="clear-search-btn">
-<span class="material-symbols-outlined">close</span>
-</button>
-</div>
-<div class="fixed top-0 left-0 h-full w-72 bg-gray-50 dark:bg-gray-800 shadow-lg z-20 p-6 flex flex-col" id="menu">
-<div class="flex justify-between items-center mb-8">
-<h2 class="text-xl font-bold text-text-light dark:text-text-dark">Menu</h2>
-<button class="text-text-light dark:text-text-dark" id="close-menu-btn">
-<span class="material-symbols-outlined">close</span>
-</button>
-</div>
-<ul class="space-y-4 flex-grow">
-<li><a class="flex items-center space-x-4 p-2 rounded-md text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700" href="#"><i class="fa-solid fa-house w-6 text-center text-gray-500 dark:text-gray-400"></i><span>Home</span></a></li>
-<li><a class="flex items-center space-x-4 p-2 rounded-md text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700" href="#"><i class="fa-solid fa-user w-6 text-center text-gray-500 dark:text-gray-400"></i><span>About</span></a></li>
-<li><a class="flex items-center space-x-4 p-2 rounded-md text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700" href="#"><i class="fa-solid fa-file-contract w-6 text-center text-gray-500 dark:text-gray-400"></i><span>Terms and Conditions</span></a></li>
-<li><a class="flex items-center space-x-4 p-2 rounded-md text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700" href="#"><i class="fa-solid fa-shield-halved w-6 text-center text-gray-500 dark:text-gray-400"></i><span>Privacy Policy</span></a></li>
-<li><a class="flex items-center space-x-4 p-2 rounded-md text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700" href="#"><i class="fa-solid fa-circle-question w-6 text-center text-gray-500 dark:text-gray-400"></i><span>FAQ</span></a></li>
-<li><a class="flex items-center space-x-4 p-2 rounded-md text-text-light dark:text-text-dark hover:bg-gray-200 dark:hover:bg-gray-700" href="#"><i class="fa-solid fa-share-alt w-6 text-center text-gray-500 dark:text-gray-400"></i><span>Share with Friends</span></a></li>
-</ul>
-<div class="flex items-center justify-between pt-4 border-t border-border-light dark:border-border-dark">
-<div class="flex items-center space-x-3 text-text-light dark:text-text-dark">
-<i class="fa-solid fa-moon w-6 text-center text-gray-500 dark:text-gray-400"></i>
-<span>Dark Mode</span>
-</div>
-<label class="relative inline-block w-12 h-6">
-<input class="opacity-0 w-0 h-0" id="darkModeToggleMenu" type="checkbox"/>
-<span class="slider"></span>
-</label>
-</div>
-</div>
-<div class="fixed inset-0 bg-black opacity-50 z-10" id="overlay"></div>
-<main class="mt-8" id="main-content">
-<div class="relative mb-8" id="tag-filter-section">
-<div class="slider-container overflow-x-auto" id="tag-filter-container">
-<div class="flex space-x-2 pb-2" id="tag-filter">
-<button class="tag active px-4 py-2 text-sm rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark" data-tag="all">All</button>
-<button class="tag px-4 py-2 text-sm rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark" data-tag="strategy">Strategy</button>
-<button class="tag px-4 py-2 text-sm rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark" data-tag="content">Content</button>
-<button class="tag px-4 py-2 text-sm rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark" data-tag="development">Development</button>
-<button class="tag px-4 py-2 text-sm rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark" data-tag="design">Design</button>
-</div>
-</div>
-</div>
-<div class="justify-between items-center mb-4" id="search-results-header">
-<h2 class="text-xl font-bold">Search Results</h2>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-8" id="projects-container">
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="strategy">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOhJPR_zECzC2c1X7OCT9EcnxsoAEb2bVOrm6M6Ljx6-GoXeV2UIW-5PJse6eo5pqVDwcOLXkamYs_EnA7IekYwAiJ0P52_su8b_Phr4n-dx4VaQXvsSyrcH8D8Ooyu0UpLwkECYnTYAakdBzycNIKfik22fCuoA9Upgf1ms8lT9OHNMuyEZDmdl2hmZHtdFcnv4xGAGTuB-AfFoEuopCrs73Cv-xrdE6ei_3GbBXq_fvHZr1JfmahOH-iJ6VgDpbuYmPz2DzDmnca"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark border border-border-light dark:border-border-dark">Strategy</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Full Editorial System for a European Appliance Brand</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Developed a comprehensive content strategy and editorial workflow for a leading home appliance brand.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 1"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm text-secondary-text-light dark:text-secondary-text-dark">warning</span>
-<span>Content may be outdated</span>
-</div>
-<button class="flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click to Read More</span>
-<span class="material-symbols-outlined text-base">arrow_forward</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="content">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_Hq_ANjRDrQaIntQC3zxqkcNTMiha66WUpVVXDRQjTTF2cnmKmz57_NVJGPM7Ek-_CAAVQiHSaQjeOktAI5ej9gs-ZT4AYtbTRAIznD1o5FI9ZDoTbMd_RZso3V7gdGbZwfmRc1zpAqzWF965BUFu9ZC47Mj_lYl-g_ALeYgKfUlTzyXJNw0qbBz9xdWt7gLwFMduzc-UH0pCPEjMdwl8Ek9KQ576bqKVmKHOMTxEIbccSmd-rREDB19CA58jIwa-Fp-1xQPasW47"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark border border-border-light dark:border-border-dark">Content</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">1M Reads/Year From Fewer Than 100 Articles</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Achieved massive organic growth by creating a targeted, high-quality content library.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 2"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm text-secondary-text-light dark:text-secondary-text-dark">warning</span>
-<span>Content may be outdated</span>
-</div>
-<button class="flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click to Read More</span>
-<span class="material-symbols-outlined text-base">arrow_forward</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="development">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIZo81fgzV7VFhQxCOfRdNu-eRgmqHQ73sJ7iNYUvEbcZlNM7psmIg1ThR_M-fO80SvD4rR6POUKwmOHDveGesVDCnXeFt_oKj4_jzAPbN5eo4AmINqMQehlR1I5HFfns0WIKRms5y4vocAda9kKzDWEVQPMJ5WVKgN8a1nsxpgRGYq1srzHFos7f9QFC7R_WkVUiHmL-j0hDbc8w19JRZ4Es8jWspxA_zoTWgD3a6nanN7mYFTKk3tpq6Ds7XdpfcnLqw79ZknAgn"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark border border-border-light dark:border-border-dark">Development</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">From Zero to Content-Ready in 4 Weeks</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Rapidly built and deployed a fully-functional website, ready for content population in a record timeframe.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 3"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm text-secondary-text-light dark:text-secondary-text-dark">warning</span>
-<span>Content may be outdated</span>
-</div>
-<button class="flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click to Read More</span>
-<span class="material-symbols-outlined text-base">arrow_forward</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="design">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTppVsyzsCZvU7WwG1ED3Iz436P_nHzdx1wrGm8hhPMTFdbGv55MK0W2BdWh5Vd004H2v_aiETZ9rPZstCKP6tJNp_0EsY_jYzB4A7Wd32D-WOxUK3u9wMkY9zusS1non4ZVu5kJYKNZDXecgQ3-C3c205sn77eQU9XDRqcNJJGj_-2Oap2mGy6iiNAe2ruZg8IOqoH3rCg6q3-RyuJR-QoeFzRrVxGH9-rakxrWc7jjto5gASYlzRAFdSLbq9pKazuud15npZXPIC"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark border border-border-light dark:border-border-dark">Design</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Corporate Website Redesign for a Tech Startup</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">A complete visual and UX overhaul to better communicate the brand's innovative solutions.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 4"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm text-secondary-text-light dark:text-secondary-text-dark">warning</span>
-<span>Content may be outdated</span>
-</div>
-<button class="flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click to Read More</span>
-<span class="material-symbols-outlined text-base">arrow_forward</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="design">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_cg-wVlyOwtrhrkXaJYv-hAvVLKFNBESeAGofa5o5mlyP_OaoGMurCyv2V75YzTLgAw-6ERwybKYawKeWdnU8OGGpu-r8SLpu5tTirEzYAqj48c_l9iVxLtEmGDeuaXGfY59GdPn5mabkav4LrOOtoorH4N6Dg-zxfhJlUSe4LK7QAePyzqhf8D4K7zEzsMlBiw14_OPnf_F98xtmtGCzcHNIMll9LXaFQt7mOHTNvpghl0UHOe9914-IV8TlU9xTE-PJFRxj7Mgb"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark border border-border-light dark:border-border-dark">Design</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">E-commerce Platform for a Fashion Brand</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Designed a sleek and user-friendly online store, enhancing the shopping experience and driving sales.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 5"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm text-secondary-text-light dark:text-secondary-text-dark">warning</span>
-<span>Content may be outdated</span>
-</div>
-<button class="flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click to Read More</span>
-<span class="material-symbols-outlined text-base">arrow_forward</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="strategy">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzidxgGTg96jD2pC4ujWkdQnvowRngt1Ew5v0WJh2kL7aK866Be-SiGJWxDUu8DYRIwISzzYem_2wJ7kNPcLH6MT9qCd5orqK9JHf6fREPZsx-GxHzwvGyIfj5nBuirXhUgE7siq_HklDCcAYDsw1N_7UI4y5q-xZ3DuXmBg1RhXzvSNVg09lCfikwDBKxG37Q5VmIrFYrg63XqmaagTVqCleofmXduMVSPdq9ATL29SvON_bcIKHIelFYEwaig65cMFJ1x6dxrKVy"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark border border-border-light dark:border-border-dark">Strategy</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Content Strategy for a SaaS Company</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Crafted a data-driven content strategy to increase brand awareness and generate qualified leads.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 6"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm text-secondary-text-light dark:text-secondary-text-dark">warning</span>
-<span>Content may be outdated</span>
-</div>
-<button class="flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click to Read More</span>
-<span class="material-symbols-outlined text-base">arrow_forward</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="content">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDnhK-uHWCMFc0jpmzhTPSi5WHRbYKmAi-K4v2MFA_jsS-CtrVAMReBZQPyVimrunK3YOW3QLoFgZfXGiSCOldlhb3V6iFbheDg-WLQSJ7UaTaWhwBfxXuSoBrEeh7PUXOogDQZy8Kl64Ir3891eNnl_1362SqxRoHMBjxO8gWJY3kh3d4r_Ztx4-veaNE0L_24lsyCSas_wHwWs3DuA8KkEMZJ6N6d-Y9Jy_e-4EdyqG7QtYb1Dd2ke8FsjeCrIBSdL_mZ0TuK8Tt"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark border border-border-light dark:border-border-dark">Content</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Blog Management for a Health &amp; Wellness Brand</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Managed and grew the company blog, establishing it as a trusted resource in the health space.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 7"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm text-secondary-text-light dark:text-secondary-text-dark">warning</span>
-<span>Content may be outdated</span>
-</div>
-<button class="flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click to Read More</span>
-<span class="material-symbols-outlined text-base">arrow_forward</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="development">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgw_D3tMyi4TOhfJhokBcpVFOezVK9hCth__HaJP9NhYk7jQRjhudEfVukNrmY-rvSiG3ksKSrEdCOHDYFf-dYBSY-HHdcP4W4x_Bima0feeuJzwHWxI1i9q5Mxum6GZ3yFMe0QS9sM3tCUJjxjHs011adfkbBJekWO0d7ophBc5b5rB5BDpSjidS9IhEnG1gwQeDenJ8wlTSePa6k8ymWnuN0QiATaMkCRpLk2wCiYNNxrfIPMkVWjHg9oEdqXTvzPiAQVIoNFKwf"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark border border-border-light dark:border-border-dark">Development</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Mobile App for a Fitness Company</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Built a native mobile app to help users track their fitness goals and stay motivated.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 8"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm text-secondary-text-light dark:text-secondary-text-dark">warning</span>
-<span>Content may be outdated</span>
-</div>
-<button class="flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click to Read More</span>
-<span class="material-symbols-outlined text-base">arrow_forward</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="design">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFgb_79GGDLVoWDSu_1EouYJAQPF1Eae6-U8hDTrC2cRA4yl2_p1IfDz-ld0B3C2rX-7dQmonSoSS4elNHojQEQUxo83z42l_lA3fNZE6zXCmWwROqz11y4KKTWtLc-XWqJjx1S03mFwXqd9yMQYf2VocfhEgxO8VLikTwEb-LnXvOtkqdGSfomzyfS-jtz91yzLhiksTMrzrqILvLK11V2L9awFX0o0dG1VT_ltEXmqk3KLGg9Cs5mnkFlXLj_ZIEMRg8hVHXBkKy"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark border border-border-light dark:border-border-dark">Design</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Branding &amp; Identity for a Coffee Shop</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Created a memorable brand identity that captured the unique atmosphere of the coffee shop.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 9"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm text-secondary-text-light dark:text-secondary-text-dark">warning</span>
-<span>Content may be outdated</span>
-</div>
-<button class="flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click to Read More</span>
-<span class="material-symbols-outlined text-base">arrow_forward</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="strategy">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB70OVnuFyAdhfykUfE5BPBCugTwmRym_qwiLS4Tq3wYzptxjAkAbkx1gwzJpla0ttyrsa2kW93O_Ym6Dp7XSV8hGWhhZY4RP5VyNdRsRdI99YljJwX1xYIBT7srfqKMDY95PHz14Nzc4-dw-npn2A8Re3q3uqWko5iHhf9wjY-KDQndEgzOqFanSvRHyNbmwNY2CXa7-yi9ocYJROGRfwC87TdO4RcbthNhRLXSdNIoLUQt6LNZxjd3npnk8icUTeCdsLSu9JOMwjV"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark border border-border-light dark:border-border-dark">Strategy</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Social Media Strategy for a Non-Profit</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Developed a social media plan to increase engagement, donations, and volunteer sign-ups.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 10"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm text-secondary-text-light dark:text-secondary-text-dark">warning</span>
-<span>Content may be outdated</span>
-</div>
-<button class="flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click to Read More</span>
-<span class="material-symbols-outlined text-base">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-</main>
-</div>
-<footer class="w-full mt-16 pb-8">
-<div class="container mx-auto px-4 max-w-4xl">
-<p class="text-xs text-center text-secondary-text-light dark:text-secondary-text-dark">© 2025 makemoneyonl.in all rights reserved.</p>
-</div>
-</footer>
-<script>
-    const menuBtn = document.getElementById('menu-btn');
-    const closeMenuBtn = document.getElementById('close-menu-btn');
-    const menu = document.getElementById('menu');
-    const overlay = document.getElementById('overlay');
-    const darkModeToggleMenu = document.getElementById('darkModeToggleMenu');
-    const searchBtn = document.getElementById('search-btn');
-    const searchBarContainer = document.getElementById('search-bar-container');
-    const searchInput = document.getElementById('search-input');
-    const clearSearchBtn = document.getElementById('clear-search-btn');
-    const backFromSearchBtn = document.getElementById('back-from-search-btn');
-    const mainHeader = document.getElementById('main-header');
-    const mainContent = document.getElementById('main-content');
-    const tagFilterSection = document.getElementById('tag-filter-section');
-    const searchResultsHeader = document.getElementById('search-results-header');
-    function toggleMenu() {
-      menu.classList.toggle('open');
-      overlay.style.display = menu.classList.contains('open') ? 'block' : 'none';
-      mainContent.classList.toggle('blur-background', menu.classList.contains('open'));
-    }
-    function openSearch() {
-      mainHeader.style.display = 'none';
-      searchBarContainer.classList.add('active');
-      searchInput.focus();
-      if (searchInput.value) {
-        searchResultsHeader.classList.add('active');
-        tagFilterSection.style.display = 'none';
-      }
-    }
-    function closeSearch() {
-      mainHeader.style.display = 'flex';
-      searchBarContainer.classList.remove('active');
-      searchResultsHeader.classList.remove('active');
-      tagFilterSection.style.display = 'block';
-      searchInput.value = '';
-      filterProjects('');
-    }
-    function clearSearch() {
-        searchInput.value = '';
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
-        searchInput.focus();
-    }
-    menuBtn.addEventListener('click', toggleMenu);
-    closeMenuBtn.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', () => {
-      if (menu.classList.contains('open')) {
-        toggleMenu();
-      }
-      if (searchBarContainer.classList.contains('active')) {
-          closeSearch();
-      }
-    });
-    searchBtn.addEventListener('click', openSearch);
-    backFromSearchBtn.addEventListener('click', closeSearch);
-    clearSearchBtn.addEventListener('click', clearSearch);
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (localStorage.getItem('darkMode') === 'enabled' || (localStorage.getItem('darkMode') !== 'disabled' && prefersDark)) {
-      document.documentElement.classList.add('dark');
-      darkModeToggleMenu.checked = true;
-    }
-    darkModeToggleMenu.addEventListener('change', () => {
-      if (darkModeToggleMenu.checked) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('darkMode', 'enabled');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('darkMode', 'disabled');
-      }
-    });
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      if (localStorage.getItem('darkMode') !== 'enabled' && localStorage.getItem('darkMode') !== 'disabled') {
-        if (e.matches) {
-          darkModeToggleMenu.checked = true;
-          document.documentElement.classList.add('dark');
-        } else {
-          darkModeToggleMenu.checked = false;
-          document.documentElement.classList.remove('dark');
-        }
-      }
-    });
-    const projectsContainer = document.getElementById('projects-container');
-    const allProjects = Array.from(projectsContainer.querySelectorAll('.project-item'));
-    let currentTag = 'all';
-    function filterAndShowProjects() {
-      const searchTerm = searchInput.value.toLowerCase();
-      if (searchTerm) {
-        searchResultsHeader.classList.add('active');
-        tagFilterSection.style.display = 'none';
-      } else {
-         searchResultsHeader.classList.remove('active');
-         tagFilterSection.style.display = 'block';
-      }
-      allProjects.forEach(item => {
-        const itemTags = item.dataset.tags;
-        const title = item.querySelector('h2').textContent.toLowerCase();
-        const description = item.querySelector('p').textContent.toLowerCase();
-        const tagMatch = currentTag === 'all' || itemTags.includes(currentTag);
-        const searchMatch = !searchTerm || title.includes(searchTerm) || description.includes(searchTerm);
-        const shouldBeVisible = tagMatch && searchMatch;
-        if (shouldBeVisible) {
-          item.classList.add('visible');
-        } else {
-          item.classList.remove('visible');
-        }
-      });
-    }
-    const tagButtons = document.querySelectorAll('.tag');
-    tagButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        tagButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        currentTag = button.dataset.tag;
-        filterAndShowProjects();
-      });
-    });
-    searchInput.addEventListener('input', filterAndShowProjects);
-    const slider = document.getElementById('tag-filter-container');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    slider.addEventListener('mousedown', (e) => {
-      isDown = true;
-      slider.classList.add('active');
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-    slider.addEventListener('mouseleave', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-    slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2;
-      slider.scrollLeft = scrollLeft - walk;
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-      filterAndShowProjects();
-    });
-  </script>
-</body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UPI App Recommendation: Navi App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-white text-gray-800 font-sans leading-relaxed">
+
+  <!-- Header -->
+  <header class="w-full py-4 border-b border-gray-200 bg-white">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/f7/34/81/f7348173-aada-e231-6ab8-6ff6a89bc20d/AppIcon-0-0-1x_U007ephone-0-1-0-85-220.png/230x0w.webp" alt="Navi Logo" class="h-8 w-8 object-contain rounded" />
+        <span class="text-base font-bold text-gray-800">navi app</span>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.naviapp" target="_blank"
+         class="flex items-center bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition">
+        <i class="fas fa-download mr-2"></i> Click here to install
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="py-10">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <h1 class="text-2xl font-semibold text-black mb-4">UPI app recommendation: Navi app</h1>
+      <p class="text-lg text-gray-700 mb-6">Pay faster. Earn rewards. Invest smarter. All from one place.</p>
+      <img src="https://static.businessworld.in/Navi_20240827115240_original_image_26.webp"
+           alt="Navi App" class="mx-auto rounded-lg shadow-md max-w-full w-full md:w-3/4" />
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="py-12 px-4 max-w-4xl mx-auto space-y-10">
+    <div>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-3">What is Navi UPI?</h2>
+      <p class="text-gray-700">
+        Navi UPI is an integrated payment feature within the Navi app. It allows you to send and receive money instantly using your bank account. Set up your UPI ID in minutes and enjoy smooth, secure transactions.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Cashbacks and Scratch Cards</h3>
+      <p class="text-gray-700">
+        Earn cashback on every eligible UPI transaction. Whether you scan a QR code or pay a bill, you can get scratch cards and Navi Coins that convert into cash rewards.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Invest in Mutual Funds and Digital Gold</h3>
+      <p class="text-gray-700">
+        With Navi, you can invest directly in mutual funds or digital gold inside the app. Start with small amounts, no commissions or paperwork needed.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Get Instant Loans and Health Insurance</h3>
+      <p class="text-gray-700">
+        Navi offers instant personal loans with flexible EMIs and 100% digital onboarding. You can also purchase health insurance in a few clicks with transparent pricing.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Why Navi is Better</h3>
+      <p class="text-gray-700">
+        Navi combines payment, investment, rewards, loans and insurance in one easy-to-use app. It’s faster than most UPI apps, and gives you more value for every transaction.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 border-t border-gray-200 text-center text-sm text-gray-600">
+    Click <a href="https://t.me/john" target="_blank" class="text-blue-600 hover:underline">here</a> to contact me (t.me/john)
+  </footer>
+
+</body>
+</html>
