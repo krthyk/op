@@ -2,12 +2,11 @@
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Article</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<title>Share with Friends</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <script>
     tailwind.config = {
       darkMode: "class",
@@ -22,7 +21,7 @@
             "secondary-text-light": "#6B7280",
             "secondary-text-dark": "#9CA3AF",
             "border-light": "#E5E7EB",
-            "border-dark": "#374151"
+            "border-dark": "#374151",
           },
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
@@ -44,39 +43,81 @@
       bottom: 0;
       background-color: #ccc;
       transition: .4s;
-      border-radius: 20px;
+      border-radius: 34px;
     }
     .slider:before {
       position: absolute;
       content: "";
-      height: 16px;
-      width: 16px;
+      height: 14px;
+      width: 14px;
       left: 4px;
       bottom: 4px;
       background-color: white;
       transition: .4s;
       border-radius: 50%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="%23f59e0b" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>');
-      background-size: 80%;
-      background-position: center;
-      background-repeat: no-repeat;
     }
-    #darkModeToggle:checked+.slider {
-      background-color: #1f2937;
+    input:checked+.slider {
+      background-color: #4b5563;
     }
-    #darkModeToggle:checked+.slider:before {
-      transform: translateX(20px);
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="%2338bdf8" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>');
-      animation: spin 0.5s linear;
+    input:checked+.slider:before {
+      transform: translateX(24px);
     }
-    @keyframes spin {
-      from {
-        transform: translateX(20px) rotate(0deg);
+    #menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    #menu.open {
+      transform: translateX(0);
+    }
+    #overlay {
+      display: none;
+    }
+    #menu.open~#overlay {
+      display: block;
+    }
+    #info-modal {
+      display: none;
+    }
+    #info-modal.active {
+      display: flex;
+    }
+    .dark .slider:before {
+      background-color: #F8F8F8;
+    }
+    .dark input:checked+.slider {
+      background-color: #4A5568;
+    }
+    .dark input:checked+.slider:before {
+      background-color: #F8F8F8;
+    }
+    @keyframes checkmark {
+      0% {
+        transform: scale(0);
       }
-      to {
-        transform: translateX(20px) rotate(360deg);
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
       }
     }
+    .copy-icon.copied {
+      animation: checkmark 0.5s ease-out;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
     body {
       min-height: max(884px, 100dvh);
     }
@@ -86,156 +127,199 @@
       min-height: max(884px, 100dvh);
     }
   </style>
-<style>
-.social-icons a i,
-    .social-icons a span {
-      transition: color 0.3s ease-in-out;
-    }
-    .social-icons a:hover .fa-linkedin-in {
-      color: #0077B5;
-    }
-    .social-icons a:hover .fa-dribbble {
-      color: #EA4C89;
-    }
-    .social-icons a:hover .fa-github {
-      color: #333;
-    }
-    .dark .social-icons a:hover .fa-github {
-      color: #fff;
-    }
-    .social-icons a:hover .fa-instagram {
-      color: #E1306C;
-    }
-     .social-icons a:hover .fa-telegram {
-      color: #24A1DE;
-    }
-    .social-icons a:hover .material-symbols-outlined {
-      color: #D44638;
-    }
-</style>
   </head>
-<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300">
-<div class="container mx-auto p-4 md:p-8 max-w-4xl flex flex-col min-h-[max(884px,100dvh)]">
-<header class="flex justify-between items-center mb-8">
-<a class="text-text-light dark:text-text-dark p-2 -ml-2" href="#">
-<span class="material-symbols-outlined">arrow_back</span>
-</a>
-<h1 class="text-xl font-bold text-center text-text-light dark:text-text-dark flex-grow">Article</h1>
-<div class="flex items-center gap-2">
-<div class="relative">
-<button class="text-text-light dark:text-text-dark p-2" id="shareButton">
-<span class="material-symbols-outlined">share</span>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 flex flex-col min-h-screen">
+<div class="container mx-auto p-4 max-w-md flex-grow">
+<header class="relative flex justify-center items-center py-6">
+<button class="absolute left-0 flex items-center space-x-2" id="menu-btn">
+<svg class="w-6 h-6 text-text-light dark:text-text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
 </button>
-</div>
-<label class="relative inline-block w-12 h-6" for="darkModeToggle">
-<input class="opacity-0 w-0 h-0" id="darkModeToggle" type="checkbox"/>
-<span class="slider"></span>
-</label>
-</div>
+<h1 class="text-2xl font-bold text-center">Share with Friends</h1>
+<button class="absolute right-0 flex items-center" id="info-btn">
+<span class="material-symbols-outlined">info</span>
+</button>
 </header>
-<main class="flex-grow space-y-8">
-<div class="space-y-4">
-<h1 class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark">The Future of Web Design</h1>
-<p class="text-secondary-text-light dark:text-secondary-text-dark">Published on January 15, 2024</p>
-</div>
-<div class="space-y-6 text-text-light dark:text-text-dark leading-relaxed">
-<p>In the ever-evolving landscape of digital technology, web design stands as a cornerstone of user experience. As we look towards the future, several key trends are emerging that promise to redefine how we interact with the web. This article explores the most significant developments, from the rise of artificial intelligence to the increasing importance of accessibility.</p>
-<div class="py-4">
-<img alt="Abstract image representing web design" class="rounded-lg mx-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTppVsyzsCZvU7WwG1ED3Iz436P_nHzdx1wrGm8hhPMTFdbGv55MK0W2BdWh5Vd004H2v_aiETZ9rPZstCKP6tJNp_0EsY_jYzB4A7Wd32D-WOxUK3u9wMkY9zusS1non4ZVu5kJYKNZDXecgQ3-C3c205sn77eQU9XDRqcNJJGj_-2Oap2mGy6iiNAe2ruZg8IOqoH3rCg6q3-RyuJR-QoeFzRrVxGH9-rakxrWc7jjto5gASYlzRAFdSLbq9pKazuud15npZXPIC"/>
-<p class="text-center text-sm text-secondary-text-light dark:text-secondary-text-dark mt-2">An abstract visual representing the confluence of creativity and technology in web design.</p>
-</div>
-<h2 class="text-2xl font-bold pt-4">AI-Powered Design and Development</h2>
-<p>Artificial intelligence is no longer a futuristic concept but a present-day reality that's transforming the design process. AI-powered tools can now generate layouts, suggest color palettes, and even write code, significantly accelerating the development workflow. This allows designers to focus more on strategic thinking and creating truly unique user experiences, rather than getting bogged down in repetitive tasks.</p>
-<div class="py-4">
-<video class="rounded-lg mx-auto" controls="" poster="https://lh3.googleusercontent.com/aida-public/AB6AXuA_cg-wVlyOwtrhrkXaJYv-hAvVLKFNBESeAGofa5o5mlyP_OaoGMurCyv2V75YzTLgAw-6ERwybKYawKeWdnU8OGGpu-r8SLpu5tTirEzYAqj48c_l9iVxLtEmGDeuaXGfY59GdPn5mabkav4LrOOtoorH4N6Dg-zxfhJlUSe4LK7QAePyzqhf8D4K7zEzsMlBiw14_OPnf_F98xtmtGCzcHNIMll9LXaFQt7mOHTNvpghl0UHOe9914-IV8TlU9xTE-PJFRxj7Mgb">
-<source src="your-video-file.mp4" type="video/mp4"/> Your browser does not support the video tag.
-          </video>
-<p class="text-center text-sm text-secondary-text-light dark:text-secondary-text-dark mt-2">A short clip demonstrating an AI-powered design tool in action.</p>
-</div>
-<h2 class="text-2xl font-bold pt-4">Immersive Experiences with AR and VR</h2>
-<p>Augmented Reality (AR) and Virtual Reality (VR) are set to create more immersive and engaging web experiences. From virtual showrooms for e-commerce to interactive educational content, the possibilities are vast. WebGL and WebXR APIs are making it easier for developers to build these 3D experiences directly in the browser, without the need for special applications.</p>
-<div class="py-4">
-<img alt="Person using a VR headset" class="rounded-lg mx-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmIOqOrB-lwGZYG4LTKFWlGOhCIjuyqyQMGvR73XkIzbw5kFHcSsQ-OlGccjA2HVR6vWr29H2khyMDF1DBTTYfDOvrpdQf0Jfd70J_ANLIS-C2hE-yBgolWNxYGrQBjSzBAJHAc7Yngfr2oP_HrVexCm28_49yZSh8sGPdhaKJTKsB0npuVAjHGcKKz0LjjZPUoieligMNGZMJdEm_bHzVc4Cn0UYv75OkE6fFojqBc4GQLJM7LPG4yWA1MCsVNzERveREQLDnIOI5"/>
-<p class="text-center text-sm text-secondary-text-light dark:text-secondary-text-dark mt-2">The line between the digital and physical worlds is blurring with immersive technologies.</p>
-</div>
-<h2 class="text-2xl font-bold pt-4">Accessibility and Inclusive Design</h2>
-<p>Creating websites that are usable by everyone, including people with disabilities, is not just a legal requirement in many places, but a moral imperative. Inclusive design is becoming a core principle of modern web development. This means paying close attention to color contrast, providing text alternatives for images, ensuring keyboard navigability, and much more. A web that's accessible to all is a better web for everyone.</p>
-<p>In conclusion, the future of web design is dynamic and exciting. By embracing these emerging trends, designers and developers can create web experiences that are not only more beautiful and efficient but also more inclusive and engaging for all users.</p>
-</div>
-</main>
-<footer class="mt-16 pt-8 border-t border-border-light dark:border-border-dark flex justify-between items-center">
-<p class="text-xs text-secondary-text-light dark:text-secondary-text-dark">© SASHA MOZDIR 2024</p>
-<div class="flex items-center space-x-3 social-icons text-sm">
-<a class="text-secondary-text-light dark:text-secondary-text-dark" href="#">
-<i class="fa-brands fa-linkedin-in"></i>
-</a>
-<a class="text-secondary-text-light dark:text-secondary-text-dark" href="#">
-<i class="fa-brands fa-dribbble"></i>
-</a>
-<a class="text-secondary-text-light dark:text-secondary-text-dark" href="#">
-<i class="fa-brands fa-github"></i>
-</a>
-<a class="text-secondary-text-light dark:text-secondary-text-dark" href="#">
-<i class="fa-brands fa-instagram"></i>
-</a>
-<a class="text-secondary-text-light dark:text-secondary-text-dark" href="#">
-<i class="fa-brands fa-telegram"></i>
-</a>
-<a class="text-secondary-text-light dark:text-secondary-text-dark flex items-center" href="#">
-<span class="material-symbols-outlined text-base">mail</span>
-</a>
-</div>
-</footer>
-</div>
-<div class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-end justify-center" id="shareModal">
-<div class="bg-background-light dark:bg-gray-800 w-full rounded-t-lg p-4 transition-transform transform translate-y-full" id="shareModalContent">
-<div class="flex justify-between items-center mb-4">
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark">Share</h2>
-<button class="p-2 text-text-light dark:text-text-dark" id="closeModal">
+<div class="fixed top-0 left-0 h-full w-64 bg-background-light dark:bg-background-dark shadow-lg z-20 p-6" id="menu">
+<button class="absolute top-4 right-4 text-text-light dark:text-text-dark" id="close-menu-btn">
 <span class="material-symbols-outlined">close</span>
 </button>
+<ul class="space-y-4 mt-12">
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-house w-6 text-center"></i><span>Home</span></a></li>
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-user w-6 text-center"></i><span>About</span></a></li>
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-file-contract w-6 text-center"></i><span>Terms and Conditions</span></a></li>
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-shield-halved w-6 text-center"></i><span>Privacy Policy</span></a></li>
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-circle-question w-6 text-center"></i><span>FAQ</span></a></li>
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-share-alt w-6 text-center"></i><span>Share with Friends</span></a></li>
+<li class="flex items-center justify-between pt-4">
+<div class="flex items-center space-x-3 text-text-light dark:text-text-dark">
+<i class="fa-solid fa-moon w-6 text-center"></i>
+<span>Dark Mode</span>
 </div>
-<div class="grid grid-cols-4 gap-4 text-center">
-<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
-<i class="fas fa-link text-2xl mb-1"></i>
-<span class="text-xs">Copy Link</span>
-</a>
-<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
-<i class="fab fa-facebook-f text-2xl mb-1 text-[#1877F2]"></i>
+<label class="relative inline-block w-12 h-6">
+<input class="opacity-0 w-0 h-0" id="darkModeToggleMenu" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</li>
+</ul>
+</div>
+<div class="fixed inset-0 bg-black opacity-50 z-10" id="overlay"></div>
+<main class="mt-8 flex flex-col items-center justify-center text-center">
+<p class="text-secondary-text-light dark:text-secondary-text-dark mb-8">Enjoying my portfolio? Spread the word and share it with your friends!</p>
+<div class="w-full overflow-x-auto pb-4 no-scrollbar">
+<div class="flex space-x-6">
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="facebook" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-facebook-f text-xl text-blue-600"></i>
+</div>
 <span class="text-xs">Facebook</span>
 </a>
-<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
-<i class="fab fa-instagram text-2xl mb-1 text-[#E4405F]"></i>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="instagram" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-instagram text-xl" style="color: #E1306C;"></i>
+</div>
 <span class="text-xs">Instagram</span>
 </a>
-<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
-<i class="fab fa-whatsapp text-2xl mb-1 text-[#25D366]"></i>
-<span class="text-xs">WhatsApp</span>
-</a>
-<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
-<i class="fab fa-linkedin-in text-2xl mb-1 text-[#0A66C2]"></i>
-<span class="text-xs">LinkedIn</span>
-</a>
-<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
-<i class="fab fa-twitter text-2xl mb-1 text-[#1DA1F2]"></i>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="x" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fa-brands fa-x-twitter text-xl text-black dark:text-white"></i>
+</div>
 <span class="text-xs">X</span>
 </a>
-<a class="flex flex-col items-center text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark" href="#">
-<span class="material-symbols-outlined text-2xl mb-1">more_horiz</span>
-<span class="text-xs">More</span>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="linkedin" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-linkedin-in text-xl text-blue-700"></i>
+</div>
+<span class="text-xs">LinkedIn</span>
+</a>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="whatsapp" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-whatsapp text-xl text-green-500"></i>
+</div>
+<span class="text-xs">WhatsApp</span>
+</a>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="telegram" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-telegram text-xl text-blue-400"></i>
+</div>
+<span class="text-xs">Telegram</span>
+</a>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="pinterest" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-pinterest text-xl text-red-600"></i>
+</div>
+<span class="text-xs">Pinterest</span>
+</a>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="reddit" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-reddit-alien text-xl text-orange-500"></i>
+</div>
+<span class="text-xs">Reddit</span>
+</a>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="tumblr" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-tumblr text-xl text-blue-900"></i>
+</div>
+<span class="text-xs">Tumblr</span>
+</a>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="snapchat" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-snapchat-ghost text-xl text-yellow-400"></i>
+</div>
+<span class="text-xs">Snapchat</span>
+</a>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="discord" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-discord text-xl text-indigo-500"></i>
+</div>
+<span class="text-xs">Discord</span>
+</a>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="tiktok" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-tiktok text-xl text-black dark:text-white"></i>
+</div>
+<span class="text-xs">TikTok</span>
+</a>
+<a class="share-btn flex flex-col items-center space-y-2 text-text-light dark:text-text-dark" data-platform="youtube" href="#">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<i class="fab fa-youtube text-xl text-red-600"></i>
+</div>
+<span class="text-xs">YouTube</span>
 </a>
 </div>
 </div>
+<div class="w-full my-8">
+<button class="w-full flex items-center justify-center space-x-2 py-3 px-4 border border-border-light dark:border-border-dark rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" id="copy-link-btn">
+<span class="material-symbols-outlined copy-icon">link</span>
+<span id="copy-link-text">Copy Link</span>
+</button>
 </div>
+<div class="w-full text-left">
+<label class="block text-sm font-medium text-secondary-text-light dark:text-secondary-text-dark mb-2" for="email">Friend's Email</label>
+<div class="relative">
+<input class="w-full p-3 pr-12 border border-border-light dark:border-border-dark rounded-lg bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="email" name="email" placeholder="Enter friend's email" type="email"/>
+<button class="absolute inset-y-0 right-0 flex items-center pr-3" id="send-email-btn">
+<span class="material-symbols-outlined text-secondary-text-light dark:text-secondary-text-dark">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+<div class="fixed inset-0 bg-black bg-opacity-50 z-30 items-center justify-center" id="info-modal">
+<div class="bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg w-11/12 max-w-md relative">
+<button class="absolute top-2 right-2 text-secondary-text-light dark:text-secondary-text-dark" id="close-info-modal">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h2 class="text-xl font-bold mb-4 text-text-light dark:text-text-dark">About This Platform</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark">This platform is a curated collection of high-quality prompts designed to inspire creativity and innovation. Explore prompts across various categories, copy them with a single click, and use them in your projects. Whether you're a designer, developer, writer, or strategist, you'll find prompts to spark your next big idea.</p>
+</div>
+</div>
+<footer class="w-full mt-auto py-8 border-t border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 max-w-4xl">
+<p class="text-xs text-center text-secondary-text-light dark:text-secondary-text-dark">Made with love by nerds</p>
+</div>
+</footer>
 <script>
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (localStorage.getItem('darkMode') === 'enabled' || (prefersDark && localStorage.getItem('darkMode') !== 'disabled')) {
-      document.documentElement.classList.add('dark');
-      darkModeToggle.checked = true;
+    const menuBtn = document.getElementById('menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const menu = document.getElementById('menu');
+    const overlay = document.getElementById('overlay');
+    const darkModeToggleMenu = document.getElementById('darkModeToggleMenu');
+    const infoBtn = document.getElementById('info-btn');
+    const infoModal = document.getElementById('info-modal');
+    const closeInfoModalBtn = document.getElementById('close-info-modal');
+    const copyLinkBtn = document.getElementById('copy-link-btn');
+    const sendEmailBtn = document.getElementById('send-email-btn');
+    const emailInput = document.getElementById('email');
+    function toggleMenu() {
+      menu.classList.toggle('open');
+      overlay.style.display = menu.classList.contains('open') ? 'block' : 'none';
     }
-    darkModeToggle.addEventListener('change', () => {
-      if (darkModeToggle.checked) {
+    function toggleInfoModal() {
+      infoModal.classList.toggle('active');
+    }
+    menuBtn.addEventListener('click', toggleMenu);
+    closeMenuBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', () => {
+      if (menu.classList.contains('open')) {
+        toggleMenu();
+      }
+    });
+    infoBtn.addEventListener('click', toggleInfoModal);
+    closeInfoModalBtn.addEventListener('click', toggleInfoModal);
+    infoModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        toggleInfoModal();
+      }
+    });
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (localStorage.getItem('darkMode') === 'enabled' || (localStorage.getItem('darkMode') !== 'disabled' && prefersDark)) {
+      document.documentElement.classList.add('dark');
+      darkModeToggleMenu.checked = true;
+    }
+    darkModeToggleMenu.addEventListener('change', () => {
+      if (darkModeToggleMenu.checked) {
         document.documentElement.classList.add('dark');
         localStorage.setItem('darkMode', 'enabled');
       } else {
@@ -243,34 +327,94 @@
         localStorage.setItem('darkMode', 'disabled');
       }
     });
-    const shareButton = document.getElementById('shareButton');
-    const shareModal = document.getElementById('shareModal');
-    const shareModalContent = document.getElementById('shareModalContent');
-    const closeModal = document.getElementById('closeModal');
-    function openModal() {
-      shareModal.classList.remove('hidden');
-      shareModal.classList.add('flex');
-      setTimeout(() => {
-        shareModalContent.classList.remove('translate-y-full');
-      }, 10);
-    }
-    function hideModal() {
-      shareModalContent.classList.add('translate-y-full');
-      setTimeout(() => {
-        shareModal.classList.add('hidden');
-        shareModal.classList.remove('flex');
-      }, 300);
-    }
-    shareButton.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openModal();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (localStorage.getItem('darkMode') !== 'enabled' && localStorage.getItem('darkMode') !== 'disabled') {
+        if (e.matches) {
+          darkModeToggleMenu.checked = true;
+          document.documentElement.classList.add('dark');
+        } else {
+          darkModeToggleMenu.checked = false;
+          document.documentElement.classList.remove('dark');
+        }
+      }
     });
-    closeModal.addEventListener('click', hideModal);
-    shareModal.addEventListener('click', (event) => {
-      if (event.target === shareModal) {
-        hideModal();
+    copyLinkBtn.addEventListener('click', () => {
+      const urlToCopy = window.location.href;
+      navigator.clipboard.writeText(urlToCopy).then(() => {
+        const copyIcon = copyLinkBtn.querySelector('.copy-icon');
+        const copyText = document.getElementById('copy-link-text');
+        copyIcon.textContent = 'check';
+        copyText.textContent = 'Copied!';
+        copyIcon.classList.add('copied', 'text-green-500');
+        setTimeout(() => {
+          copyIcon.textContent = 'link';
+          copyText.textContent = 'Copy Link';
+          copyIcon.classList.remove('copied', 'text-green-500');
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy link: ', err);
+      });
+    });
+    const siteUrl = encodeURIComponent(window.location.href);
+    const siteDescription = encodeURIComponent("Check out this awesome portfolio!");
+    document.querySelectorAll('.share-btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const platform = button.dataset.platform;
+        let shareUrl = '';
+        switch (platform) {
+          case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${siteUrl}`;
+            break;
+          case 'instagram':
+            alert('To share on Instagram, copy the link and paste it in your story or bio.');
+            return;
+          case 'x':
+            shareUrl = `https://twitter.com/intent/tweet?url=${siteUrl}&text=${siteDescription}`;
+            break;
+          case 'linkedin':
+            shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${siteUrl}&title=My%20Portfolio&summary=${siteDescription}&source=`;
+            break;
+          case 'whatsapp':
+            shareUrl = `https://api.whatsapp.com/send?text=${siteDescription}%20${siteUrl}`;
+            break;
+          case 'telegram':
+            shareUrl = `https://t.me/share/url?url=${siteUrl}&text=${siteDescription}`;
+            break;
+          case 'pinterest':
+            shareUrl = `https://pinterest.com/pin/create/button/?url=${siteUrl}&media=&description=${siteDescription}`;
+            break;
+          case 'reddit':
+            shareUrl = `https://www.reddit.com/submit?url=${siteUrl}&title=${siteDescription}`;
+            break;
+          case 'tumblr':
+            shareUrl = `https://www.tumblr.com/widgets/share/tool?posttype=link&title=${siteDescription}&caption=${siteDescription}&content=${siteUrl}&canonicalUrl=${siteUrl}&shareSource=legacy`;
+            break;
+          case 'snapchat':
+            alert('To share on Snapchat, copy the link and send it in a snap!');
+            return;
+          case 'discord':
+            alert('To share on Discord, copy the link and paste it in a channel.');
+            return;
+          case 'tiktok':
+            alert('To share on TikTok, copy the link and use it in your video description.');
+            return;
+          case 'youtube':
+            alert('To share on YouTube, copy the link and paste it in a comment or video description.');
+            return;
+        }
+        if (shareUrl) {
+          window.open(shareUrl, '_blank');
+        }
+      });
+    });
+    sendEmailBtn.addEventListener('click', () => {
+      const email = emailInput.value;
+      if (email) {
+        const mailtoLink = `mailto:${email}?subject=Check%20out%20this%20portfolio&body=${siteDescription}%0A%0A${decodeURIComponent(siteUrl)}`;
+        window.location.href = mailtoLink;
       }
     });
   </script>
 
-</body></html>
+</body></html>	
