@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Prompts Listing Page</title>
+<title>Homepage</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
@@ -22,10 +22,7 @@
             "secondary-text-dark": "#9CA3AF",
             "border-light": "#E5E7EB",
             "border-dark": "#374151",
-            "tag-bg-light": "#F3F4F6",
-            "tag-bg-dark": "#374151",
-            "tag-text-light": "#374151",
-            "tag-text-dark": "#D1D5DB",
+            "navy-blue": "#000080",
           },
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
@@ -66,34 +63,6 @@
     input:checked + .slider:before {
       transform: translateX(24px);
     }
-    .tag {
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .tag.active {
-      background-color: #4B5563;
-      color: #F9FAFB;
-    }
-    .dark .tag.active {
-      background-color: #9CA3AF;
-      color: #1F2937;
-    }
-    .project-item {
-      display: none;
-    }
-    .project-item.visible {
-      display: flex;
-    }
-    .project-item[data-tags*="all"] {
-      display: flex;
-    }
-    .slider-container::-webkit-scrollbar {
-      display: none;
-    }
-    .slider-container {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
     #menu {
       transform: translateX(-100%);
       transition: transform 0.3s ease-in-out;
@@ -107,28 +76,54 @@
     #menu.open ~ #overlay {
       display: block;
     }
-    #info-modal {
-      display: none;
-    }
-    #info-modal.active {
-        display: flex;
-    }
     .dark .slider:before {
       background-color: #F8F8F8;
     }
     .dark input:checked + .slider {
-        background-color: #4A5568;
+      background-color: #4A5568;
     }
     .dark input:checked + .slider:before {
-        background-color: #F8F8F8;
+      background-color: #F8F8F8;
     }
-    @keyframes checkmark {
-        0% { transform: scale(0); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
-    .copy-icon.copied {
-        animation: checkmark 0.5s ease-out;
+    @keyframes fade-out {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+    .fade-in {
+      animation: fade-in 0.5s ease-in-out;
+    }
+    .fade-out {
+      animation: fade-out 0.5s ease-in-out;
+    }
+    .dynamic-text {
+      display: inline-block;
+    }
+  </style>
+<style>
+    body, html {
+      height: 100%;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
     }
   </style>
 <style>
@@ -142,33 +137,22 @@
     }
   </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300">
-<div class="container mx-auto p-4 max-w-4xl relative">
-<header class="relative flex justify-center items-center py-6">
-<button class="absolute left-0 flex items-center space-x-2" id="menu-btn">
-<svg class="w-6 h-6 text-text-light dark:text-text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-<h1 class="text-2xl font-bold text-center">Prompts</h1>
-<button class="absolute right-0 flex items-center" id="info-btn">
-<span class="material-symbols-outlined">info</span>
-</button>
-</header>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 flex flex-col">
+<div class="container mx-auto p-4 max-w-md flex flex-col flex-grow">
 <div class="fixed top-0 left-0 h-full w-64 bg-background-light dark:bg-background-dark shadow-lg z-20 p-6" id="menu">
 <button class="absolute top-4 right-4 text-text-light dark:text-text-dark" id="close-menu-btn">
 <span class="material-symbols-outlined">close</span>
 </button>
 <ul class="space-y-4 mt-12">
-<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-house w-6 text-center"></i><span>Home</span></a></li>
-<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-user w-6 text-center"></i><span>About</span></a></li>
-<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-file-contract w-6 text-center"></i><span>Terms and Conditions</span></a></li>
-<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-shield-halved w-6 text-center"></i><span>Privacy Policy</span></a></li>
-<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-circle-question w-6 text-center"></i><span>FAQ</span></a></li>
-<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><i class="fa-solid fa-share-alt w-6 text-center"></i><span>Share with Friends</span></a></li>
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><span class="material-symbols-outlined w-6 text-center">person</span><span>About</span></a></li>
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><span class="material-symbols-outlined w-6 text-center">description</span><span>Terms</span></a></li>
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><span class="material-symbols-outlined w-6 text-center">shield</span><span>Privacy Policy</span></a></li>
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><span class="material-symbols-outlined w-6 text-center">help</span><span>FAQ</span></a></li>
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><span class="material-symbols-outlined w-6 text-center">star</span><span>Testimonials</span></a></li>
+<li><a class="flex items-center space-x-3 text-text-light dark:text-text-dark hover:text-secondary-text-light dark:hover:text-secondary-text-dark" href="#"><span class="material-symbols-outlined w-6 text-center">share</span><span>Share Site</span></a></li>
 <li class="flex items-center justify-between pt-4">
 <div class="flex items-center space-x-3 text-text-light dark:text-text-dark">
-<i class="fa-solid fa-moon w-6 text-center"></i>
+<span class="material-symbols-outlined w-6 text-center">dark_mode</span>
 <span>Dark Mode</span>
 </div>
 <label class="relative inline-block w-12 h-6">
@@ -179,373 +163,102 @@
 </ul>
 </div>
 <div class="fixed inset-0 bg-black opacity-50 z-10" id="overlay"></div>
-<main class="mt-8">
-<div class="relative mb-8">
-<div class="slider-container overflow-x-auto" id="tag-filter-container">
-<div class="flex space-x-2 pb-2" id="tag-filter">
-<button class="tag active px-4 py-2 text-sm rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark" data-tag="all">All</button>
-<button class="tag px-4 py-2 text-sm rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark" data-tag="strategy">Strategy</button>
-<button class="tag px-4 py-2 text-sm rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark" data-tag="content">Content</button>
-<button class="tag px-4 py-2 text-sm rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark" data-tag="development">Development</button>
-<button class="tag px-4 py-2 text-sm rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark" data-tag="design">Design</button>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-8" id="projects-container">
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="strategy">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOhJPR_zECzC2c1X7OCT9EcnxsoAEb2bVOrm6M6Ljx6-GoXeV2UIW-5PJse6eo5pqVDwcOLXkamYs_EnA7IekYwAiJ0P52_su8b_Phr4n-dx4VaQXvsSyrcH8D8Ooyu0UpLwkECYnTYAakdBzycNIKfik22fCuoA9Upgf1ms8lT9OHNMuyEZDmdl2hmZHtdFcnv4xGAGTuB-AfFoEuopCrs73Cv-xrdE6ei_3GbBXq_fvHZr1JfmahOH-iJ6VgDpbuYmPz2DzDmnca"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark">Strategy</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Full Editorial System for a European Appliance Brand</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Developed a comprehensive content strategy and editorial workflow for a leading home appliance brand.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 1"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm">image</span>
-<span>AI generated image</span>
-</div>
-<button class="copy-button flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click here to copy</span>
-<span class="material-symbols-outlined text-base copy-icon">content_copy</span>
+<main class="flex flex-col items-center justify-center text-center flex-grow">
+<h1 class="text-4xl font-bold text-text-light dark:text-text-dark leading-tight">
+<span>makemoneyonl.in, a site made with love for: </span><span class="relative inline-block whitespace-nowrap text-navy-blue" id="dynamic-text-container"><span class="dynamic-text" id="dynamic-text">students</span></span>
+</h1>
+<p class="text-secondary-text-light dark:text-secondary-text-dark mt-6 mb-8 max-w-md px-4">
+        Discover a world of opportunities to earn online. We provide a comprehensive platform with curated resources, expert guides, and a supportive community to help you navigate the digital landscape and achieve your financial goals, regardless of your background or experience.
+      </p>
+<div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full px-4 max-w-sm">
+<button class="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-transparent text-text-light dark:text-text-dark border border-border-light dark:border-border-dark rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span>Visit Site</span>
+<span class="material-symbols-outlined">launch</span>
 </button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="content">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_Hq_ANjRDrQaIntQC3zxqkcNTMiha66WUpVVXDRQjTTF2cnmKmz57_NVJGPM7Ek-_CAAVQiHSaQjeOktAI5ej9gs-ZT4AYtbTRAIznD1o5FI9ZDoTbMd_RZso3V7gdGbZwfmRc1zpAqzWF965BUFu9ZC47Mj_lYl-g_ALeYgKfUlTzyXJNw0qbBz9xdWt7gLwFMduzc-UH0pCPEjMdwl8Ek9KQ576bqKVmKHOMTxEIbccSmd-rREDB19CA58jIwa-Fp-1xQPasW47"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark">Content</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">1M Reads/Year From Fewer Than 100 Articles</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Achieved massive organic growth by creating a targeted, high-quality content library.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 2"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm">image</span>
-<span>AI generated image</span>
-</div>
-<button class="copy-button flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click here to copy</span>
-<span class="material-symbols-outlined text-base copy-icon">content_copy</span>
+<button class="w-full flex items-center justify-center space-x-2 py-3 px-4 border border-border-light dark:border-border-dark rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span>Learn More</span>
+<span class="material-symbols-outlined">info</span>
 </button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="development">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIZo81fgzV7VFhQxCOfRdNu-eRgmqHQ73sJ7iNYUvEbcZlNM7psmIg1ThR_M-fO80SvD4rR6POUKwmOHDveGesVDCnXeFt_oKj4_jzAPbN5eo4AmINqMQehlR1I5HFfns0WIKRms5y4vocAda9kKzDWEVQPMJ5WVKgN8a1nsxpgRGYq1srzHFos7f9QFC7R_WkVUiHmL-j0hDbc8w19JRZ4Es8jWspxA_zoTWgD3a6nanN7mYFTKk3tpq6Ds7XdpfcnLqw79ZknAgn"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark">Development</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">From Zero to Content-Ready in 4 Weeks</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Rapidly built and deployed a fully-functional website, ready for content population in a record timeframe.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 3"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm">image</span>
-<span>AI generated image</span>
-</div>
-<button class="copy-button flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click here to copy</span>
-<span class="material-symbols-outlined text-base copy-icon">content_copy</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="design">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTppVsyzsCZvU7WwG1ED3Iz436P_nHzdx1wrGm8hhPMTFdbGv55MK0W2BdWh5Vd004H2v_aiETZ9rPZstCKP6tJNp_0EsY_jYzB4A7Wd32D-WOxUK3u9wMkY9zusS1non4ZVu5kJYKNZDXecgQ3-C3c205sn77eQU9XDRqcNJJGj_-2Oap2mGy6iiNAe2ruZg8IOqoH3rCg6q3-RyuJR-QoeFzRrVxGH9-rakxrWc7jjto5gASYlzRAFdSLbq9pKazuud15npZXPIC"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark">Design</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Corporate Website Redesign for a Tech Startup</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">A complete visual and UX overhaul to better communicate the brand's innovative solutions.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 4"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm">image</span>
-<span>AI generated image</span>
-</div>
-<button class="copy-button flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click here to copy</span>
-<span class="material-symbols-outlined text-base copy-icon">content_copy</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="design">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_cg-wVlyOwtrhrkXaJYv-hAvVLKFNBESeAGofa5o5mlyP_OaoGMurCyv2V75YzTLgAw-6ERwybKYawKeWdnU8OGGpu-r8SLpu5tTirEzYAqj48c_l9iVxLtEmGDeuaXGfY59GdPn5mabkav4LrOOtoorH4N6Dg-zxfhJlUSe4LK7QAePyzqhf8D4K7zEzsMlBiw14_OPnf_F98xtmtGCzcHNIMll9LXaFQt7mOHTNvpghl0UHOe9914-IV8TlU9xTE-PJFRxj7Mgb"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark">Design</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">E-commerce Platform for a Fashion Brand</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Designed a sleek and user-friendly online store, enhancing the shopping experience and driving sales.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 5"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm">image</span>
-<span>AI generated image</span>
-</div>
-<button class="copy-button flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click here to copy</span>
-<span class="material-symbols-outlined text-base copy-icon">content_copy</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="strategy">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzidxgGTg96jD2pC4ujWkdQnvowRngt1Ew5v0WJh2kL7aK866Be-SiGJWxDUu8DYRIwISzzYem_2wJ7kNPcLH6MT9qCd5orqK9JHf6fREPZsx-GxHzwvGyIfj5nBuirXhUgE7siq_HklDCcAYDsw1N_7UI4y5q-xZ3DuXmBg1RhXzvSNVg09lCfikwDBKxG37Q5VmIrFYrg63XqmaagTVqCleofmXduMVSPdq9ATL29SvON_bcIKHIelFYEwaig65cMFJ1x6dxrKVy"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark">Strategy</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Content Strategy for a SaaS Company</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Crafted a data-driven content strategy to increase brand awareness and generate qualified leads.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 6"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm">image</span>
-<span>AI generated image</span>
-</div>
-<button class="copy-button flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click here to copy</span>
-<span class="material-symbols-outlined text-base copy-icon">content_copy</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="content">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDnhK-uHWCMFc0jpmzhTPSi5WHRbYKmAi-K4v2MFA_jsS-CtrVAMReBZQPyVimrunK3YOW3QLoFgZfXGiSCOldlhb3V6iFbheDg-WLQSJ7UaTaWhwBfxXuSoBrEeh7PUXOogDQZy8Kl64Ir3891eNnl_1362SqxRoHMBjxO8gWJY3kh3d4r_Ztx4-veaNE0L_24lsyCSas_wHwWs3DuA8KkEMZJ6N6d-Y9Jy_e-4EdyqG7QtYb1Dd2ke8FsjeCrIBSdL_mZ0TuK8Tt"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark">Content</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Blog Management for a Health &amp; Wellness Brand</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Managed and grew the company blog, establishing it as a trusted resource in the health space.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 7"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm">image</span>
-<span>AI generated image</span>
-</div>
-<button class="copy-button flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click here to copy</span>
-<span class="material-symbols-outlined text-base copy-icon">content_copy</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="development">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgw_D3tMyi4TOhfJhokBcpVFOezVK9hCth__HaJP9NhYk7jQRjhudEfVukNrmY-rvSiG3ksKSrEdCOHDYFf-dYBSY-HHdcP4W4x_Bima0feeuJzwHWxI1i9q5Mxum6GZ3yFMe0QS9sM3tCUJjxjHs011adfkbBJekWO0d7ophBc5b5rB5BDpSjidS9IhEnG1gwQeDenJ8wlTSePa6k8ymWnuN0QiATaMkCRpLk2wCiYNNxrfIPMkVWjHg9oEdqXTvzPiAQVIoNFKwf"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark">Development</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Mobile App for a Fitness Company</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Built a native mobile app to help users track their fitness goals and stay motivated.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 8"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm">image</span>
-<span>AI generated image</span>
-</div>
-<button class="copy-button flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click here to copy</span>
-<span class="material-symbols-outlined text-base copy-icon">content_copy</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="design">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFgb_79GGDLVoWDSu_1EouYJAQPF1Eae6-U8hDTrC2cRA4yl2_p1IfDz-ld0B3C2rX-7dQmonSoSS4elNHojQEQUxo83z42l_lA3fNZE6zXCmWwROqz11y4KKTWtLc-XWqJjx1S03mFwXqd9yMQYf2VocfhEgxO8VLikTwEb-LnXvOtkqdGSfomzyfS-jtz91yzLhiksTMrzrqILvLK11V2L9awFX0o0dG1VT_ltEXmqk3KLGg9Cs5mnkFlXLj_ZIEMRg8hVHXBkKy"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark">Design</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Branding &amp; Identity for a Coffee Shop</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Created a memorable brand identity that captured the unique atmosphere of the coffee shop.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 9"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm">image</span>
-<span>AI generated image</span>
-</div>
-<button class="copy-button flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click here to copy</span>
-<span class="material-symbols-outlined text-base copy-icon">content_copy</span>
-</button>
-</div>
-</div>
-<div class="project-item p-4 rounded-lg border border-border-light dark:border-border-dark flex-col" data-tags="strategy">
-<div class="relative">
-<img alt="Project image" class="w-full h-auto aspect-square rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB70OVnuFyAdhfykUfE5BPBCugTwmRym_qwiLS4Tq3wYzptxjAkAbkx1gwzJpla0ttyrsa2kW93O_Ym6Dp7XSV8hGWhhZY4RP5VyNdRsRdI99YljJwX1xYIBT7srfqKMDY95PHz14Nzc4-dw-npn2A8Re3q3uqWko5iHhf9wjY-KDQndEgzOqFanSvRHyNbmwNY2CXa7-yi9ocYJROGRfwC87TdO4RcbthNhRLXSdNIoLUQt6LNZxjd3npnk8icUTeCdsLSu9JOMwjV"/>
-</div>
-<div class="mt-4 flex-grow">
-<span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-tag-bg-light dark:bg-tag-bg-dark text-tag-text-light dark:text-tag-text-dark">Strategy</span>
-<h2 class="text-lg font-semibold text-text-light dark:text-text-dark mt-2">Social Media Strategy for a Non-Profit</h2>
-<p class="mt-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">Developed a social media plan to increase engagement, donations, and volunteer sign-ups.</p>
-<input class="prompt-text" type="hidden" value="Lorem ipsum 10"/>
-</div>
-<div class="flex justify-between items-center mt-auto pt-4">
-<div class="flex items-center text-xs text-secondary-text-light dark:text-secondary-text-dark">
-<span class="material-symbols-outlined mr-1 text-sm">image</span>
-<span>AI generated image</span>
-</div>
-<button class="copy-button flex items-center space-x-1 text-secondary-text-light dark:text-secondary-text-dark hover:text-text-light dark:hover:text-text-dark">
-<span class="text-xs">Click here to copy</span>
-<span class="material-symbols-outlined text-base copy-icon">content_copy</span>
-</button>
-</div>
-</div>
 </div>
 </main>
 </div>
-<div class="fixed inset-0 bg-black bg-opacity-50 z-30 items-center justify-center" id="info-modal">
-<div class="bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg w-11/12 max-w-md relative">
-<button class="absolute top-2 right-2 text-secondary-text-light dark:text-secondary-text-dark" id="close-info-modal">
-<span class="material-symbols-outlined">close</span>
-</button>
-<h2 class="text-xl font-bold mb-4 text-text-light dark:text-text-dark">About This Platform</h2>
-<p class="text-secondary-text-light dark:text-secondary-text-dark">This platform is a curated collection of high-quality prompts designed to inspire creativity and innovation. Explore prompts across various categories, copy them with a single click, and use them in your projects. Whether you're a designer, developer, writer, or strategist, you'll find prompts to spark your next big idea.</p>
-</div>
-</div>
-<footer class="w-full mt-16 pt-8 pb-8 border-t border-border-light dark:border-border-dark">
-<div class="container mx-auto px-4 max-w-4xl">
-<p class="text-xs text-center text-secondary-text-light dark:text-secondary-text-dark">Made with love by nerds</p>
-</div>
-</footer>
 <script>
     const menuBtn = document.getElementById('menu-btn');
     const closeMenuBtn = document.getElementById('close-menu-btn');
     const menu = document.getElementById('menu');
     const overlay = document.getElementById('overlay');
     const darkModeToggleMenu = document.getElementById('darkModeToggleMenu');
-    const infoBtn = document.getElementById('info-btn');
-    const infoModal = document.getElementById('info-modal');
-    const closeInfoModalBtn = document.getElementById('close-info-modal');
+    const dynamicText = document.getElementById('dynamic-text');
+    const dynamicTextContainer = document.getElementById('dynamic-text-container');
     function toggleMenu() {
       menu.classList.toggle('open');
       overlay.style.display = menu.classList.contains('open') ? 'block' : 'none';
     }
-    function toggleInfoModal() {
-      infoModal.classList.toggle('active');
+    // Conditional event listener attachment
+    if (menuBtn) {
+        menuBtn.addEventListener('click', toggleMenu);
     }
-    menuBtn.addEventListener('click', toggleMenu);
-    closeMenuBtn.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', () => {
-      if (menu.classList.contains('open')) {
-        toggleMenu();
-      }
-    });
-    infoBtn.addEventListener('click', toggleInfoModal);
-    closeInfoModalBtn.addEventListener('click', toggleInfoModal);
-    infoModal.addEventListener('click', function(e) {
-      if (e.target === this) {
-        toggleInfoModal();
-      }
-    });
+    if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', toggleMenu);
+    }
+    if (overlay) {
+        overlay.addEventListener('click', () => {
+        if (menu.classList.contains('open')) {
+            toggleMenu();
+        }
+        });
+    }
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (localStorage.getItem('darkMode') === 'enabled' || (localStorage.getItem('darkMode') !== 'disabled' && prefersDark)) {
       document.documentElement.classList.add('dark');
-      darkModeToggleMenu.checked = true;
+      if(darkModeToggleMenu) darkModeToggleMenu.checked = true;
     }
-    darkModeToggleMenu.addEventListener('change', () => {
-      if (darkModeToggleMenu.checked) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('darkMode', 'enabled');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('darkMode', 'disabled');
-      }
-    });
+    if(darkModeToggleMenu) {
+        darkModeToggleMenu.addEventListener('change', () => {
+        if (darkModeToggleMenu.checked) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('darkMode', 'disabled');
+        }
+        });
+    }
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
       if (localStorage.getItem('darkMode') !== 'enabled' && localStorage.getItem('darkMode') !== 'disabled') {
         if (e.matches) {
-          darkModeToggleMenu.checked = true;
+          if(darkModeToggleMenu) darkModeToggleMenu.checked = true;
           document.documentElement.classList.add('dark');
         } else {
-          darkModeToggleMenu.checked = false;
+          if(darkModeToggleMenu) darkModeToggleMenu.checked = false;
           document.documentElement.classList.remove('dark');
         }
       }
     });
-    const projectsContainer = document.getElementById('projects-container');
-    const allProjects = Array.from(projectsContainer.querySelectorAll('.project-item'));
-    let currentTag = 'all';
-    function filterAndShowProjects() {
-      allProjects.forEach(item => {
-        const itemTags = item.dataset.tags;
-        const shouldBeVisible = currentTag === 'all' || itemTags.includes(currentTag);
-        if (shouldBeVisible) {
-          item.classList.add('visible');
-        } else {
-          item.classList.remove('visible');
-        }
-      });
+    const roles = ['students', 'freelancers', 'self-employed', 'housewives'];
+    let currentIndex = 0;
+    function updateText() {
+      dynamicText.classList.add('fade-out');
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % roles.length;
+        dynamicText.textContent = roles[currentIndex];
+        // Ensure the container width adjusts
+        dynamicTextContainer.style.width = 'auto'; 
+        const newWidth = dynamicText.offsetWidth;
+        dynamicTextContainer.style.width = `${newWidth}px`;
+        dynamicText.classList.remove('fade-out');
+        dynamicText.classList.add('fade-in');
+      }, 500); // Corresponds to fade-out animation duration
+      setTimeout(() => {
+        dynamicText.classList.remove('fade-in');
+      }, 1000); // Remove after fade-in completes
     }
-    const tagButtons = document.querySelectorAll('.tag');
-    tagButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        tagButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        currentTag = button.dataset.tag;
-        filterAndShowProjects();
-      });
-    });
-    const slider = document.getElementById('tag-filter-container');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    slider.addEventListener('mousedown', (e) => {
-      isDown = true;
-      slider.classList.add('active');
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-    slider.addEventListener('mouseleave', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-    slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2;
-      slider.scrollLeft = scrollLeft - walk;
-    });
-    const copyButtons = document.querySelectorAll('.copy-button');
-    copyButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const projectItem = button.closest('.project-item');
-            const promptText = projectItem.querySelector('.prompt-text').value;
-            const copyIcon = button.querySelector('.copy-icon');
-            navigator.clipboard.writeText(promptText).then(() => {
-                const originalText = button.querySelector('span:first-child').textContent;
-                button.querySelector('span:first-child').textContent = 'Copied!';
-                copyIcon.textContent = 'check';
-                copyIcon.classList.add('copied', 'text-green-500');
-                setTimeout(() => {
-                    button.querySelector('span:first-child').textContent = originalText;
-                    copyIcon.textContent = 'content_copy';
-                    copyIcon.classList.remove('copied', 'text-green-500');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-            });
-        });
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-      filterAndShowProjects();
-    });
+    // Initial setup
+    dynamicText.textContent = roles[currentIndex];
+    dynamicTextContainer.style.width = 'auto'; 
+    const initialWidth = dynamicText.offsetWidth;
+    dynamicTextContainer.style.width = `${initialWidth}px`;
+    setInterval(updateText, 5000);
   </script>
 
 </body></html>
