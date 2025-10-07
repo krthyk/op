@@ -1,80 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UPI App Recommendation: Navi App</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>mtasks - Privacy-Focused Microtasking</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1173d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .word-container {
+            display: inline-block;
+            position: relative;
+            width: 10em;text-align: left;
+        }
+        .word {
+            position: absolute;
+            opacity: 0;
+            animation: cycleWords 25s infinite;
+        }
+        .word:nth-child(1) { animation-delay: 0s; }
+        .word:nth-child(2) { animation-delay: 5s; }
+        .word:nth-child(3) { animation-delay: 10s; }
+        .word:nth-child(4) { animation-delay: 15s; }
+        .word:nth-child(5) { animation-delay: 20s; }
+        @keyframes cycleWords {
+            0%, 100% { opacity: 0; transform: translateY(-10px); }
+            4%, 16% { opacity: 1; transform: translateY(0); }
+            20% { opacity: 0; transform: translateY(10px); }
+        }
+    </style>
 </head>
-<body class="bg-white text-gray-800 font-sans leading-relaxed">
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-x-hidden p-4">
+<header class="absolute top-0 left-0 right-0 p-6 flex justify-between items-center">
+<h1 class="text-xl font-bold text-slate-900 dark:text-white">mtasks.in</h1>
+</header>
+<main class="flex flex-col items-center text-center max-w-4xl mx-auto">
+<div class="mb-8">
+<h2 class="text-5xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tighter">
+<div class="word-container">
+<span class="word">micro</span>
+<span class="word">mini</span>
+<span class="word">monetise</span>
+<span class="word">money</span>
+<span class="word">mobile</span>
+</div>tasks
+                </h2>
+<p class="mt-4 text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl">
+                    Your gateway to simple, secure microtasking. Earn rewards, your way.
+                </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl mb-12">
+<div class="bg-background-light/50 dark:bg-background-dark/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-start space-x-4">
+<span class="material-symbols-outlined text-primary text-3xl">shield_lock</span>
+<div>
+<h3 class="font-bold text-lg text-slate-900 dark:text-white">Privacy First</h3>
+<p class="text-slate-600 dark:text-slate-400">Your data is yours. We are committed to protecting your privacy.</p>
+</div>
+</div>
+<div class="bg-background-light/50 dark:bg-background-dark/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-start space-x-4">
+<span class="material-symbols-outlined text-primary text-3xl">no_accounts</span>
+<div>
+<h3 class="font-bold text-lg text-slate-900 dark:text-white">No Sign-up</h3>
+<p class="text-slate-600 dark:text-slate-400">Get started in seconds. No lengthy registration forms.</p>
+</div>
+</div>
+<div class="bg-background-light/50 dark:bg-background-dark/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-start space-x-4">
+<span class="material-symbols-outlined text-primary text-3xl">card_giftcard</span>
+<div>
+<h3 class="font-bold text-lg text-slate-900 dark:text-white">Amazon Gift Cards</h3>
+<p class="text-slate-600 dark:text-slate-400">Get paid for your efforts with the world's largest retailer.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center">
+<button class="bg-primary text-white font-bold text-lg py-3 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105">
+                    Start Microtasking Now
+                </button>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-3">No download required.</p>
+</div>
+</main>
+<footer class="absolute bottom-0 left-0 right-0 p-6 text-center text-sm text-slate-500 dark:text-slate-400">
+            © 2024 mtasks.in - All rights reserved.
+        </footer>
+</div>
 
-  <!-- Header -->
-  <header class="w-full py-4 border-b border-gray-200 bg-white">
-    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/f7/34/81/f7348173-aada-e231-6ab8-6ff6a89bc20d/AppIcon-0-0-1x_U007ephone-0-1-0-85-220.png/230x0w.webp" alt="Navi Logo" class="h-8 w-8 object-contain rounded" />
-        <span class="text-base font-bold text-gray-800">navi app</span>
-      </div>
-      <a href="https://play.google.com/store/apps/details?id=com.naviapp" target="_blank"
-         class="flex items-center bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition">
-        <i class="fas fa-download mr-2"></i> Click here to install
-      </a>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="py-10">
-    <div class="max-w-5xl mx-auto px-4 text-center">
-      <h1 class="text-2xl font-semibold text-black mb-4">UPI app recommendation: Navi app</h1>
-      <p class="text-lg text-gray-700 mb-6">Pay faster. Earn rewards. Invest smarter. All from one place.</p>
-      <img src="https://static.businessworld.in/Navi_20240827115240_original_image_26.webp"
-           alt="Navi App" class="mx-auto rounded-lg shadow-md max-w-full w-full md:w-3/4" />
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section class="py-12 px-4 max-w-4xl mx-auto space-y-10">
-    <div>
-      <h2 class="text-2xl font-semibold text-gray-800 mb-3">What is Navi UPI?</h2>
-      <p class="text-gray-700">
-        Navi UPI is an integrated payment feature within the Navi app. It allows you to send and receive money instantly using your bank account. Set up your UPI ID in minutes and enjoy smooth, secure transactions.
-      </p>
-    </div>
-
-    <div>
-      <h3 class="text-xl font-semibold text-gray-800 mb-2">Cashbacks and Scratch Cards</h3>
-      <p class="text-gray-700">
-        Earn cashback on every eligible UPI transaction. Whether you scan a QR code or pay a bill, you can get scratch cards and Navi Coins that convert into cash rewards.
-      </p>
-    </div>
-
-    <div>
-      <h3 class="text-xl font-semibold text-gray-800 mb-2">Invest in Mutual Funds and Digital Gold</h3>
-      <p class="text-gray-700">
-        With Navi, you can invest directly in mutual funds or digital gold inside the app. Start with small amounts, no commissions or paperwork needed.
-      </p>
-    </div>
-
-    <div>
-      <h3 class="text-xl font-semibold text-gray-800 mb-2">Get Instant Loans and Health Insurance</h3>
-      <p class="text-gray-700">
-        Navi offers instant personal loans with flexible EMIs and 100% digital onboarding. You can also purchase health insurance in a few clicks with transparent pricing.
-      </p>
-    </div>
-
-    <div>
-      <h3 class="text-xl font-semibold text-gray-800 mb-2">Why Navi is Better</h3>
-      <p class="text-gray-700">
-        Navi combines payment, investment, rewards, loans and insurance in one easy-to-use app. It’s faster than most UPI apps, and gives you more value for every transaction.
-      </p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-6 border-t border-gray-200 text-center text-sm text-gray-600">
-    Click <a href="https://t.me/john" target="_blank" class="text-blue-600 hover:underline">here</a> to contact me (t.me/john)
-  </footer>
-
-</body>
-</html>
+</body></html>
