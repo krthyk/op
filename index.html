@@ -1,107 +1,233 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
+<html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>mtasks - Privacy-Focused Microtasking</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<title>Single2Mingle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "primary": "#1173d4",
-              "background-light": "#f6f7f8",
-              "background-dark": "#101922",
-            },
-            fontFamily: {
-              "display": ["Inter"]
-            },
-            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#F8F8F8",
+            "background-light": "#FFFFFF",
+            "background-dark": "#121212",
+            "text-light": "#121212",
+            "text-dark": "#F8F8F8",
+            "secondary-text-light": "#6B7280",
+            "secondary-text-dark": "#9CA3AF",
+            "border-light": "#E5E7EB",
+            "border-dark": "#374151",
+            "orange-accent": "#F97316",
+            "cta-bg": "#000000",
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
           },
         },
-      }
-    </script>
+      },
+    };
+  </script>
 <style>
-        .word-container {
-            display: inline-block;
-            position: relative;
-            width: 10em;text-align: left;
-        }
-        .word {
-            position: absolute;
-            opacity: 0;
-            animation: cycleWords 25s infinite;
-        }
-        .word:nth-child(1) { animation-delay: 0s; }
-        .word:nth-child(2) { animation-delay: 5s; }
-        .word:nth-child(3) { animation-delay: 10s; }
-        .word:nth-child(4) { animation-delay: 15s; }
-        .word:nth-child(5) { animation-delay: 20s; }
-        @keyframes cycleWords {
-            0%, 100% { opacity: 0; transform: translateY(-10px); }
-            4%, 16% { opacity: 1; transform: translateY(0); }
-            20% { opacity: 0; transform: translateY(10px); }
-        }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
-<div class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-x-hidden p-4">
-<header class="absolute top-0 left-0 right-0 p-6 flex justify-between items-center">
-<h1 class="text-xl font-bold text-slate-900 dark:text-white">mtasks.in</h1>
-</header>
-<main class="flex flex-col items-center text-center max-w-4xl mx-auto">
-<div class="mb-8">
-<h2 class="text-5xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tighter">
-<div class="word-container">
-<span class="word">micro</span>
-<span class="word">mini</span>
-<span class="word">monetise</span>
-<span class="word">money</span>
-<span class="word">mobile</span>
-</div>tasks
-                </h2>
-<p class="mt-4 text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl">
-                    Your gateway to simple, secure microtasking. Earn rewards, your way.
-                </p>
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked+.slider {
+      background-color: #4b5563;
+    }
+    input:checked+.slider:before {
+      transform: translateX(24px);
+    }
+    #menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    #menu.open {
+      transform: translateX(0);
+    }
+    #overlay {
+      display: none;
+    }
+    #menu.open~#overlay {
+      display: block;
+    }
+    .dark .slider:before {
+      background-color: #F8F8F8;
+    }
+    .dark input:checked+.slider {
+      background-color: #4A5568;
+    }
+    .dark input:checked+.slider:before {
+      background-color: #F8F8F8;
+    }
+    .carousel-item {
+      flex: 0 0 100%;
+    }
+    .carousel {
+      scroll-snap-type: x mandatory;
+    }
+    .carousel-item {
+      scroll-snap-align: center;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 flex flex-col min-h-screen">
+<div class="container mx-auto p-4 max-w-md flex flex-col flex-grow justify-between">
+<main class="flex-grow flex flex-col justify-center">
+<div class="relative w-full max-w-md mx-auto mt-4" id="carousel-container">
+<div class="carousel overflow-hidden flex" id="carousel">
+<div class="carousel-item p-4"><img alt="Two people smiling and looking at each other" class="aspect-square w-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFQv7v2PD0wLep0HKplKEGkMtaXkKCFx8zZbx-As0ii2xMuoUzb33j3fR_2Nk1i5BsrKB1EIxEUOfE2eVMcjP5FDwKXK8dv15H-AiF63zWn3u-hRd-x7IOzR_ZZw9tZSqxCreWaurOirOhVOAu1e3tnYCevT-enGI_OP2LpV-ckcOlZQWEOpaNHHHewOyiQTAd7Hi6D_LhrAOcTqj7BeUEf0UeObKXNpv8foKzCcGV_EMDGvM4w-3-wzUOhVew_DEw7nkGr4R-YSOi"/></div>
+<div class="carousel-item p-4"><img alt="A couple holding hands" class="aspect-square w-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVToYStKx9a69aMLoSATjrOthoc4xnUG1RdrRcbLw44__Pz7ZyMf-RDUlP0XhAbvnwGAzkwpkmjZNViGHnIgxwkc2XbZ7KvTzINQmV0bNTlX6TuV89yX8HTBjmbgEMxeYq0q70NOpty15-NV7sNsjLWRvRJrekvGmn7NGazm21eOOGh3jdzkhMISjr0vexVA0Q-h-FaN_li7wqieh-Mw3Z8YfcXZRRQINboPtwHaiB_6ABsXMp5f5X1faIcSc74uUhoTQnQ1vz79ek"/></div>
+<div class="carousel-item p-4"><img alt="A person smiling at their phone" class="aspect-square w-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmRKriIy68AdGV28hFecjbO7GAK5p9ywPbohW-AJEpSLJbIyKxT__P1egKGvuHBxwPNx8uxZgyXIDPjVOkp027AV8MxKUxySLyQxEDAbtdTaPkTQC7KH_Nu9OAQiw1Qx6G6sJ3Hynn-QXf1vIp5o4Yd4jgyfENOZn2-zEzlqmEF_9a6YMsTbEbTFfL8Zx7M3ssc47-gDA3e-2tvZdzesfCGINyi_TtdP8DwwhVYFo_GLtWr16S6CSKi_r_zbLhP-xpOi9G17E1w3OQ"/></div>
+<div class="carousel-item p-4"><img alt="A couple laughing together" class="aspect-square w-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4pf-ihkZbKUrZYNVxzgBwWzafkJDCFyMtKoUzD1KT9JPcCL52OTtrFTns0Y-wl3CzWIVTHop-B9pZe5vp2m0DCfXI10pNaYH8RooS5t_Z7oIfKwoglsCpHuKHb__l1aEAyAxu3KaPvz4cWRt0wgtcmSvdrO1FKBPG9YAjij4mvSzQ-3LmjR_IQJ7YPw-vt6b8wWBoQrimPXw587mT9in-wRxvqzTHgUGYAJ8A7ePBf21qu0mn2sPDb1S3nsEniAerh0gBCIy2Ujq5"/></div>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl mb-12">
-<div class="bg-background-light/50 dark:bg-background-dark/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-start space-x-4">
-<span class="material-symbols-outlined text-primary text-3xl">shield_lock</span>
-<div>
-<h3 class="font-bold text-lg text-slate-900 dark:text-white">Privacy First</h3>
-<p class="text-slate-600 dark:text-slate-400">Your data is yours. We are committed to protecting your privacy.</p>
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2" id="carousel-dots">
 </div>
 </div>
-<div class="bg-background-light/50 dark:bg-background-dark/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-start space-x-4">
-<span class="material-symbols-outlined text-primary text-3xl">no_accounts</span>
-<div>
-<h3 class="font-bold text-lg text-slate-900 dark:text-white">No Sign-up</h3>
-<p class="text-slate-600 dark:text-slate-400">Get started in seconds. No lengthy registration forms.</p>
+<div class="text-left px-4 mt-8">
+<h1 class="text-4xl font-bold text-text-light dark:text-text-dark">Single2Mingle</h1>
+<p class="text-base text-secondary-text-light dark:text-secondary-text-dark">say goodbye to your singleness :)</p>
+<p class="text-secondary-text-light dark:text-secondary-text-dark mt-6 max-w-md">
+          Find your perfect match with our intuitive and fun dating app.
+          Connect with like-minded individuals in your area and beyond.
+          Start your journey to a meaningful relationship today.
+        </p>
 </div>
-</div>
-<div class="bg-background-light/50 dark:bg-background-dark/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-start space-x-4">
-<span class="material-symbols-outlined text-primary text-3xl">card_giftcard</span>
-<div>
-<h3 class="font-bold text-lg text-slate-900 dark:text-white">Amazon Gift Cards</h3>
-<p class="text-slate-600 dark:text-slate-400">Get paid for your efforts with the world's largest retailer.</p>
-</div>
-</div>
-</div>
-<div class="flex flex-col items-center">
-<button class="bg-primary text-white font-bold text-lg py-3 px-8 rounded-lg shadow-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105">
-                    Start Microtasking Now
-                </button>
-<p class="text-sm text-slate-500 dark:text-slate-400 mt-3">No download required.</p>
+<div class="flex flex-col items-center justify-center mt-12 px-4 w-full max-w-sm mx-auto space-y-4">
+<a class="w-full bg-transparent text-text-light dark:text-text-dark border border-gray-300 dark:border-gray-600 py-3 px-6 rounded-full flex items-center justify-center space-x-2 text-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" href="#">
+<span>Learn More</span>
+<i class="fas fa-external-link-alt"></i>
+</a>
+<a class="w-full bg-cta-bg text-white py-3 px-6 rounded-full flex items-center justify-center space-x-2 text-lg font-semibold shadow-lg hover:bg-opacity-90 transition-all" href="#">
+<span>Get Started</span>
+<i class="fas fa-arrow-right"></i>
+</a>
 </div>
 </main>
-<footer class="absolute bottom-0 left-0 right-0 p-6 text-center text-sm text-slate-500 dark:text-slate-400">
-            © 2024 mtasks.in - All rights reserved.
-        </footer>
+<footer class="w-full py-4 mt-12">
+<div class="container mx-auto px-4 max-w-4xl">
+<p class="text-xs text-center text-secondary-text-light dark:text-secondary-text-dark">Dating app developed by krthknryn for under 25 mission.</p>
 </div>
-
+</footer>
+</div>
+<script>
+    const carousel = document.getElementById('carousel');
+    const carouselDots = document.getElementById('carousel-dots');
+    const items = carousel.querySelectorAll('.carousel-item');
+    let currentItem = 0;
+    let slideInterval;
+    function createDots() {
+      items.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.classList.add('w-1.5', 'h-1.5', 'rounded-full', 'transition-colors');
+        dot.classList.add(i === 0 ? 'bg-white' : 'bg-gray-400');
+        dot.addEventListener('click', () => {
+          goToSlide(i);
+          resetInterval();
+        });
+        carouselDots.appendChild(dot);
+      });
+    }
+    function updateDots() {
+      const dots = carouselDots.querySelectorAll('button');
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('bg-white', i === currentItem);
+        dot.classList.toggle('bg-gray-400', i !== currentItem);
+      });
+    }
+    function goToSlide(n) {
+      carousel.scrollTo({
+        left: items[n].offsetLeft,
+        behavior: 'smooth'
+      });
+      currentItem = n;
+      updateDots();
+    }
+    function nextSlide() {
+      currentItem = (currentItem + 1) % items.length;
+      goToSlide(currentItem);
+    }
+    function resetInterval() {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 3000);
+    }
+    createDots();
+    slideInterval = setInterval(nextSlide, 3000);
+    carousel.addEventListener('scroll', () => {
+      const scrollLeft = carousel.scrollLeft;
+      const itemWidth = items[0].offsetWidth;
+      const newCurrentItem = Math.round(scrollLeft / itemWidth);
+      if (newCurrentItem !== currentItem) {
+        currentItem = newCurrentItem;
+        updateDots();
+        resetInterval();
+      }
+    });
+  </script>
 </body></html>
