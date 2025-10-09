@@ -3,127 +3,32 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Single2Mingle</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 <script>
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           colors: {
-            primary: "#F8F8F8",
+            primary: "#FFFFFF",
             "background-light": "#FFFFFF",
-            "background-dark": "#121212",
-            "text-light": "#121212",
-            "text-dark": "#F8F8F8",
-            "secondary-text-light": "#6B7280",
-            "secondary-text-dark": "#9CA3AF",
-            "border-light": "#E5E7EB",
-            "border-dark": "#374151",
-            "orange-accent": "#F97316",
-            "cta-bg": "#000000",
+            "background-dark": "#000000",
           },
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
+            display: ["Roboto", "sans-serif"],
           },
           borderRadius: {
-            DEFAULT: "0.5rem",
+            DEFAULT: "1rem",
           },
         },
       },
     };
   </script>
 <style>
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 34px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 14px;
-      width: 14px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-    input:checked+.slider {
-      background-color: #4b5563;
-    }
-    input:checked+.slider:before {
-      transform: translateX(24px);
-    }
-    #menu {
-      transform: translateX(-100%);
-      transition: transform 0.3s ease-in-out;
-    }
-    #menu.open {
-      transform: translateX(0);
-    }
-    #overlay {
-      display: none;
-    }
-    #menu.open~#overlay {
-      display: block;
-    }
-    .dark .slider:before {
-      background-color: #F8F8F8;
-    }
-    .dark input:checked+.slider {
-      background-color: #4A5568;
-    }
-    .dark input:checked+.slider:before {
-      background-color: #F8F8F8;
-    }
-    .carousel-item {
-      flex: 0 0 100%;
-    }
-    .carousel {
-      scroll-snap-type: x mandatory;
-    }
-    .carousel-item {
-      scroll-snap-align: center;
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
+    .material-icons {
+      font-size: inherit;
     }
   </style>
 <style>
@@ -137,97 +42,45 @@
     }
   </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 flex flex-col min-h-screen">
-<div class="container mx-auto p-4 max-w-md flex flex-col flex-grow justify-between">
-<main class="flex-grow flex flex-col justify-center">
-<div class="relative w-full max-w-md mx-auto mt-4" id="carousel-container">
-<div class="carousel overflow-hidden flex" id="carousel">
-<div class="carousel-item p-4"><img alt="Two people smiling and looking at each other" class="aspect-square w-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFQv7v2PD0wLep0HKplKEGkMtaXkKCFx8zZbx-As0ii2xMuoUzb33j3fR_2Nk1i5BsrKB1EIxEUOfE2eVMcjP5FDwKXK8dv15H-AiF63zWn3u-hRd-x7IOzR_ZZw9tZSqxCreWaurOirOhVOAu1e3tnYCevT-enGI_OP2LpV-ckcOlZQWEOpaNHHHewOyiQTAd7Hi6D_LhrAOcTqj7BeUEf0UeObKXNpv8foKzCcGV_EMDGvM4w-3-wzUOhVew_DEw7nkGr4R-YSOi"/></div>
-<div class="carousel-item p-4"><img alt="A couple holding hands" class="aspect-square w-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVToYStKx9a69aMLoSATjrOthoc4xnUG1RdrRcbLw44__Pz7ZyMf-RDUlP0XhAbvnwGAzkwpkmjZNViGHnIgxwkc2XbZ7KvTzINQmV0bNTlX6TuV89yX8HTBjmbgEMxeYq0q70NOpty15-NV7sNsjLWRvRJrekvGmn7NGazm21eOOGh3jdzkhMISjr0vexVA0Q-h-FaN_li7wqieh-Mw3Z8YfcXZRRQINboPtwHaiB_6ABsXMp5f5X1faIcSc74uUhoTQnQ1vz79ek"/></div>
-<div class="carousel-item p-4"><img alt="A person smiling at their phone" class="aspect-square w-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmRKriIy68AdGV28hFecjbO7GAK5p9ywPbohW-AJEpSLJbIyKxT__P1egKGvuHBxwPNx8uxZgyXIDPjVOkp027AV8MxKUxySLyQxEDAbtdTaPkTQC7KH_Nu9OAQiw1Qx6G6sJ3Hynn-QXf1vIp5o4Yd4jgyfENOZn2-zEzlqmEF_9a6YMsTbEbTFfL8Zx7M3ssc47-gDA3e-2tvZdzesfCGINyi_TtdP8DwwhVYFo_GLtWr16S6CSKi_r_zbLhP-xpOi9G17E1w3OQ"/></div>
-<div class="carousel-item p-4"><img alt="A couple laughing together" class="aspect-square w-full rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4pf-ihkZbKUrZYNVxzgBwWzafkJDCFyMtKoUzD1KT9JPcCL52OTtrFTns0Y-wl3CzWIVTHop-B9pZe5vp2m0DCfXI10pNaYH8RooS5t_Z7oIfKwoglsCpHuKHb__l1aEAyAxu3KaPvz4cWRt0wgtcmSvdrO1FKBPG9YAjij4mvSzQ-3LmjR_IQJ7YPw-vt6b8wWBoQrimPXw587mT9in-wRxvqzTHgUGYAJ8A7ePBf21qu0mn2sPDb1S3nsEniAerh0gBCIy2Ujq5"/></div>
-</div>
-<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2" id="carousel-dots">
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="max-w-sm mx-auto p-4 flex flex-col min-h-screen">
+<main class="flex-grow flex flex-col justify-between">
+<div class="relative mt-4">
+<div class="overflow-hidden rounded-lg">
+<div class="flex transition-transform duration-300 ease-in-out" id="slider">
+<div class="w-full flex-shrink-0">
+<img alt="A single white rose in a modern vase" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9fQQY0O625eKxQTG_D6F4NJGRsedM_MHmxtBKuZA2Eg0Jfob6AlMKd3Ok5PRN2ua-Q2ez43Oo8al4M76eRoXNCht1sfcHdqQoR1URyQkSk1vDwhRnzZlcYTNGCx31XNI-qU1e3Bx-r6z-tfZK12bXTEo_J5rOqdp2EcGhs3R2xYT-bT4oKiiaHyQlhWuhDBP0vqqYgTPM0i1iUCAuT7YHdDjVoQg1rd-GDfeOhtcAIV3hkSUAKnx5r0Qz8jFaVmfqrLUEUSuh6yBd"/>
 </div>
 </div>
-<div class="text-left px-4 mt-8">
-<h1 class="text-4xl font-bold text-text-light dark:text-text-dark">Single2Mingle</h1>
-<p class="text-base text-secondary-text-light dark:text-secondary-text-dark">say goodbye to your singleness :)</p>
-<p class="text-secondary-text-light dark:text-secondary-text-dark mt-6 max-w-md">
-          Find your perfect match with our intuitive and fun dating app.
-          Connect with like-minded individuals in your area and beyond.
-          Start your journey to a meaningful relationship today.
+</div>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+<span class="block h-2 w-2 rounded-full bg-gray-300 dark:bg-gray-600"></span>
+<span class="block h-2 w-2 rounded-full bg-gray-300 dark:bg-gray-600"></span>
+<span class="block h-2 w-2 rounded-full bg-gray-500 dark:bg-gray-400"></span>
+<span class="block h-2 w-2 rounded-full bg-gray-300 dark:bg-gray-600"></span>
+</div>
+</div>
+<div class="text-center px-4 mt-8">
+<h1 class="text-4xl font-bold text-gray-900 dark:text-white">Single2Mingle</h1>
+<p class="text-base text-gray-500 dark:text-gray-400 mt-2">say goodbye to your singleness :)</p>
+<p class="mt-6 text-gray-600 dark:text-gray-300">
+          Find your perfect match with our intuitive and fun dating app. Connect with like-minded individuals in your area and beyond. Start your journey to a meaningful relationship today.
         </p>
 </div>
-<div class="flex flex-col items-center justify-center mt-12 px-4 w-full max-w-sm mx-auto space-y-4">
-<a class="w-full bg-transparent text-text-light dark:text-text-dark border border-gray-300 dark:border-gray-600 py-3 px-6 rounded-full flex items-center justify-center space-x-2 text-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" href="#">
-<span>Learn More</span>
-<i class="fas fa-external-link-alt"></i>
-</a>
-<a class="w-full bg-cta-bg text-white py-3 px-6 rounded-full flex items-center justify-center space-x-2 text-lg font-semibold shadow-lg hover:bg-opacity-90 transition-all" href="#">
-<span>Get Started</span>
-<i class="fas fa-arrow-right"></i>
-</a>
+<div class="pt-8 pb-4 px-4 space-y-2">
+<button class="w-full flex items-center justify-center py-2.5 px-4 border border-gray-300 dark:border-gray-600 rounded-full text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          Learn More
+          <span class="material-icons ml-2 text-base">open_in_new</span>
+</button>
+<button class="w-full flex items-center justify-center py-2.5 px-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition">
+          Get Started
+          <span class="material-icons ml-2 text-base">arrow_forward</span>
+</button>
 </div>
 </main>
-<footer class="w-full py-4 mt-12">
-<div class="container mx-auto px-4 max-w-4xl">
-<p class="text-xs text-center text-secondary-text-light dark:text-secondary-text-dark">Dating app developed by krthknryn for under 25 mission.</p>
-</div>
+<footer class="text-center py-2">
+<p class="text-[9px] text-gray-500 dark:text-gray-400">Dating app developed by krthknryn for under 25 mission.</p>
 </footer>
 </div>
-<script>
-    const carousel = document.getElementById('carousel');
-    const carouselDots = document.getElementById('carousel-dots');
-    const items = carousel.querySelectorAll('.carousel-item');
-    let currentItem = 0;
-    let slideInterval;
-    function createDots() {
-      items.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.classList.add('w-1.5', 'h-1.5', 'rounded-full', 'transition-colors');
-        dot.classList.add(i === 0 ? 'bg-white' : 'bg-gray-400');
-        dot.addEventListener('click', () => {
-          goToSlide(i);
-          resetInterval();
-        });
-        carouselDots.appendChild(dot);
-      });
-    }
-    function updateDots() {
-      const dots = carouselDots.querySelectorAll('button');
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('bg-white', i === currentItem);
-        dot.classList.toggle('bg-gray-400', i !== currentItem);
-      });
-    }
-    function goToSlide(n) {
-      carousel.scrollTo({
-        left: items[n].offsetLeft,
-        behavior: 'smooth'
-      });
-      currentItem = n;
-      updateDots();
-    }
-    function nextSlide() {
-      currentItem = (currentItem + 1) % items.length;
-      goToSlide(currentItem);
-    }
-    function resetInterval() {
-      clearInterval(slideInterval);
-      slideInterval = setInterval(nextSlide, 3000);
-    }
-    createDots();
-    slideInterval = setInterval(nextSlide, 3000);
-    carousel.addEventListener('scroll', () => {
-      const scrollLeft = carousel.scrollLeft;
-      const itemWidth = items[0].offsetWidth;
-      const newCurrentItem = Math.round(scrollLeft / itemWidth);
-      if (newCurrentItem !== currentItem) {
-        currentItem = newCurrentItem;
-        updateDots();
-        resetInterval();
-      }
-    });
-  </script>
+
 </body></html>
