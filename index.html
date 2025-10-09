@@ -2,33 +2,59 @@
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Single2Mingle</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<title>Single2Mingle - OTP Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <script>
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           colors: {
-            primary: "#FFFFFF",
+            primary: "#F8F8F8",
             "background-light": "#FFFFFF",
-            "background-dark": "#000000",
+            "background-dark": "#121212",
+            "text-light": "#121212",
+            "text-dark": "#F8F8F8",
+            "secondary-text-light": "#6B7280",
+            "secondary-text-dark": "#9CA3AF",
+            "border-light": "#E5E7EB",
+            "border-dark": "#374151",
+            "orange-accent": "#F97316",
+            "cta-bg": "#000000",
           },
           fontFamily: {
-            display: ["Roboto", "sans-serif"],
+            sans: ['Inter', 'sans-serif'],
           },
           borderRadius: {
-            DEFAULT: "1rem",
+            DEFAULT: "0.75rem",
           },
         },
       },
     };
   </script>
 <style>
-    .material-icons {
-      font-size: inherit;
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    .otp-input {
+      width: 3.5rem;
+      height: 3.5rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      border-radius: 0.75rem;
+      border: 1px solid;
+      background-color: transparent;
+      color: currentColor;}
+    @media (max-width: 360px) {
+      .otp-input {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.25rem;
+      }
     }
   </style>
 <style>
@@ -42,45 +68,65 @@
     }
   </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-<div class="max-w-sm mx-auto p-4 flex flex-col min-h-screen">
-<main class="flex-grow flex flex-col justify-between">
-<div class="relative mt-4">
-<div class="overflow-hidden rounded-lg">
-<div class="flex transition-transform duration-300 ease-in-out" id="slider">
-<div class="w-full flex-shrink-0">
-<img alt="A single white rose in a modern vase" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9fQQY0O625eKxQTG_D6F4NJGRsedM_MHmxtBKuZA2Eg0Jfob6AlMKd3Ok5PRN2ua-Q2ez43Oo8al4M76eRoXNCht1sfcHdqQoR1URyQkSk1vDwhRnzZlcYTNGCx31XNI-qU1e3Bx-r6z-tfZK12bXTEo_J5rOqdp2EcGhs3R2xYT-bT4oKiiaHyQlhWuhDBP0vqqYgTPM0i1iUCAuT7YHdDjVoQg1rd-GDfeOhtcAIV3hkSUAKnx5r0Qz8jFaVmfqrLUEUSuh6yBd"/>
-</div>
-</div>
-</div>
-<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-<span class="block h-2 w-2 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-<span class="block h-2 w-2 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-<span class="block h-2 w-2 rounded-full bg-gray-500 dark:bg-gray-400"></span>
-<span class="block h-2 w-2 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-</div>
-</div>
-<div class="text-center px-4 mt-8">
-<h1 class="text-4xl font-bold text-gray-900 dark:text-white">Single2Mingle</h1>
-<p class="text-base text-gray-500 dark:text-gray-400 mt-2">say goodbye to your singleness :)</p>
-<p class="mt-6 text-gray-600 dark:text-gray-300">
-          Find your perfect match with our intuitive and fun dating app. Connect with like-minded individuals in your area and beyond. Start your journey to a meaningful relationship today.
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 flex flex-col min-h-screen">
+<div class="container mx-auto p-4 max-w-md flex flex-col flex-grow justify-between">
+<header class="flex items-center justify-between py-4">
+<a class="text-text-light dark:text-text-dark" href="#">
+<i class="fas fa-arrow-left text-xl"></i>
+</a>
+<div></div>
+</header>
+<main class="flex-grow flex flex-col justify-center items-center">
+<div class="w-full px-4 text-center">
+<h2 class="text-2xl font-bold mb-2">Enter OTP</h2>
+<p class="text-secondary-text-light dark:text-secondary-text-dark mb-8">
+          We've sent an OTP to <span class="font-semibold text-text-light dark:text-text-dark">+91 98765 43210</span>.
         </p>
+<div class="flex justify-center space-x-2 md:space-x-3 mb-8">
+<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel" value="1"/>
+<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel" value="2"/>
+<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel"/>
+<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel"/>
+<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel"/>
+<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel"/>
 </div>
-<div class="pt-8 pb-4 px-4 space-y-2">
-<button class="w-full flex items-center justify-center py-2.5 px-4 border border-gray-300 dark:border-gray-600 rounded-full text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-          Learn More
-          <span class="material-icons ml-2 text-base">open_in_new</span>
+<button class="w-full bg-cta-bg text-white py-4 px-6 rounded-full flex items-center justify-center space-x-2 text-lg font-semibold shadow-lg hover:bg-opacity-90 transition-all mb-4">
+<span>Verify</span>
 </button>
-<button class="w-full flex items-center justify-center py-2.5 px-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition">
-          Get Started
-          <span class="material-icons ml-2 text-base">arrow_forward</span>
-</button>
+<div class="flex justify-between items-center text-sm">
+<p class="text-secondary-text-light dark:text-secondary-text-dark">Didn't receive code?</p>
+<button class="font-semibold text-black dark:text-text-dark hover:underline">Resend OTP</button>
+</div>
+<div class="mt-8">
+<a class="text-sm text-secondary-text-light dark:text-secondary-text-dark hover:underline font-bold" href="#">Change Mobile Number</a>
+</div>
 </div>
 </main>
-<footer class="text-center py-2">
-<p class="text-[9px] text-gray-500 dark:text-gray-400">Dating app developed by krthknryn for under 25 mission.</p>
+<footer class="w-full py-4 mt-12 bg-gray-100 dark:bg-gray-800">
+<div class="container mx-auto px-4 max-w-4xl">
+<p class="text-xs text-center text-secondary-text-light dark:text-secondary-text-dark">Dating app developed by krthknryn for under 25 mission.</p>
+</div>
 </footer>
 </div>
-
+<script>
+    const otpInputs = document.querySelectorAll('.otp-input');
+    otpInputs.forEach((input, index) => {
+      input.addEventListener('keydown', (e) => {
+        if (e.key >= 0 && e.key <= 9) {
+          input.value = '';
+          setTimeout(() => {
+            if (index < otpInputs.length - 1) {
+              otpInputs[index + 1].focus();
+            }
+          }, 10);
+        } else if (e.key === 'Backspace') {
+          setTimeout(() => {
+            if (index > 0) {
+              otpInputs[index - 1].focus();
+            }
+          }, 10);
+        }
+      });
+    });
+  </script>
 </body></html>
