@@ -1,132 +1,396 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Single2Mingle - OTP Verification</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            primary: "#F8F8F8",
-            "background-light": "#FFFFFF",
-            "background-dark": "#121212",
-            "text-light": "#121212",
-            "text-dark": "#F8F8F8",
-            "secondary-text-light": "#6B7280",
-            "secondary-text-dark": "#9CA3AF",
-            "border-light": "#E5E7EB",
-            "border-dark": "#374151",
-            "orange-accent": "#F97316",
-            "cta-bg": "#000000",
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
-          borderRadius: {
-            DEFAULT: "0.75rem",
-          },
-        },
-      },
-    };
-  </script>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-    .otp-input {
-      width: 3.5rem;
-      height: 3.5rem;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 600;
-      border-radius: 0.75rem;
-      border: 1px solid;
-      background-color: transparent;
-      color: currentColor;}
-    @media (max-width: 360px) {
-      .otp-input {
-        width: 3rem;
-        height: 3rem;
-        font-size: 1.25rem;
-      }
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 flex flex-col min-h-screen">
-<div class="container mx-auto p-4 max-w-md flex flex-col flex-grow justify-between">
-<header class="flex items-center justify-between py-4">
-<a class="text-text-light dark:text-text-dark" href="#">
-<i class="fas fa-arrow-left text-xl"></i>
-</a>
-<div></div>
-</header>
-<main class="flex-grow flex flex-col justify-center items-center">
-<div class="w-full px-4 text-center">
-<h2 class="text-2xl font-bold mb-2">Enter OTP</h2>
-<p class="text-secondary-text-light dark:text-secondary-text-dark mb-8">
-          We've sent an OTP to <span class="font-semibold text-text-light dark:text-text-dark">+91 98765 43210</span>.
-        </p>
-<div class="flex justify-center space-x-2 md:space-x-3 mb-8">
-<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel" value="1"/>
-<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel" value="2"/>
-<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel"/>
-<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel"/>
-<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel"/>
-<input class="otp-input border-border-light dark:border-border-dark focus:ring-orange-accent focus:border-orange-accent" maxlength="1" type="tel"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        @keyframes slide {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+        .animate-slide {
+            animation: slide 30s linear infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#38e07b",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#122017",
+                    },
+                    fontFamily: {
+                        display: ["Manrope"],
+                    },
+                    borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#122017] dark:text-[#f6f8f7]">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden group/design-root">
+<div class="layout-container flex h-full grow flex-col">
+<header class="sticky top-0 z-20 flex items-center justify-between whitespace-nowrap border-b border-primary/20 bg-background-light/80 px-4 sm:px-10 py-3 backdrop-blur-sm dark:bg-background-dark/80">
+<div class="flex items-center gap-2">
+<img class="h-6 w-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq1lFqClDFpUbgWZpp16JD1P7SeJm4KuS2y6OlpBy-Ip3vOG2R-x116ki1wJTE3R2kwRxh8nEUtiajDLJsg86FTfforzKeoqCY411CoOVlT_vB3DwXKA6wAE2Yy0pVL6dBtawj7hddIdJxnUN0X4yBMhfLoVuQ3KpOUm1afGuoDOTL1FZ4KnJe3tUDUzo8obOudAe67E-jP9YdJ4QQ3tOxytSZzif-0EIEx8czLCgCR55BetnthKpMPx4lnFoJ1_6d3tiy-PRITyg"/>
+<h2 class="text-lg font-bold">Pocket Money Pro</h2>
 </div>
-<button class="w-full bg-cta-bg text-white py-4 px-6 rounded-full flex items-center justify-center space-x-2 text-lg font-semibold shadow-lg hover:bg-opacity-90 transition-all mb-4">
-<span>Verify</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#home">Home</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#why-us">Why Us</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#testimonials">Testimonials</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#faq">FAQ</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#contact">Contact</a>
+</nav>
+<div class="flex items-center gap-2">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md bg-primary px-3 py-1.5 text-sm font-bold text-background-dark shadow-md transition-transform hover:scale-105 gap-2">
+<span class="material-symbols-outlined text-base">add</span>
+<span class="truncate text-xs">Join Now</span>
 </button>
-<div class="flex justify-between items-center text-sm">
-<p class="text-secondary-text-light dark:text-secondary-text-dark">Didn't receive code?</p>
-<button class="font-semibold text-black dark:text-text-dark hover:underline">Resend OTP</button>
 </div>
-<div class="mt-8">
-<a class="text-sm text-secondary-text-light dark:text-secondary-text-dark hover:underline font-bold" href="#">Change Mobile Number</a>
+</header>
+<main class="flex-1">
+<section class="relative" id="home">
+<div class="aspect-w-1 aspect-h-1 md:h-[600px] h-[400px]">
+<img alt="Online Earning Opportunities" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA39OJrAEor5ryLXRTJaNfSwnGH8SVWht9ccTPKC-Q_VkcnQmPzWKv6Vs79B8hrqa0oJS_IlhWfaWe7nM_rDPmlSMKKgn70gok2tJSTqCOxbz5sHz3ITIB2RBoc2iI41z8I0QFrOdd9X660oYXiz3pTQTGOfr-pQOL6Jvhlm05DaV-3Ql4WeTKFZpNxB2cCrn2wA_A-mSlEXTvSEahgMlL8N1COgdzoPeltEdvBj_1hO6l1X3Q8AI1tS_DzNFuoTsdgqDGM4Eo2_Bk"/>
+</div>
+<div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-center text-white p-4">
+<h1 class="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl">Unlock Your Earning Potential</h1>
+<p class="mt-4 max-w-2xl mx-auto text-lg text-white/90">
+                            Join our Telegram channel and discover easy ways to earn pocket money online. Get exclusive tips, tricks, and opportunities delivered straight to your phone.
+                        </p>
+<div class="mt-8 flex flex-col sm:flex-row gap-4 items-center">
+<button class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md bg-primary px-4 py-1.5 text-sm font-bold text-background-dark shadow-lg transition-transform hover:scale-105 gap-2">
+<span class="material-symbols-outlined text-base">add</span>
+<span class="truncate">Join Now</span>
+</button>
+<a class="flex min-w-[110px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md bg-transparent border-2 border-white px-3 py-1 text-xs font-bold text-white shadow-lg transition-all hover:scale-105 hover:bg-primary hover:border-primary hover:text-background-dark gap-2" href="#contact">
+<span class="material-symbols-outlined text-base">email</span>
+<span class="truncate">Contact Us</span>
+</a>
 </div>
 </div>
+</section>
+<section class="py-20 sm:py-24" id="why-us">
+<div class="mx-auto max-w-7xl px-4">
+<div class="text-center">
+<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Why Choose Pocket Money Pro?</h2>
+<p class="mt-4 text-lg text-slate-600 dark:text-slate-400">We provide the tools and support to help you achieve your online earning goals.</p>
+</div>
+<div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-primary/5 p-6 dark:bg-primary/10 transition-transform hover:-translate-y-2">
+<div class="flex size-12 items-center justify-center rounded-lg bg-primary text-background-dark">
+<svg fill="currentColor" height="28" viewBox="0 0 256 256" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,88a40,40,0,1,0,40,40A40,40,0,0,0,128,88Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,152ZM240,56H16a8,8,0,0,0-8,8V192a8,8,0,0,0,8,8H240a8,8,0,0,0,8-8V64A8,8,0,0,0,240,56ZM193.65,184H62.35A56.78,56.78,0,0,0,24,145.65v-35.3A56.78,56.78,0,0,0,62.35,72h131.3A56.78,56.78,0,0,0,232,110.35v35.3A56.78,56.78,0,0,0,193.65,184ZM232,93.37A40.81,40.81,0,0,1,210.63,72H232ZM45.37,72A40.81,40.81,0,0,1,24,93.37V72ZM24,162.63A40.81,40.81,0,0,1,45.37,184H24ZM210.63,184A40.81,40.81,0,0,1,232,162.63V184Z"></path>
+</svg>
+</div>
+<h3 class="text-xl font-bold">Vetted Opportunities</h3>
+<p class="text-slate-600 dark:text-slate-400">We curate and verify all earning opportunities to ensure they are legitimate, saving you time and protecting you from scams.</p>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-primary/5 p-6 dark:bg-primary/10 transition-transform hover:-translate-y-2">
+<div class="flex size-12 items-center justify-center rounded-lg bg-primary text-background-dark">
+<svg fill="currentColor" height="28" viewBox="0 0 256 256" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"></path>
+</svg>
+</div>
+<h3 class="text-xl font-bold">Real-Time Alerts</h3>
+<p class="text-slate-600 dark:text-slate-400">Get instant notifications about new, high-paying tasks and limited-time offers, so you never miss a chance to earn.</p>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-primary/5 p-6 dark:bg-primary/10 transition-transform hover:-translate-y-2">
+<div class="flex size-12 items-center justify-center rounded-lg bg-primary text-background-dark">
+<svg fill="currentColor" height="28" viewBox="0 0 256 256" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"></path>
+</svg>
+</div>
+<h3 class="text-xl font-bold">Expert Guides &amp; Support</h3>
+<p class="text-slate-600 dark:text-slate-400">Access exclusive tutorials, tips from seasoned earners, and a supportive community to help you maximize your income.</p>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-primary/5 p-6 dark:bg-primary/10 transition-transform hover:-translate-y-2">
+<div class="flex size-12 items-center justify-center rounded-lg bg-primary text-background-dark">
+<span class="material-symbols-outlined text-3xl">diversity_3</span>
+</div>
+<h3 class="text-xl font-bold">Community-Powered</h3>
+<p class="text-slate-600 dark:text-slate-400">Join a thriving community where members share their successes, provide encouragement, and offer valuable insights.</p>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-primary/5 p-6 dark:bg-primary/10 transition-transform hover:-translate-y-2">
+<div class="flex size-12 items-center justify-center rounded-lg bg-primary text-background-dark">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<h3 class="text-xl font-bold">Skill Development</h3>
+<p class="text-slate-600 dark:text-slate-400">Learn new skills through our guides and tutorials, helping you access higher-paying opportunities and grow professionally.</p>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-primary/5 p-6 dark:bg-primary/10 transition-transform hover:-translate-y-2">
+<div class="flex size-12 items-center justify-center rounded-lg bg-primary text-background-dark">
+<span class="material-symbols-outlined text-3xl">verified</span>
+</div>
+<h3 class="text-xl font-bold">Exclusive Deals</h3>
+<p class="text-slate-600 dark:text-slate-400">Get access to exclusive deals and bonuses from our partners, available only to Pocket Money Pro members.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 sm:py-24 bg-background-light dark:bg-background-dark overflow-hidden" id="testimonials">
+<div class="mx-auto max-w-6xl px-4">
+<div class="text-center">
+<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">What Our Members Say</h2>
+<p class="mt-4 text-lg text-slate-600 dark:text-slate-400">Real stories from people who've found success with us.</p>
+</div>
+</div>
+<div class="mt-16 flex animate-slide hover:[animation-play-state:paused]">
+<div class="flex w-max">
+<div class="flex-none w-[350px] sm:w-[400px] mx-4">
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-background-dark dark:border-primary/30 h-full">
+<div class="flex items-center gap-4">
+<img alt="User avatar" class="size-12 rounded-full bg-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWdHLd3xiW5eD_CvUBFDi2z8z-KV9BD7s6Wg-OJjCaexExrWcFabYL5zd5vhW8D1IjKo7u-xLIGDj-8-_AlsJSE9Ao_7QZvESO6xs8Xetd0_clsQO2Za9OHkwXeClsTPAwlvzjmXJ8cTWqC8rKvAfTLrwKrbnlrqZP_tI4gmtcfgBG1YCzo5RQSw7NkPqA_cm5_J0cm21vtFKvI238m4uADvLMM0O2SWOZw6AmmOdgoJtUYwdTsahB35oM1ohRTBuPA2XTZediN1Q"/>
+<div>
+<p class="font-semibold">Sarah M.</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">May 15, 2024</p>
+</div>
+</div>
+<div class="flex text-primary">
+</div>
+<p class="text-slate-600 dark:text-slate-400">"Pocket Money Pro has been a game-changer for me. I've found so many legitimate ways to earn extra cash in my free time. Highly recommend!"</p>
+</div>
+</div>
+<div class="flex-none w-[350px] sm:w-[400px] mx-4">
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-background-dark dark:border-primary/30 h-full">
+<div class="flex items-center gap-4">
+<img alt="User avatar" class="size-12 rounded-full bg-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdu-NTQkhAMiDa1-3T3LB-Wwg3oKXDgOZG1EQ9vy05Vvaicf2z6ak1J7H_-hNWUVliIBmuOJW2WheyDaNA7KckKWqUIwLrIWA9aVsepuvQnRIaGDBsXT_aGCvpPJFxHwnbZ5Ff8d3phE2_AsNXukD2CdyXNDnLfMQt1dInQ7frNlJwquU-bRsBYCQJvD-YJB5Js9NvBev9hCyqqVLGoeYRKkRgFsNqwr6sIc-k-MlYReu402uer87SbRt0EJwPgELXcBtZT4mvm38"/>
+<div>
+<p class="font-semibold">David L.</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">April 22, 2024</p>
+</div>
+</div>
+<div class="flex text-primary">
+</div>
+<p class="text-slate-600 dark:text-slate-400">"The tips and tricks shared in the channel are incredibly helpful. I've already started earning within the first week of joining."</p>
+</div>
+</div>
+<div class="flex-none w-[350px] sm:w-[400px] mx-4">
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-background-dark dark:border-primary/30 h-full">
+<div class="flex items-center gap-4">
+<img alt="User avatar" class="size-12 rounded-full bg-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl9lEd7sklIYXbRY3N-pBWiSrcnlikKZK3ebQGubOkscs3MWvjDBZfi8q_ybA9iUP7059zGJkE8fCTHQnvZpnHEhT8-UXNbBqjVsBTRoqEw5LlzTn-6Vzcanu0ZoZmn-g7Ar4C613gEVLtaOUfzf7cmdVUAEPI5Sm1bGxNfnbStfrjJn0VnEIkFl5yjZ3GZMWUoVpnTCt4qk3ZZCl6JX4bL-aaIwAdBy_SQD1ZVK97vYRvNqsB1LRBwpTqRIdrAWVMUTWikpKgLuA"/>
+<div>
+<p class="font-semibold">Emily R.</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">June 1, 2024</p>
+</div>
+</div>
+<div class="flex text-primary">
+</div>
+<p class="text-slate-600 dark:text-slate-400">"I love the community aspect. It's great to connect with others and learn from their experiences. Plus, the opportunities are fantastic!"</p>
+</div>
+</div>
+<div class="flex-none w-[350px] sm:w-[400px] mx-4">
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-background-dark dark:border-primary/30 h-full">
+<div class="flex items-center gap-4">
+<img alt="User avatar" class="size-12 rounded-full bg-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWdHLd3xiW5eD_CvUBFDi2z8z-KV9BD7s6Wg-OJjCaexExrWcFabYL5zd5vhW8D1IjKo7u-xLIGDj-8-_AlsJSE9Ao_7QZvESO6xs8Xetd0_clsQO2Za9OHkwXeClsTPAwlvzjmXJ8cTWqC8rKvAfTLrwKrbnlrqZP_tI4gmtcfgBG1YCzo5RQSw7NkPqA_cm5_J0cm21vtFKvI238m4uADvLMM0O2SWOZw6AmmOdgoJtUYwdTsahB35oM1ohRTBuPA2XTZediN1Q"/>
+<div>
+<p class="font-semibold">Michael B.</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">June 5, 2024</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-400">"Finally, a channel that delivers on its promises. The variety of gigs is impressive, and I've been able to consistently earn."</p>
+</div>
+</div>
+<div class="flex-none w-[350px] sm:w-[400px] mx-4">
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-background-dark dark:border-primary/30 h-full">
+<div class="flex items-center gap-4">
+<img alt="User avatar" class="size-12 rounded-full bg-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdu-NTQkhAMiDa1-3T3LB-Wwg3oKXDgOZG1EQ9vy05Vvaicf2z6ak1J7H_-hNWUVliIBmuOJW2WheyDaNA7KckKWqUIwLrIWA9aVsepuvQnRIaGDBsXT_aGCvpPJFxHwnbZ5Ff8d3phE2_AsNXukD2CdyXNDnLfMQt1dInQ7frNlJwquU-bRsBYCQJvD-YJB5Js9NvBev9hCyqqVLGoeYRKkRgFsNqwr6sIc-k-MlYReu402uer87SbRt0EJwPgELXcBtZT4mvm38"/>
+<div>
+<p class="font-semibold">Jessica T.</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">June 10, 2024</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-400">"The flexibility is what I love most. I can earn money whenever I have a spare moment, which is perfect for a student like me."</p>
+</div>
+</div>
+<div class="flex-none w-[350px] sm:w-[400px] mx-4">
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-background-dark dark:border-primary/30 h-full">
+<div class="flex items-center gap-4">
+<img alt="User avatar" class="size-12 rounded-full bg-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl9lEd7sklIYXbRY3N-pBWiSrcnlikKZK3ebQGubOkscs3MWvjDBZfi8q_ybA9iUP7059zGJkE8fCTHQnvZpnHEhT8-UXNbBqjVsBTRoqEw5LlzTn-6Vzcanu0ZoZmn-g7Ar4C613gEVLtaOUfzf7cmdVUAEPI5Sm1bGxNfnbStfrjJn0VnEIkFl5yjZ3GZMWUoVpnTCt4qk3ZZCl6JX4bL-aaIwAdBy_SQD1ZVK97vYRvNqsB1LRBwpTqRIdrAWVMUTWikpKgLuA"/>
+<div>
+<p class="font-semibold">Chris P.</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">June 12, 2024</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-400">"This channel has opened my eyes to the world of online earning. The community is so helpful and encouraging."</p>
+</div>
+</div>
+<div class="flex-none w-[350px] sm:w-[400px] mx-4">
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-background-dark dark:border-primary/30 h-full">
+<div class="flex items-center gap-4">
+<img alt="User avatar" class="size-12 rounded-full bg-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWdHLd3xiW5eD_CvUBFDi2z8z-KV9BD7s6Wg-OJjCaexExrWcFabYL5zd5vhW8D1IjKo7u-xLIGDj-8-_AlsJSE9Ao_7QZvESO6xs8Xetd0_clsQO2Za9OHkwXeClsTPAwlvzjmXJ8cTWqC8rKvAfTLrwKrbnlrqZP_tI4gmtcfgBG1YCzo5RQSw7NkPqA_cm5_J0cm21vtFKvI238m4uADvLMM0O2SWOZw6AmmOdgoJtUYwdTsahB35oM1ohRTBuPA2XTZediN1Q"/>
+<div>
+<p class="font-semibold">Sarah M.</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">May 15, 2024</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-400">"Pocket Money Pro has been a game-changer for me. I've found so many legitimate ways to earn extra cash in my free time. Highly recommend!"</p>
+</div>
+</div>
+<div class="flex-none w-[350px] sm:w-[400px] mx-4">
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-background-dark dark:border-primary/30 h-full">
+<div class="flex items-center gap-4">
+<img alt="User avatar" class="size-12 rounded-full bg-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdu-NTQkhAMiDa1-3T3LB-Wwg3oKXDgOZG1EQ9vy05Vvaicf2z6ak1J7H_-hNWUVliIBmuOJW2WheyDaNA7KckKWqUIwLrIWA9aVsepuvQnRIaGDBsXT_aGCvpPJFxHwnbZ5Ff8d3phE2_AsNXukD2CdyXNDnLfMQt1dInQ7frNlJwquU-bRsBYCQJvD-YJB5Js9NvBev9hCyqqVLGoeYRKkRgFsNqwr6sIc-k-MlYReu402uer87SbRt0EJwPgELXcBtZT4mvm38"/>
+<div>
+<p class="font-semibold">David L.</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">April 22, 2024</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-400">"The tips and tricks shared in the channel are incredibly helpful. I've already started earning within the first week of joining."</p>
+</div>
+</div>
+<div class="flex-none w-[350px] sm:w-[400px] mx-4">
+<div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-white p-6 shadow-sm dark:bg-background-dark dark:border-primary/30 h-full">
+<div class="flex items-center gap-4">
+<img alt="User avatar" class="size-12 rounded-full bg-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl9lEd7sklIYXbRY3N-pBWiSrcnlikKZK3ebQGubOkscs3MWvjDBZfi8q_ybA9iUP7059zGJkE8fCTHQnvZpnHEhT8-UXNbBqjVsBTRoqEw5LlzTn-6Vzcanu0ZoZmn-g7Ar4C613gEVLtaOUfzf7cmdVUAEPI5Sm1bGxNfnbStfrjJn0VnEIkFl5yjZ3GZMWUoVpnTCt4qk3ZZCl6JX4bL-aaIwAdBy_SQD1ZVK97vYRvNqsB1LRBwpTqRIdrAWVMUTWikpKgLuA"/>
+<div>
+<p class="font-semibold">Emily R.</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">June 1, 2024</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-400">"I love the community aspect. It's great to connect with others and learn from their experiences. Plus, the opportunities are fantastic!"</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 sm:py-24">
+<div class="mx-auto max-w-2xl px-4 text-center">
+<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Ready to Start Earning?</h2>
+<p class="mt-4 text-lg text-slate-600 dark:text-slate-400">Join Pocket Money Pro today and take the first step towards financial freedom.</p>
+<button class="mt-8 flex min-w-[120px] w-full max-w-xs mx-auto cursor-pointer items-center justify-center overflow-hidden rounded-md bg-primary px-4 py-1.5 text-sm font-bold text-background-dark shadow-lg transition-transform hover:scale-105 gap-2">
+<span class="material-symbols-outlined text-base">add</span>
+<span class="truncate">Join Now</span>
+</button>
+</div>
+</section>
+<section class="py-20 sm:py-24 bg-background-light dark:bg-background-dark" id="faq">
+<div class="mx-auto max-w-4xl px-4">
+<div class="text-center">
+<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Frequently Asked Questions</h2>
+</div>
+<div class="mt-12 space-y-4">
+<details class="group rounded-lg border border-primary/20 bg-white p-4 dark:bg-background-dark dark:border-primary/30 transition-all duration-300 hover:border-primary" open="">
+<summary class="flex cursor-pointer items-center justify-between font-semibold">
+                                    What types of earning opportunities are available?
+                                    <svg class="transition-transform duration-300 group-open:rotate-180" fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+</svg>
+</summary>
+<p class="mt-2 text-slate-600 dark:text-slate-400">
+                                    We offer a variety of earning opportunities, including surveys, microtasks, freelance gigs, content creation, and more. Our channel provides detailed information and resources for each type of opportunity.
+                                </p>
+</details>
+<details class="group rounded-lg border border-primary/20 bg-white p-4 dark:bg-background-dark dark:border-primary/30 transition-all duration-300 hover:border-primary">
+<summary class="flex cursor-pointer items-center justify-between font-semibold">
+                                    How much can I expect to earn?
+                                    <svg class="transition-transform duration-300 group-open:rotate-180" fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+</svg>
+</summary>
+<p class="mt-2 text-slate-600 dark:text-slate-400">
+                                    Earnings vary based on the opportunities you choose and the time you invest. Many members earn a few hundred dollars per month, while some dedicated members earn significantly more.
+                                </p>
+</details>
+<details class="group rounded-lg border border-primary/20 bg-white p-4 dark:bg-background-dark dark:border-primary/30 transition-all duration-300 hover:border-primary">
+<summary class="flex cursor-pointer items-center justify-between font-semibold">
+                                    Is there any cost to join Pocket Money Pro?
+                                    <svg class="transition-transform duration-300 group-open:rotate-180" fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+</svg>
+</summary>
+<p class="mt-2 text-slate-600 dark:text-slate-400">
+                                    No, joining our Telegram channel is completely free. We believe in providing accessible opportunities for everyone to earn pocket money online.
+                                </p>
+</details>
+<details class="group rounded-lg border border-primary/20 bg-white p-4 dark:bg-background-dark dark:border-primary/30 transition-all duration-300 hover:border-primary">
+<summary class="flex cursor-pointer items-center justify-between font-semibold">
+                                    How do I get paid?
+                                    <svg class="transition-transform duration-300 group-open:rotate-180" fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+</svg>
+</summary>
+<p class="mt-2 text-slate-600 dark:text-slate-400">
+                                    Payment methods vary depending on the opportunity. Most platforms pay via PayPal, bank transfer, or gift cards. We provide details for each opportunity.
+                                </p>
+</details>
+<details class="group rounded-lg border border-primary/20 bg-white p-4 dark:bg-background-dark dark:border-primary/30 transition-all duration-300 hover:border-primary">
+<summary class="flex cursor-pointer items-center justify-between font-semibold">
+                                    Are the opportunities available worldwide?
+                                    <svg class="transition-transform duration-300 group-open:rotate-180" fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+</svg>
+</summary>
+<p class="mt-2 text-slate-600 dark:text-slate-400">
+                                    Many of the opportunities are available globally, but some may be region-specific. We always specify the geographic availability for each listing.
+                                </p>
+</details>
+<details class="group rounded-lg border border-primary/20 bg-white p-4 dark:bg-background-dark dark:border-primary/30 transition-all duration-300 hover:border-primary">
+<summary class="flex cursor-pointer items-center justify-between font-semibold">
+                                    How often are new opportunities posted?
+                                    <svg class="transition-transform duration-300 group-open:rotate-180" fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+</svg>
+</summary>
+<p class="mt-2 text-slate-600 dark:text-slate-400">
+                                    We post new opportunities daily. Our team is constantly searching for the best and latest ways for you to earn money online.
+                                </p>
+</details>
+</div>
+</div>
+</section>
 </main>
-<footer class="w-full py-4 mt-12 bg-gray-100 dark:bg-gray-800">
-<div class="container mx-auto px-4 max-w-4xl">
-<p class="text-xs text-center text-secondary-text-light dark:text-secondary-text-dark">Dating app developed by krthknryn for under 25 mission.</p>
+<footer class="border-t border-primary/20 bg-background-light dark:bg-background-dark" id="contact">
+<div class="mx-auto max-w-6xl px-4 py-12">
+<div class="grid gap-12 md:grid-cols-12">
+<div class="flex flex-col items-start gap-4 text-left md:col-span-4">
+<div class="flex items-center gap-2">
+<img class="h-6 w-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq1lFqClDFpUbgWZpp16JD1P7SeJm4KuS2y6OlpBy-Ip3vOG2R-x116ki1wJTE3R2kwRxh8nEUtiajDLJsg86FTfforzKeoqCY411CoOVlT_vB3DwXKA6wAE2Yy0pVL6dBtawj7hddIdJxnUN0X4yBMhfLoVuQ3KpOUm1afGuoDOTL1FZ4KnJe3tUDUzo8obOudAe67E-jP9YdJ4QQ3tOxytSZzif-0EIEx8czLCgCR55BetnthKpMPx4lnFoJ1_6d3tiy-PRITyg"/>
+<h3 class="text-lg font-bold">Pocket Money Pro</h3>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 max-w-sm">Your one-stop destination for curated online earning opportunities. Join our community to start making pocket money today!</p>
+<div class="flex items-center gap-4 mt-2">
+<a class="text-slate-400 hover:text-primary dark:text-slate-500 dark:hover:text-primary transition-colors" href="#"><i class="fab fa-youtube fa-lg"></i></a>
+<a class="text-slate-400 hover:text-primary dark:text-slate-500 dark:hover:text-primary transition-colors" href="#"><i class="fab fa-instagram fa-lg"></i></a>
+<a class="text-slate-400 hover:text-primary dark:text-slate-500 dark:hover:text-primary transition-colors" href="#"><i class="fab fa-facebook fa-lg"></i></a>
+<a class="text-slate-400 hover:text-primary dark:text-slate-500 dark:hover:text-primary transition-colors" href="#"><i class="fab fa-telegram fa-lg"></i></a>
+<a class="text-slate-400 hover:text-primary dark:text-slate-500 dark:hover:text-primary transition-colors" href="#"><i class="fas fa-hand-holding-dollar fa-lg"></i></a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8 md:col-span-8 md:grid-cols-2 md:justify-self-end md:gap-x-16">
+<div class="flex flex-col items-start gap-4 text-left">
+<h4 class="font-semibold">Community</h4>
+<a class="text-sm text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">About</a>
+<a class="text-sm text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">Testimonials</a>
+<a class="text-sm text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">Submit Testimonials</a>
+</div>
+<div class="flex flex-col items-start gap-4 text-left">
+<h4 class="font-semibold">Legal</h4>
+<a class="text-sm text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-sm text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 text-center text-sm text-slate-500 dark:text-slate-400">
+<p>© 2024 Pocket Money Pro. All rights reserved.</p>
+</div>
 </div>
 </footer>
 </div>
-<script>
-    const otpInputs = document.querySelectorAll('.otp-input');
-    otpInputs.forEach((input, index) => {
-      input.addEventListener('keydown', (e) => {
-        if (e.key >= 0 && e.key <= 9) {
-          input.value = '';
-          setTimeout(() => {
-            if (index < otpInputs.length - 1) {
-              otpInputs[index + 1].focus();
-            }
-          }, 10);
-        } else if (e.key === 'Backspace') {
-          setTimeout(() => {
-            if (index > 0) {
-              otpInputs[index - 1].focus();
-            }
-          }, 10);
-        }
-      });
-    });
-  </script>
+</div>
 </body></html>
