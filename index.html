@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Pocket Money Pro</title>
+<title>Pocket Money Pro - Share &amp; Discover Earning Ideas</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&amp;family=Manrope:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        .tooltip {
+            @apply invisible absolute;
+        }
+        .has-tooltip:hover .tooltip {
+            @apply visible z-50;
+        }
+    </style>
+<script>
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#17cf54",
-                        "background-light": "#f6f8f6",
-                        "background-dark": "#112116",
-                        "text-light": "#112116",
-                        "text-dark": "#f6f8f6"
+                        "primary": "#1193d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
                     },
                     fontFamily: {
-                        "display": ["Manrope", "sans-serif"],
-                        "fredoka": ["Fredoka", "sans-serif"]
+                        "display": ["Manrope", "sans-serif"]
                     },
                     borderRadius: {
                         "DEFAULT": "0.25rem",
@@ -34,60 +37,142 @@
             },
         }
     </script>
-<style type="text/tailwindcss">
-        .social-icon:hover.fa-youtube {
-            color: #FF0000;
-        }
-        .social-icon:hover.fa-instagram {
-            color: #E4405F;
-        }
-        .social-icon:hover.fa-facebook {
-            color: #1877F2;
-        }
-        .social-icon:hover.fa-telegram {
-            color: #26A5E4;
-        }
-    </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
-<div class="flex flex-col min-h-screen">
-<div class="flex-grow flex items-center justify-center p-4">
-<div class="w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-<div class="text-left flex flex-col gap-6 md:order-1">
-<div class="flex flex-col gap-4">
-<div class="flex items-center">
-<img alt="Pocket Money Pro Icon" class="w-10 h-10 mr-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPCGzcXBidaW8joFCPByVlLVFzID-5GwJae1BBWl2Lrl45oX4o0ZsnIkV5cEWKa4YEez2vDMcx8YpOLgYE2qkTMv070pjreURGU99j4S13G-fLiQpbzMNj5IVr_M--3CA9b_oXX5qHIdd4U6HQ-nd0mwbKOSL3PTMWFxPSD5K8hElVRlhzyz0FSdA38IdgtgrypBRZ2TXHfgEkzpWIy4emwVw_RlJ7qvVRsZWNJ20666GcMSkL7vZqpVycsIM20kSD-ceO1kdwOA0"/>
-<h1 class="text-2xl md:text-3xl font-normal text-text-light dark:text-text-dark font-fredoka">
-                        Pocket Money Pro
-                    </h1>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-gray-700 px-4 sm:px-10 py-3">
+<div class="flex items-center gap-4 text-gray-900 dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
 </div>
-<div class="w-full aspect-video md:hidden">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="w-full h-full rounded-md shadow-md" frameborder="0" src="https://www.youtube.com/embed/YpP9V22h0y8?controls=1" title="YouTube video player"></iframe>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">Pocket Money Pro</h2>
 </div>
-</div>
-<div class="flex flex-col gap-6">
-<p class="text-base md:text-lg text-text-light/80 dark:text-text-dark/80 leading-relaxed">
-                    Unlock a world of earning potential right from your phone. Our Telegram channel is your ultimate guide to making extra cash. We share daily tips, exclusive tricks, and verified online earning methods to boost your income. From paid surveys to affiliate marketing, we cover it all. Join our community and start your journey towards financial freedom today. <a class="text-blue-500 hover:underline text-sm" href="#">Click here to know more</a>
-</p>
-<div class="flex flex-col sm:flex-row items-center gap-3 flex-wrap">
-<a class="inline-flex items-center justify-center bg-blue-500 text-white font-bold px-4 py-2 rounded-md shadow-sm hover:bg-blue-600 transition-colors duration-300 w-full sm:w-auto text-sm" href="#"><i class="fab fa-telegram-plane mr-2"></i><span>Join Telegram</span></a>
-<a class="inline-flex items-center justify-center bg-primary text-white font-bold px-4 py-2 rounded-md shadow-sm hover:bg-opacity-90 transition-colors duration-300 w-full sm:w-auto text-sm" href="#"><i class="fas fa-rss mr-2"></i><span>Read Blog</span></a>
-<a class="inline-flex items-center justify-center bg-amber-500 text-white font-bold px-4 py-2 rounded-md shadow-sm hover:bg-amber-600 transition-colors duration-300 w-full sm:w-auto text-sm" href="#"><i class="fas fa-inbox mr-2"></i><span>Subscribe to Newsletter</span></a>
-<a class="inline-flex items-center justify-center bg-gray-500 text-white font-bold px-4 py-2 rounded-md shadow-sm hover:bg-gray-600 transition-colors duration-300 w-full sm:w-auto text-sm" href="#"><i class="fas fa-comment-alt mr-2"></i><span>Talk to Us</span></a>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="#">Categories</a>
+<a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="#">Trending Ideas</a>
+<a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="#">About Us</a>
 </div>
 </div>
+<div class="md:hidden">
+<button class="text-gray-800 dark:text-gray-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
 </div>
-<div class="w-full aspect-video md:order-2 hidden md:block">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="w-full h-full rounded-lg shadow-lg" frameborder="0" src="https://www.youtube.com/embed/YpP9V22h0y8?controls=1" title="YouTube video player"></iframe>
+</header>
+<main class="flex-grow">
+<div class="@container py-12 md:py-20">
+<div class="@[480px]:p-4">
+<div class="flex min-h-[400px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4 text-center bg-gray-100 dark:bg-gray-800/50 rounded-xl" data-alt="A desk with a calculator, a laptop and a notebook, suggesting financial planning." style="background-image: linear-gradient(rgba(246, 247, 248, 0.8), rgba(246, 247, 248, 0.8)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuA_rgWtbL52Rb-GNU_75qjlSwu5FbTrGoOflKRDwBWbrCVkbsG86-8dqYoswGmkaNByz1ItP2KCDM1-bOWsIQE8dIDM5v8U_E85xPeFBT8uqgJIuny5V46DazpiGBThDrr4sf5KqFV69YTuEshpe3P8ERP-8hc22JXrjzSZSSSEIKVsTm-3Ofy66gE7wgXnbjn3U5fCvAs-CHSyj8Ms6abHBZj4VaY11mPphaWwBJyFZ6inF_1rXAfPpNggnmAxJ0nJ8nEUi_G3d20');">
+<div class="flex flex-col gap-2">
+<h1 class="text-gray-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl">
+                                        Share &amp; Discover Money-Earning Ideas
+                                    </h1>
+<h2 class="text-gray-700 dark:text-gray-300 text-sm font-normal leading-normal @[480px]:text-base max-w-2xl mx-auto">
+                                        Your community for finding and sharing practical tips, side hustles, and innovative ways to boost your income. Start exploring now!
+                                    </h2>
 </div>
 </div>
 </div>
-<footer class="w-full bg-background-light dark:bg-background-dark py-6 px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-center">
-<p class="text-center text-[10px] text-text-light/60 dark:text-text-dark/60">
-        © 2024 Pocket Money Pro. All Rights Reserved.
-    </p>
 </div>
+<div class="px-4 py-8 md:py-12">
+<div class="text-center mb-8">
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white">How to Connect</h3>
+<p class="text-gray-600 dark:text-gray-400 mt-2 max-w-2xl mx-auto">Stay in the loop and get the latest money-earning ideas through your favorite channels. Join our community on Telegram, subscribe to our newsletter for weekly insights, read our blog for in-depth stories, or talk to us directly with your questions and ideas.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">send</span>
+<span class="text-gray-800 dark:text-gray-200 font-semibold text-base">Join our Telegram Channel</span>
+</div>
+<div class="flex items-center gap-2">
+<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[8px] hover:bg-primary hover:text-white transition-colors" href="#">Join</a>
+<div class="relative has-tooltip">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-sm cursor-pointer">info</span>
+<div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
+                                        Get instant updates and join discussions on the latest money-making trends.
+                                    </div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">mail</span>
+<span class="text-gray-800 dark:text-gray-200 font-semibold text-base">Subscribe to Newsletter</span>
+</div>
+<div class="flex items-center gap-2">
+<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[8px] hover:bg-primary hover:text-white transition-colors" href="#">Subscribe</a>
+<div class="relative has-tooltip">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-sm cursor-pointer">info</span>
+<div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
+                                        Receive a weekly roundup of top ideas and success stories directly in your inbox.
+                                    </div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">article</span>
+<span class="text-gray-800 dark:text-gray-200 font-semibold text-base">Read our Blog</span>
+</div>
+<div class="flex items-center gap-2">
+<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[8px] hover:bg-primary hover:text-white transition-colors" href="#">Visit</a>
+<div class="relative has-tooltip">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-sm cursor-pointer">info</span>
+<div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
+                                        Dive deep into detailed articles, case studies, and expert interviews.
+                                    </div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">chat</span>
+<span class="text-gray-800 dark:text-gray-200 font-semibold text-base">Talk to Us</span>
+</div>
+<div class="flex items-center gap-2">
+<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[8px] hover:bg-primary hover:text-white transition-colors" href="#">Chat</a>
+<div class="relative has-tooltip">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-sm cursor-pointer">info</span>
+<div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
+                                        Have a question or a brilliant idea to share? We're here to listen.
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+<div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-center">
+<a class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal min-w-40 hover:text-primary dark:hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal min-w-40 hover:text-primary dark:hover:text-primary" href="#">Terms of Service</a>
+<a class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal min-w-40 hover:text-primary dark:hover:text-primary" href="#">Contact Us</a>
+</div>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">
+<span class="material-symbols-outlined">social_leaderboard</span>
+</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">
+<svg class="feather feather-twitter" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">
+<svg class="feather feather-instagram" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">
+<svg class="feather feather-linkedin" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+</a>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">© 2023 Pocket Money Pro. All rights reserved.</p>
 </footer>
+</div>
+</div>
+</div>
 </div>
 </body></html>
