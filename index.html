@@ -6,12 +6,49 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
 <style type="text/tailwindcss">
+        html {
+            scroll-behavior: smooth;
+        }
         .tooltip {
             @apply invisible absolute;
         }
         .has-tooltip:hover .tooltip {
             @apply visible z-50;
+        }
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] .plus-icon {
+            display: none;
+        }
+        details:not([open]) .minus-icon {
+            display: none;
+        }
+        @keyframes fade {
+            0%, 100% { opacity: 0; }
+            10%, 90% { opacity: 1; }
+        }
+        .story-card {
+            animation: fade 10s infinite;
+            display: none;
+        }
+        .story-card:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .story-card:nth-child(2) {
+            animation-delay: 10s;
+        }
+        .story-card:nth-child(3) {
+            animation-delay: 20s;
+        }
+        .animate-story .story-card {
+            display: block;
         }
     </style>
 <script>
@@ -25,7 +62,8 @@
                         "background-dark": "#101c22",
                     },
                     fontFamily: {
-                        "display": ["Manrope", "sans-serif"]
+                        "display": ["Manrope", "sans-serif"],
+                        "handwritten": ["Playfair Display", "serif"],
                     },
                     borderRadius: {
                         "DEFAULT": "0.25rem",
@@ -36,6 +74,43 @@
                 },
             },
         }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const stories = document.querySelectorAll('.story-card');
+            let currentStory = 0;
+            function showStory(index) {
+                stories.forEach((story, i) => {
+                    story.style.display = i === index ? 'block' : 'none';
+                });
+            }
+            function nextStory() {
+                currentStory = (currentStory + 1) % stories.length;
+                showStory(currentStory);
+            }
+            showStory(0);
+            setInterval(nextStory, 10000);
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+            darkModeToggle.addEventListener('click', () => {
+                const html = document.documentElement;
+                html.classList.toggle('dark');
+                if (html.classList.contains('dark')) {
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                } else {
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }
+            });
+            // Set initial icon state based on theme
+            if (document.documentElement.classList.contains('dark')) {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            }
+        });
     </script>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
@@ -43,58 +118,163 @@
 <div class="layout-container flex h-full grow flex-col">
 <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
 <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-gray-700 px-4 sm:px-10 py-3">
-<div class="flex items-center gap-4 text-gray-900 dark:text-white">
-<div class="size-6 text-primary">
-<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
+<header class="flex items-center justify-between whitespace-nowrap bg-transparent py-3">
+<div class="flex items-center gap-2 text-gray-900 dark:text-white">
+<img alt="Pocket Money Pro Logo" class="h-5 w-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg6YMTHseMJc77cbyzCTNAW_cOiDd4lUn5auwfTocBhARaknCIAf-VMgt1Y_UBpZB2IcdfmV7xpoOx32Hb06xcYVPFGPUxPdRJXNwYGPLJwxEXjtOlxpOnAgk3K1DfLS_p99mbA6L7HUhG19coHsOjZY-dqKlSitSr_H9496Mv7wb7eT_xYQlkJ3zKWDqgjCx_jeBnj40_oNwoCWDwBAMlPU7bKnHpNBFzbK4G1cu_jy61INtyPnDvR3XdweU1mlDtsTmS-1h3IvU"/>
+<h2 class="text-base font-bold leading-tight tracking-[-0.015em]">Pocket Money Pro</h2>
 </div>
-<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">Pocket Money Pro</h2>
-</div>
-<div class="hidden md:flex flex-1 justify-end gap-8">
-<div class="flex items-center gap-9">
-<a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="#">Categories</a>
-<a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="#">Trending Ideas</a>
-<a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary" href="#">About Us</a>
-</div>
-</div>
-<div class="md:hidden">
-<button class="text-gray-800 dark:text-gray-200">
-<span class="material-symbols-outlined">menu</span>
+<div class="flex items-center gap-3">
+<button class="text-gray-800 dark:text-gray-200" id="dark-mode-toggle">
+<span class="material-symbols-outlined text-lg" id="moon-icon">dark_mode</span>
+<span class="material-symbols-outlined text-lg hidden" id="sun-icon">light_mode</span>
 </button>
+<a class="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-md text-xs font-medium hover:bg-primary/90 transition-colors" href="#get-started">
+<span>Get Started</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
 </div>
 </header>
 <main class="flex-grow">
-<div class="@container py-12 md:py-20">
-<div class="@[480px]:p-4">
-<div class="flex min-h-[400px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4 text-center bg-gray-100 dark:bg-gray-800/50 rounded-xl" data-alt="A desk with a calculator, a laptop and a notebook, suggesting financial planning." style="background-image: linear-gradient(rgba(246, 247, 248, 0.8), rgba(246, 247, 248, 0.8)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuA_rgWtbL52Rb-GNU_75qjlSwu5FbTrGoOflKRDwBWbrCVkbsG86-8dqYoswGmkaNByz1ItP2KCDM1-bOWsIQE8dIDM5v8U_E85xPeFBT8uqgJIuny5V46DazpiGBThDrr4sf5KqFV69YTuEshpe3P8ERP-8hc22JXrjzSZSSSEIKVsTm-3Ofy66gE7wgXnbjn3U5fCvAs-CHSyj8Ms6abHBZj4VaY11mPphaWwBJyFZ6inF_1rXAfPpNggnmAxJ0nJ8nEUi_G3d20');">
-<div class="flex flex-col gap-2">
-<h1 class="text-gray-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl">
-                                        Share &amp; Discover Money-Earning Ideas
-                                    </h1>
-<h2 class="text-gray-700 dark:text-gray-300 text-sm font-normal leading-normal @[480px]:text-base max-w-2xl mx-auto">
-                                        Your community for finding and sharing practical tips, side hustles, and innovative ways to boost your income. Start exploring now!
-                                    </h2>
+<div class="text-center py-16 md:py-24">
+<h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-gray-900 dark:text-white">Welcome to Pocket Money Pro!</h1>
+<p class="mt-6 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">Discover a community dedicated to helping you boost your income. We're your go-to source for money-making ideas, from side hustles to savvy saving strategies. Join us to learn, share, and grow your finances together.</p>
+<a class="inline-flex items-center gap-2 mt-8 px-8 py-3 bg-primary text-white rounded-lg border border-primary font-bold text-sm hover:bg-primary/90 transition-colors" href="#get-started">
+<i class="fas fa-rocket"></i>
+<span>Get Early Access</span>
+</a>
 </div>
+<div class="pb-12 md:pb-20">
+<div class="aspect-video w-full">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full rounded-lg" frameborder="0" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player"></iframe>
+</div>
+</div>
+<div class="px-4 py-6 md:py-8">
+<div class="text-center mb-8">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white">What We Offer</h3>
+<p class="text-gray-600 dark:text-gray-400 mt-2 max-w-3xl mx-auto text-sm">Our platform is designed to provide you with a wealth of information and a supportive community to help you on your money-earning journey. Here's what you can expect:</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col items-start gap-4 p-6 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
+<h4 class="font-semibold text-gray-900 dark:text-white">Innovative Ideas</h4>
+</div>
+<ul class="space-y-2 text-left text-xs text-gray-600 dark:text-gray-400">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
+<span>Vast library of user-submitted side hustles and business ideas.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
+<span>Categorized and searchable for easy discovery.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
+<span>Regularly updated with new and trending opportunities.</span>
+</li>
+</ul>
+</div>
+<div class="flex flex-col items-start gap-4 p-6 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">groups</span>
+<h4 class="font-semibold text-gray-900 dark:text-white">Community Support</h4>
+</div>
+<ul class="space-y-2 text-left text-xs text-gray-600 dark:text-gray-400">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
+<span>Active forums for discussions, Q&amp;A, and collaboration.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
+<span>Direct messaging to connect with fellow entrepreneurs.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
+<span>Read and share success stories for motivation.</span>
+</li>
+</ul>
+</div>
+<div class="flex flex-col items-start gap-4 p-6 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">school</span>
+<h4 class="font-semibold text-gray-900 dark:text-white">Expert Guides</h4>
+</div>
+<ul class="space-y-2 text-left text-xs text-gray-600 dark:text-gray-400">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
+<span>Step-by-step tutorials for various income streams.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
+<span>Downloadable resources, checklists, and templates.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
+<span>Webinars and workshops with industry experts.</span>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="px-4 py-8 md:py-12">
-<div class="text-center mb-8">
-<h3 class="text-2xl font-bold text-gray-900 dark:text-white">How to Connect</h3>
-<p class="text-gray-600 dark:text-gray-400 mt-2 max-w-2xl mx-auto">Stay in the loop and get the latest money-earning ideas through your favorite channels. Join our community on Telegram, subscribe to our newsletter for weekly insights, read our blog for in-depth stories, or talk to us directly with your questions and ideas.</p>
+<div class="text-center mb-12">
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white">Success Stories</h3>
+<p class="text-gray-600 dark:text-gray-400 mt-2 max-w-3xl mx-auto text-sm">Be inspired by real stories from our community members who turned ideas into income.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="relative max-w-lg mx-auto h-40">
+<div class="story-card absolute w-full transition-opacity duration-1000 ease-in-out">
+<div class="bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-300 dark:border-gray-700 flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<img class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8YiYSg3JugjuPAHr_o6RlfLBP7AYr_qTFL_5UDOqXybrR80CFDxhmdSVbEYfxyZ-A-jP6rpJjhNkqW1JXVfBR5_JFuKNXRShNCiwdu70OEOID6ESSRdQi5nIsOxi9aemZhWD-6SWmHdizMybZin6cJn52TVLqZ9NzSGtwCyyoFIOiliA0JFHtQr81SftP0nWk685RZrwmtwbgUQdDetzfSqe7U6VhsPFqsZTeefSgq0eYHEBi0utmo9AqUwlw6UzpfaPYZSbmy2E"/>
+<div>
+<h4 class="font-semibold text-gray-900 dark:text-white">From Hobby to Hustle</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400">By Sarah J.</p>
+</div>
+</div>
+<p class="text-xs text-gray-600 dark:text-gray-400">"I always loved baking. Pocket Money Pro gave me the idea to sell custom cakes locally. Now, my weekend hobby pays my rent!"</p>
+</div>
+</div>
+<div class="story-card absolute w-full transition-opacity duration-1000 ease-in-out opacity-0">
+<div class="bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-300 dark:border-gray-700 flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<img class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8YiYSg3JugjuPAHr_o6RlfLBP7AYr_qTFL_5UDOqXybrR80CFDxhmdSVbEYfxyZ-A-jP6rpJjhNkqW1JXVfBR5_JFuKNXRShNCiwdu70OEOID6ESSRdQi5nIsOxi9aemZhWD-6SWmHdizMybZin6cJn52TVLqZ9NzSGtwCyyoFIOiliA0JFHtQr81SftP0nWk685RZrwmtwbgUQdDetzfSqe7U6VhsPFqsZTeefSgq0eYHEBi0utmo9AqUwlw6UzpfaPYZSbmy2E"/>
+<div>
+<h4 class="font-semibold text-gray-900 dark:text-white">Freelance Writing Fortune</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400">By Mark T.</p>
+</div>
+</div>
+<p class="text-xs text-gray-600 dark:text-gray-400">"The guides on freelance writing were a game-changer. I landed my first client within a week and now have a steady stream of projects."</p>
+</div>
+</div>
+<div class="story-card absolute w-full transition-opacity duration-1000 ease-in-out opacity-0">
+<div class="bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-300 dark:border-gray-700 flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl p-1.5 bg-primary/10 rounded-full">local_florist</span>
+<div>
+<h4 class="font-semibold text-gray-900 dark:text-white">Gardening for Green</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400">By Emily R.</p>
+</div>
+</div>
+<p class="text-xs text-gray-600 dark:text-gray-400">"I started a small urban garden selling fresh herbs to neighbors. It's amazing how a small idea from this community has grown!"</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 py-8 md:py-12" id="get-started">
+<div class="text-center mb-8">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white">Get Started</h3>
+<p class="text-gray-600 dark:text-gray-400 mt-2 max-w-2xl mx-auto text-sm">Stay in the loop and get the latest money-earning ideas through your favorite channels. Join our community on Telegram, subscribe to our newsletter for weekly insights, read our blog for in-depth stories, or talk to us directly with your questions and ideas.</p>
+</div>
+<div class="grid grid-cols-1 gap-4">
 <div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
 <div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary text-2xl">send</span>
-<span class="text-gray-800 dark:text-gray-200 font-semibold text-base">Join our Telegram Channel</span>
+<i class="fab fa-telegram-plane text-primary text-2xl"></i>
+<span class="text-gray-800 dark:text-gray-200 font-semibold text-xs">Join our Telegram Channel</span>
 </div>
 <div class="flex items-center gap-2">
-<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[8px] hover:bg-primary hover:text-white transition-colors" href="#">Join</a>
+<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[10px] hover:bg-primary hover:text-white transition-colors" href="#">Join</a>
 <div class="relative has-tooltip">
-<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-sm cursor-pointer">info</span>
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-base cursor-pointer">info</span>
 <div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
                                         Get instant updates and join discussions on the latest money-making trends.
                                     </div>
@@ -103,13 +283,28 @@
 </div>
 <div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
 <div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary text-2xl">mail</span>
-<span class="text-gray-800 dark:text-gray-200 font-semibold text-base">Subscribe to Newsletter</span>
+<i class="fab fa-whatsapp text-primary text-2xl"></i>
+<span class="text-gray-800 dark:text-gray-200 font-semibold text-xs">Join our WhatsApp Channel</span>
 </div>
 <div class="flex items-center gap-2">
-<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[8px] hover:bg-primary hover:text-white transition-colors" href="#">Subscribe</a>
+<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[10px] hover:bg-primary hover:text-white transition-colors" href="#">Join</a>
 <div class="relative has-tooltip">
-<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-sm cursor-pointer">info</span>
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-base cursor-pointer">info</span>
+<div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
+                                        Get instant updates and connect with us on WhatsApp.
+                                    </div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
+<div class="flex items-center gap-4">
+<i class="fas fa-inbox text-primary text-2xl"></i>
+<span class="text-gray-800 dark:text-gray-200 font-semibold text-xs">Subscribe to Newsletter</span>
+</div>
+<div class="flex items-center gap-2">
+<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[10px] hover:bg-primary hover:text-white transition-colors" href="#">Subscribe</a>
+<div class="relative has-tooltip">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-base cursor-pointer">info</span>
 <div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
                                         Receive a weekly roundup of top ideas and success stories directly in your inbox.
                                     </div>
@@ -118,13 +313,13 @@
 </div>
 <div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
 <div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary text-2xl">article</span>
-<span class="text-gray-800 dark:text-gray-200 font-semibold text-base">Read our Blog</span>
+<i class="fas fa-newspaper text-primary text-2xl"></i>
+<span class="text-gray-800 dark:text-gray-200 font-semibold text-xs">Read our Blog</span>
 </div>
 <div class="flex items-center gap-2">
-<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[8px] hover:bg-primary hover:text-white transition-colors" href="#">Visit</a>
+<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[10px] hover:bg-primary hover:text-white transition-colors" href="#">Visit</a>
 <div class="relative has-tooltip">
-<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-sm cursor-pointer">info</span>
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-base cursor-pointer">info</span>
 <div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
                                         Dive deep into detailed articles, case studies, and expert interviews.
                                     </div>
@@ -133,13 +328,13 @@
 </div>
 <div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
 <div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary text-2xl">chat</span>
-<span class="text-gray-800 dark:text-gray-200 font-semibold text-base">Talk to Us</span>
+<i class="fas fa-comments text-primary text-2xl"></i>
+<span class="text-gray-800 dark:text-gray-200 font-semibold text-xs">Talk to Us</span>
 </div>
 <div class="flex items-center gap-2">
-<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[8px] hover:bg-primary hover:text-white transition-colors" href="#">Chat</a>
+<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[10px] hover:bg-primary hover:text-white transition-colors" href="#">Chat</a>
 <div class="relative has-tooltip">
-<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-sm cursor-pointer">info</span>
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-base cursor-pointer">info</span>
 <div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
                                         Have a question or a brilliant idea to share? We're here to listen.
                                     </div>
@@ -148,31 +343,123 @@
 </div>
 </div>
 </div>
+<div class="px-4 py-8 md:py-12">
+<div class="text-center mb-8">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white">Frequently Asked Questions</h3>
+<p class="text-gray-600 dark:text-gray-400 mt-2 max-w-3xl mx-auto text-sm">Have questions? We've got answers. If you can't find what you're looking for, feel free to reach out to us.</p>
+</div>
+<div class="space-y-4">
+<details class="group bg-transparent p-4 rounded-lg border border-gray-300 dark:border-gray-600">
+<summary class="flex items-center justify-between cursor-pointer">
+<h5 class="font-semibold text-gray-900 dark:text-white text-sm">What is Pocket Money Pro?</h5>
+<div class="text-primary">
+<span class="material-symbols-outlined plus-icon">add</span>
+<span class="material-symbols-outlined minus-icon">remove</span>
+</div>
+</summary>
+<p class="text-xs text-gray-600 dark:text-gray-400 mt-3">Pocket Money Pro is a community-driven platform where users can share and discover various money-earning ideas, from side hustles to small business ventures.</p>
+</details>
+<details class="group bg-transparent p-4 rounded-lg border border-gray-300 dark:border-gray-600">
+<summary class="flex items-center justify-between cursor-pointer">
+<h5 class="font-semibold text-gray-900 dark:text-white text-sm">How can I contribute my own ideas?</h5>
+<div class="text-primary">
+<span class="material-symbols-outlined plus-icon">add</span>
+<span class="material-symbols-outlined minus-icon">remove</span>
+</div>
+</summary>
+<p class="text-xs text-gray-600 dark:text-gray-400 mt-3">You can become a contributor by signing up and submitting your ideas through our platform. All submissions are reviewed by our team to ensure quality and originality.</p>
+</details>
+<details class="group bg-transparent p-4 rounded-lg border border-gray-300 dark:border-gray-600">
+<summary class="flex items-center justify-between cursor-pointer">
+<h5 class="font-semibold text-gray-900 dark:text-white text-sm">Is there a cost to use Pocket Money Pro?</h5>
+<div class="text-primary">
+<span class="material-symbols-outlined plus-icon">add</span>
+<span class="material-symbols-outlined minus-icon">remove</span>
+</div>
+</summary>
+<p class="text-xs text-gray-600 dark:text-gray-400 mt-3">No, Pocket Money Pro is completely free to use. Our goal is to make money-earning knowledge accessible to everyone.</p>
+</details>
+<details class="group bg-transparent p-4 rounded-lg border border-gray-300 dark:border-gray-600">
+<summary class="flex items-center justify-between cursor-pointer">
+<h5 class="font-semibold text-gray-900 dark:text-white text-sm">How are the money-earning ideas verified?</h5>
+<div class="text-primary">
+<span class="material-symbols-outlined plus-icon">add</span>
+<span class="material-symbols-outlined minus-icon">remove</span>
+</div>
+</summary>
+<p class="text-xs text-gray-600 dark:text-gray-400 mt-3">Our community and moderation team work together to verify the legitimacy of the ideas shared. We encourage users to share their experiences and feedback to help maintain a trustworthy environment.</p>
+</details>
+</div>
+</div>
+<div class="px-4 py-6 md:py-8 my-8 text-center">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white font-display tracking-normal">A Note from Mods</h3>
+<p class="text-gray-600 dark:text-gray-400 mt-4 text-sm font-normal max-w-4xl mx-auto">We're incredibly excited to announce that the full launch of Pocket Money Pro is just around the corner! The journey to this point has been fueled by your invaluable feedback and unwavering support, and for that, we are immensely grateful. Your suggestions have helped shape what this platform is becoming, and we can't wait to share the complete experience with you. Prepare for even more features, more success stories, and a more robust community space designed to help everyone achieve their financial goals. Thank you for being a part of our foundation. The best is yet to come!</p>
+</div>
 </main>
-<footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
-<div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-center">
-<a class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal min-w-40 hover:text-primary dark:hover:text-primary" href="#">Privacy Policy</a>
-<a class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal min-w-40 hover:text-primary dark:hover:text-primary" href="#">Terms of Service</a>
-<a class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal min-w-40 hover:text-primary dark:hover:text-primary" href="#">Contact Us</a>
+<footer class="border-t border-gray-200 dark:border-gray-700 mt-12 py-8 px-4">
+<div class="max-w-[960px] mx-auto flex flex-col items-center md:items-start">
+<div class="flex flex-col md:flex-row justify-between items-start gap-8 w-full">
+<div class="flex flex-col gap-4 items-start text-left">
+<div class="flex items-center gap-2">
+<img alt="Pocket Money Pro Logo" class="h-5 w-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdznnQF3bvAL-xb0XWe_lcIFchYyvEUwoBMgCkFXXjPjD_xmi4QvjKXRljPAhgXhcfwW0ZfP_MC0hnC540KvYR7mLYhPAKsj_nccftAJMuiYmrc4m-2edmPyX-d_cpAKXpBlxir2M-G4WFnWCFwvcib5yq1qF3ppKh_dGxGufV246N0lS5keo45_hqZABzXEe3xzHfI1GyjfoZEj6UEz9x_wEnPWhaMn8GlGo2oR1VNCzK3cugi-_v-PtvWaCUOoqCPw7R7sFkSAw"/>
+<h3 class="text-base font-bold text-gray-900 dark:text-white">Pocket Money Pro</h3>
 </div>
-<div class="flex flex-wrap justify-center gap-4">
-<a class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">
-<span class="material-symbols-outlined">social_leaderboard</span>
-</a>
-<a class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">
-<svg class="feather feather-twitter" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-</a>
-<a class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">
-<svg class="feather feather-instagram" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
-</a>
-<a class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">
-<svg class="feather feather-linkedin" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-</a>
+<p class="text-xs text-gray-600 dark:text-gray-400 max-w-xs">Your community for finding and sharing practical tips, side hustles, and innovative ways to boost your income.</p>
 </div>
-<p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">© 2023 Pocket Money Pro. All rights reserved.</p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-left w-full md:w-auto text-xs">
+<div>
+<h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Community</h4>
+<ul class="space-y-2">
+<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">About Us</a></li>
+<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">Mission and Vision</a></li>
+<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">Support Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Legal &amp; Support</h4>
+<ul class="space-y-2">
+<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">TOS</a></li>
+<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">Privacy Policy</a></li>
+<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Social Media</h4>
+<ul class="space-y-2">
+<li><a class="flex items-center justify-start gap-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#"><i class="fab fa-youtube"></i>@pocketmoney_pro</a></li>
+<li><a class="flex items-center justify-start gap-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#"><i class="fab fa-instagram"></i>@pocketmoney_pro</a></li>
+<li><a class="flex items-center justify-start gap-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#"><i class="fab fa-facebook"></i>@pocketmoney_pro</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 text-center text-gray-500 dark:text-gray-400 w-full">
+<p class="text-[10px]">© 2024 Pocket Money Pro. All rights reserved.</p>
+</div>
+</div>
 </footer>
 </div>
 </div>
 </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const stories = document.querySelectorAll('.story-card');
+        let currentStoryIndex = 0;
+        function showNextStory() {
+            stories.forEach((story, index) => {
+                if (index === currentStoryIndex) {
+                    story.classList.remove('opacity-0');
+                    story.classList.add('opacity-100');
+                } else {
+                    story.classList.remove('opacity-100');
+                    story.classList.add('opacity-0');
+                }
+            });
+            currentStoryIndex = (currentStoryIndex + 1) % stories.length;
+        }
+        setInterval(showNextStory, 10000);
+        showNextStory(); 
+    });
+</script>
 </body></html>
