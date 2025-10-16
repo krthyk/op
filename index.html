@@ -2,464 +2,602 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Pocket Money Pro - Share &amp; Discover Earning Ideas</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<title>Under 25 Community</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" referrerpolicy="no-referrer" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
-<style type="text/tailwindcss">
-        html {
-            scroll-behavior: smooth;
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#000000",
+              "background-light": "#ffffff",
+              "background-dark": "#111827",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .carousel-item {
+            flex: 0 0 100%;
+            transition: transform 0.5s ease-in-out;
         }
-        .tooltip {
-            @apply invisible absolute;
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
         }
-        .has-tooltip:hover .tooltip {
-            @apply visible z-50;
+        #carousel-indicators .active {
+            width: 1.5rem;}
+        body {
+            background-color: #ffffff;
+            color: #000000;
         }
-        details > summary {
-            list-style: none;
+        .dark body {
+             background-color: #111827;
+             color: #ffffff;
         }
-        details > summary::-webkit-details-marker {
+        .dark .text-slate-900, .dark .text-slate-50 { color: #f8fafc; }
+        .dark .text-slate-700, .dark .text-slate-300 { color: #cbd5e1; }
+        .dark .text-slate-600, .dark .text-slate-400 { color: #94a3b8; }
+        .bg-background-light, .dark .bg-background-dark { background-color: #ffffff; }
+        .dark .bg-background-dark { background-color: #111827; }
+        .dark .border-slate-200, .dark .border-slate-800 { border-color: #1e293b; }
+        .dark .bg-slate-200, .dark .bg-slate-800 { background-color: #1e293b; }
+        .dark .hover\:text-primary:hover { color: #f8fafc; }
+        .dark .bg-primary { background-color: #f8fafc; }
+        .dark .text-white { color: #111827; }
+        .dark .bg-primary\/10 { background-color: rgba(248, 250, 252, 0.1); }
+        .dark .text-primary { color: #f8fafc; }
+        .dark .material-symbols-outlined, .dark .fa-solid { color: #f8fafc !important; }
+        header .dark .text-slate-900, header .dark .text-slate-50 { color: #f8fafc; }
+        .dark .bg-slate-50, .dark .bg-slate-900\/50 { background-color: #020617; }
+        .dark .border-black\/10 { border-color: rgba(248, 250, 252, 0.1); }
+        .dark .hover\:bg-gradient-to-b:hover { background-image: linear-gradient(to bottom, transparent, rgba(248, 250, 252, 0.05)); }
+        .dark #story-carousel-container { background-color: #020617; }
+        .dark .border-slate-300, .dark .border-slate-700 { border-color: #334155; }
+        .dark .bg-white, .dark .dark\:bg-white { background-color: #111827; }
+        .dark .bg-black { background-color: #f8fafc; }
+        .dark .text-black { color: #f8fafc; }
+        .dark .text-white { color: #111827; }
+        .dark .fa-download { color: #111827 !important; }
+        #story-carousel-container .story-card {
             display: none;
+            animation: fadeIn 0.5s;
         }
-        details[open] .plus-icon {
+        #story-carousel-container .story-card.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .faq-item .answer {
             display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
         }
-        details:not([open]) .minus-icon {
-            display: none;
-        }
-        @keyframes fade {
-            0%, 100% { opacity: 0; }
-            10%, 90% { opacity: 1; }
-        }
-        .story-card {
-            animation: fade 10s infinite;
-            display: none;
-        }
-        .story-card:nth-child(1) {
-            animation-delay: 0s;
-        }
-        .story-card:nth-child(2) {
-            animation-delay: 10s;
-        }
-        .story-card:nth-child(3) {
-            animation-delay: 20s;
-        }
-        .animate-story .story-card {
+        .faq-item.active .answer {
             display: block;
+            max-height: 1000px;}
+        .faq-item .icon {
+            transition: transform 0.3s;
+        }
+        .faq-item.active .icon {
+            transform: rotate(180deg);
+        }
+        #mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
         }
     </style>
-<script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#1193d4",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101c22",
-                    },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"],
-                        "handwritten": ["Playfair Display", "serif"],
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const stories = document.querySelectorAll('.story-card');
-            let currentStory = 0;
-            function showStory(index) {
-                stories.forEach((story, i) => {
-                    story.style.display = i === index ? 'block' : 'none';
-                });
-            }
-            function nextStory() {
-                currentStory = (currentStory + 1) % stories.length;
-                showStory(currentStory);
-            }
-            showStory(0);
-            setInterval(nextStory, 10000);
-            const darkModeToggle = document.getElementById('dark-mode-toggle');
-            const sunIcon = document.getElementById('sun-icon');
-            const moonIcon = document.getElementById('moon-icon');
-            darkModeToggle.addEventListener('click', () => {
-                const html = document.documentElement;
-                html.classList.toggle('dark');
-                if (html.classList.contains('dark')) {
-                    sunIcon.style.display = 'block';
-                    moonIcon.style.display = 'none';
-                } else {
-                    sunIcon.style.display = 'none';
-                    moonIcon.style.display = 'block';
-                }
-            });
-            // Set initial icon state based on theme
-            if (document.documentElement.classList.contains('dark')) {
-                sunIcon.style.display = 'block';
-                moonIcon.style.display = 'none';
-            } else {
-                sunIcon.style.display = 'none';
-                moonIcon.style.display = 'block';
-            }
-        });
-    </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<body class="bg-background-light dark:bg-background-dark font-display">
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
-<div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
-<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-<header class="flex items-center justify-between whitespace-nowrap bg-transparent py-3">
-<div class="flex items-center gap-2 text-gray-900 dark:text-white">
-<img alt="Pocket Money Pro Logo" class="h-5 w-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg6YMTHseMJc77cbyzCTNAW_cOiDd4lUn5auwfTocBhARaknCIAf-VMgt1Y_UBpZB2IcdfmV7xpoOx32Hb06xcYVPFGPUxPdRJXNwYGPLJwxEXjtOlxpOnAgk3K1DfLS_p99mbA6L7HUhG19coHsOjZY-dqKlSitSr_H9496Mv7wb7eT_xYQlkJ3zKWDqgjCx_jeBnj40_oNwoCWDwBAMlPU7bKnHpNBFzbK4G1cu_jy61INtyPnDvR3XdweU1mlDtsTmS-1h3IvU"/>
-<h2 class="text-base font-bold leading-tight tracking-[-0.015em]">Pocket Money Pro</h2>
+<header class="fixed top-0 left-0 right-0 z-30 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm pt-4">
+<div class="px-4 md:px-10 lg:px-20 flex justify-center">
+<div class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 w-full max-w-7xl py-3">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-50">
+<div class="size-8">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
 </div>
-<div class="flex items-center gap-3">
-<button class="text-gray-800 dark:text-gray-200" id="dark-mode-toggle">
-<span class="material-symbols-outlined text-lg" id="moon-icon">dark_mode</span>
-<span class="material-symbols-outlined text-lg hidden" id="sun-icon">light_mode</span>
+<h2 class="text-slate-900 dark:text-slate-50 text-lg font-bold leading-tight tracking-[-0.015em]">Under 25 Community</h2>
+</div>
+<div class="hidden lg:flex flex-1 justify-end items-center gap-6">
+<nav class="flex items-center gap-6">
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">What is Under25?</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">How to Start</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Tutorials</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Stories</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Blog</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Communities</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">FAQ</a>
+</nav>
+<div class="flex items-center gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0" id="theme-toggle-desktop">
+<span class="material-symbols-outlined text-lg dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined text-lg hidden dark:inline">light_mode</span>
 </button>
-<a class="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-md text-xs font-medium hover:bg-primary/90 transition-colors" href="#get-started">
-<span>Get Started</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white dark:text-black dark:bg-white text-sm font-bold leading-normal tracking-[0.015em] gap-2">
+<span class="material-symbols-outlined text-base !text-white dark:!text-black">download</span>
+<span class="truncate">Download</span>
+</button>
+</div>
+</div>
+<div class="lg:hidden flex items-center gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0" id="theme-toggle-mobile">
+<span class="material-symbols-outlined text-lg dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined text-lg hidden dark:inline">light_mode</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50" id="menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
 </div>
 </header>
-<main class="flex-grow">
-<div class="text-center py-16 md:py-24">
-<h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-gray-900 dark:text-white">Welcome to Pocket Money Pro!</h1>
-<p class="mt-6 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">Discover a community dedicated to helping you boost your income. We're your go-to source for money-making ideas, from side hustles to savvy saving strategies. Join us to learn, share, and grow your finances together.</p>
-<a class="inline-flex items-center gap-2 mt-8 px-8 py-3 bg-primary text-white rounded-lg border border-primary font-bold text-sm hover:bg-primary/90 transition-colors" href="#get-started">
-<i class="fas fa-rocket"></i>
-<span>Get Early Access</span>
+<div class="fixed top-0 left-0 w-full h-full bg-background-light dark:bg-background-dark z-40 p-4 lg:hidden" id="mobile-menu">
+<div class="flex flex-col h-full">
+<div class="flex justify-end pt-4 pr-4">
+<button class="text-slate-900 dark:text-slate-50" id="close-menu">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+</div>
+<div class="flex flex-col h-full justify-center">
+<nav class="flex flex-col items-center gap-6 text-center">
+<a class="text-slate-700 dark:text-slate-300 text-lg font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">What is Under25?</a>
+<a class="text-slate-700 dark:text-slate-300 text-lg font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">How to Start</a>
+<a class="text-slate-700 dark:text-slate-300 text-lg font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Tutorials</a>
+<a class="text-slate-700 dark:text-slate-300 text-lg font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Stories</a>
+<a class="text-slate-700 dark:text-slate-300 text-lg font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Blog</a>
+<a class="text-slate-700 dark:text-slate-300 text-lg font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">Communities</a>
+<a class="text-slate-700 dark:text-slate-300 text-lg font-medium leading-normal hover:text-primary dark:hover:text-white" href="#">FAQ</a>
+</nav>
+<div class="mt-8 flex justify-center">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white dark:text-black dark:bg-white text-sm font-bold leading-normal tracking-[0.015em] gap-2">
+<span class="material-symbols-outlined text-base !text-white dark:!text-black">download</span>
+<span class="truncate">Download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<main class="flex-1 pt-24">
+<div class="px-4 md:px-10 lg:px-20 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full flex-1 gap-6">
+<div class="relative w-full mx-auto overflow-hidden rounded-xl" id="carousel-wrapper">
+<div class="carousel-container">
+<div class="carousel-item relative">
+<img class="w-full h-auto aspect-video object-cover" data-alt="Students collaborating on a project using laptops." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeIm7OkZYrg5HDJsKPWgzTm35uI58dZVW8WqHHbJFqoNoXS4dPY-6AWxutf07CrufLt_3_fdygY3ENdY9VU3s6K04FAppy3qc6dhiib9xbdhosY2AJbw2hE-JmYBfuSJGvmbXKjz_79ZCWNY2e7AWiOOOuBibaaZ1573Y2rjb4QgqFMreEPMdiP2UlHw-7yAlQpkINzaVNcPO9xQZ40AIhn-LxkoSBVHRIF11C6on2cfxIBMam2PWhwBPUCBmJ-eEJ-lfykJI8MLA"/>
+</div>
+<div class="carousel-item relative">
+<img class="w-full h-auto aspect-video object-cover" data-alt="A student smiling while using a smartphone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACKX_yUVAQ_hQ5qPVHXBR69qeraJoMik9MHYVeO6IhHWBGRIDjyj3h8qAtXViFWRksGd3YBthJ8LLEy3acvLGUtxd_bumGvPPRlijv0LcNvoui5v-be33DN3gFeVyVVh4frXjk1Vx7iZwkqIMDtIyqznoerFwGutYq5IkyFNWE04zDd9gJayI3EvSOxRo0l5ri9eM45_izs8DocB6iYgieSu5DXZmBrT1gEHPbI_pDkZ-dtwAZPsFO4hKHuoopBgLOzOUpRODLVfQ"/>
+</div>
+<div class="carousel-item relative">
+<img class="w-full h-auto aspect-video object-cover" data-alt="A group of diverse students in a classroom setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz1gtxky9RFLu1j1H0tnQRLniL6K4wJh8bCLHRve2YVSgc4JRe55VimW4FuvuhoNsVD9x1ZBL6YfedyBiVwS8UPVriiLt3w2eGnUGlWA0HQ9cHr6UUre4nEUyRA4R1k4JI6iVohkPkSXPW8AfXAuqVbNqbw-8g2phtCGVpA7GQTTPOTarAVZYRcdcNazmP_2KCSG2-CeL_-9Pg9J0cTkbhcCZSDfAUTUIbeqnWjhHjnZki7fbcPUvj8W4ccLfy8ssaITRDtfK74ik"/>
+</div>
+</div>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2" id="carousel-indicators"></div>
+</div>
+<div class="text-center space-y-4 px-4 py-8">
+<h1 class="text-slate-900 dark:text-slate-50 tracking-tight text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">India's largest students networking app</h1>
+<p class="text-slate-600 dark:text-slate-400 text-lg md:text-xl max-w-3xl mx-auto">
+                                Discover exclusive internships, part-time jobs, and freelancing gigs. Connect with peers, join communities, and collaborate on exciting projects.
+                            </p>
+</div>
+<div class="flex justify-center">
+<a class="flex items-center justify-center gap-2.5 bg-black text-white dark:bg-white dark:text-black rounded-lg px-6 py-3.5 text-lg font-semibold" href="#">
+<i class="fa-solid fa-download !text-white dark:!text-black"></i>
+<span>Install App Now</span>
 </a>
 </div>
-<div class="pb-12 md:pb-20">
-<div class="aspect-video w-full">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full rounded-lg" frameborder="0" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player"></iframe>
 </div>
 </div>
-<div class="px-4 py-6 md:py-8">
-<div class="text-center mb-8">
-<h3 class="text-xl font-bold text-gray-900 dark:text-white">What We Offer</h3>
-<p class="text-gray-600 dark:text-gray-400 mt-2 max-w-3xl mx-auto text-sm">Our platform is designed to provide you with a wealth of information and a supportive community to help you on your money-earning journey. Here's what you can expect:</p>
+<div class="py-16 md:py-24 lg:py-32">
+<div class="px-4 md:px-10 lg:px-20 flex justify-center">
+<div class="w-full max-w-7xl flex flex-col items-center gap-12">
+<div class="flex flex-col items-center gap-4 text-center">
+<h2 class="text-slate-900 dark:text-slate-50 font-bold text-3xl sm:text-4xl md:text-5xl tracking-[-0.015em]">What is Under 25?</h2>
+<p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg md:text-xl max-w-3xl">Under 25 is a dynamic platform exclusively for students, designed to help you earn, learn, and grow. It's more than just an app; it's a vibrant community where you can find opportunities, connect with like-minded peers, and build your future. <a class="text-primary no-underline font-medium dark:text-white" href="#">Click here to know more</a></p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="flex flex-col items-start gap-4 p-6 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
-<h4 class="font-semibold text-gray-900 dark:text-white">Innovative Ideas</h4>
+<div class="w-full pt-8">
+<div class="aspect-video w-full rounded-xl overflow-hidden">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player"></iframe>
 </div>
-<ul class="space-y-2 text-left text-xs text-gray-600 dark:text-gray-400">
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
-<span>Vast library of user-submitted side hustles and business ideas.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
-<span>Categorized and searchable for easy discovery.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
-<span>Regularly updated with new and trending opportunities.</span>
-</li>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 dark:bg-slate-900/50 py-16 md:py-24 lg:py-32">
+<div class="px-4 md:px-10 lg:px-20 flex justify-center">
+<div class="w-full max-w-7xl flex flex-col items-center gap-12">
+<div class="flex flex-col items-center gap-4 text-center">
+<h2 class="text-slate-900 dark:text-slate-50 font-bold text-3xl sm:text-4xl md:text-5xl tracking-[-0.015em]">What's Inside</h2>
+<p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg md:text-xl max-w-3xl">Unlock a world of possibilities with the Under 25 app. Here's a glimpse of what awaits you.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full pt-8">
+<div class="flex flex-col gap-4 p-8 rounded-xl bg-transparent border border-black/10 hover:bg-gradient-to-b hover:from-transparent hover:to-black/5 dark:hover:to-white/5 transition-all duration-300">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary dark:text-white"><span class="material-symbols-outlined">flag</span></div>
+<h3 class="text-slate-900 dark:text-slate-50 font-bold text-xl">Missions</h3>
+<p class="text-slate-600 dark:text-slate-400">Engage in fun and rewarding missions to earn exclusive rewards and recognition. Sharpen your skills and showcase your talent.</p>
+</div>
+<div class="flex flex-col gap-4 p-8 rounded-xl bg-transparent border border-black/10 hover:bg-gradient-to-b hover:from-transparent hover:to-black/5 dark:hover:to-white/5 transition-all duration-300">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary dark:text-white"><span class="material-symbols-outlined">work</span></div>
+<h3 class="text-slate-900 dark:text-slate-50 font-bold text-xl">Jobs &amp; Internships</h3>
+<p class="text-slate-600 dark:text-slate-400">Discover curated job and internship opportunities from top companies, tailored specifically for students.</p>
+</div>
+<div class="flex flex-col gap-4 p-8 rounded-xl bg-transparent border border-black/10 hover:bg-gradient-to-b hover:from-transparent hover:to-black/5 dark:hover:to-white/5 transition-all duration-300">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary dark:text-white"><span class="material-symbols-outlined">leaderboard</span></div>
+<h3 class="text-slate-900 dark:text-slate-50 font-bold text-xl">XP Leaderboard</h3>
+<p class="text-slate-600 dark:text-slate-400">Compete with your peers, earn experience points (XP) for your activities, and climb the ranks to get recognized.</p>
+</div>
+<div class="flex flex-col gap-4 p-8 rounded-xl bg-transparent border border-black/10 hover:bg-gradient-to-b hover:from-transparent hover:to-black/5 dark:hover:to-white/5 transition-all duration-300">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary dark:text-white"><span class="material-symbols-outlined">space_dashboard</span></div>
+<h3 class="text-slate-900 dark:text-slate-50 font-bold text-xl">Spaces</h3>
+<p class="text-slate-600 dark:text-slate-400">Join interest-based spaces to connect with peers, share knowledge, and collaborate on projects you're passionate about.</p>
+</div>
+<div class="flex flex-col gap-4 p-8 rounded-xl bg-transparent border border-black/10 hover:bg-gradient-to-b hover:from-transparent hover:to-black/5 dark:hover:to-white/5 transition-all duration-300">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary dark:text-white"><span class="material-symbols-outlined">celebration</span></div>
+<h3 class="text-slate-900 dark:text-slate-50 font-bold text-xl">Events</h3>
+<p class="text-slate-600 dark:text-slate-400">Participate in exclusive workshops, webinars, and competitions to learn new skills and network with professionals.</p>
+</div>
+<div class="flex flex-col gap-4 p-8 rounded-xl bg-transparent border border-black/10 hover:bg-gradient-to-b hover:from-transparent hover:to-black/5 dark:hover:to-white/5 transition-all duration-300">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary dark:text-white"><span class="material-symbols-outlined">groups</span></div>
+<h3 class="text-slate-900 dark:text-slate-50 font-bold text-xl">Community</h3>
+<p class="text-slate-600 dark:text-slate-400">Be part of India's most vibrant student community. Make friends, find mentors, and grow together.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="py-16 md:py-20 lg:py-24">
+<div class="px-4 md:px-10 lg:px-20 flex justify-center">
+<div class="w-full max-w-7xl flex flex-col items-center gap-12">
+<div class="flex flex-col items-center gap-4 text-center">
+<h2 class="text-slate-900 dark:text-slate-50 font-bold text-3xl sm:text-4xl md:text-5xl tracking-[-0.015em]">Stories</h2>
+<p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg md:text-xl max-w-3xl">Read inspiring stories from our community members who have found success and growth through Under 25.</p>
+</div>
+<div class="w-full pt-8 flex justify-center">
+<div class="relative w-full max-w-3xl overflow-hidden rounded-lg border border-black/10 bg-white dark:bg-slate-950" id="story-carousel-container">
+<div class="story-card active flex flex-col gap-6 p-8">
+<div class="flex items-center gap-4">
+<img alt="Aria Sharma" class="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClB6VvmMEuYdTZ781kRmbXh_KzTzdLkCrXhb1rkY4YzLAFor5ZuC7cHuWEflBic1PqHnZoJ7_r2-eql7G6B23JcUx-dIej7bwuJp2VSAU-XtOml0SplQpNruOtUaj644WsBNzM5m4XJCy64iwm8rImUk6xoXCmseM1-YGY0kRmWrNaVHNMbPxWd7McVaM6sMLdCe9dkcUClYPTip9hKZOQQlaZF6cMSDvQpXlNMOnqi7hyXWJv37fuBgwJNBOpSxbO7fCU_ot9Gj4"/>
+<div class="flex-grow">
+<h3 class="text-slate-900 dark:text-slate-50 font-bold text-lg">Aria Sharma</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm">@ariasharma</p>
+</div>
+<div class="border border-slate-300 dark:border-slate-700 bg-transparent text-slate-600 dark:text-slate-400 text-xs font-medium px-2.5 py-1 rounded-full">Developer</div>
+</div>
+<img alt="Story image" class="w-full h-auto aspect-[16/9] object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7PKM6bU3TBIuFFveqlEN_0Pb5NQJks53_qUTwCY8C-4kHIyWY88USZStIwKqfmcaUXasaZb0Rr_MLJEAE5M1Lrd4a0xMo3C3JYEq2cpEkrXi19UB4oA90LAqihcY18J4c0MwP_oXNHqDN0TvZeF4Zg-SUsKqk3NinkNWOiomyZB-KpboJox3hcD8cATxRGQun81ipF7XFY3pBCOgNO5XZ4EgFkbqKf2h9xMAvUAD20V8NNL-IEfseJjHpnmtLtmHTKn0TfPKpCDs"/>
+<p class="text-slate-600 dark:text-slate-400">"The freelancing gigs I found on Under 25 helped me build a strong portfolio. I even landed a full-time offer from one of my clients. The app is a game-changer for students looking to kickstart their careers."</p>
+<div class="flex justify-start">
+<a class="text-primary dark:text-white text-sm font-medium" href="#">Read More</a>
+</div>
+</div>
+<div class="story-card flex flex-col gap-6 p-8">
+<div class="flex items-center gap-4">
+<img alt="Rohan Verma" class="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClVxPHL-EJ1c4YgnCbKph-YvGp6SEdwHzelN86pduD6DRqS29MB0OIBmxoZfGw0r_Kow8QqMzocu8KDjSzeyvtZF2kPLVS-u1wYiEzKN1YqpZcVYoKuCo2k-WKxFxYarwmnE17h-pwj4Fb6sUhWbEkcmRGA_3locamwgzGtAPjNIvhEKRsC0djW9t-VCDe4li2WfEX0y3dif5GT1cba3yU5KXmt0zP98amZPDuY1aagZuctKcYt3oDtvXyf52-Oh09H3Q3zFcsCa4"/>
+<div class="flex-grow">
+<h3 class="text-slate-900 dark:text-slate-50 font-bold text-lg">Rohan Verma</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm">@rohanverma</p>
+</div>
+<div class="border border-slate-300 dark:border-slate-700 bg-transparent text-slate-600 dark:text-slate-400 text-xs font-medium px-2.5 py-1 rounded-full">Designer</div>
+</div>
+<img alt="Story image" class="w-full h-auto aspect-[16/9] object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWg0LjlSVhXZ3KjdiYsntHejjaREnamxUGlWszfHD9dabdIFR32hyrFYVVNNxDkgkxOCDL-ql7v6ahYEJUj9CUGXEhF8p7QshJ1kFbAf_RpvCHHfnTr7xJbPsytNLsvhhrRpbAnXs58FmNIHj5JRLUJdhjySHe3F-F7IoVst1kD5XZEa3hLPJ-EU6JpvJQOwvH3F00UmCxl9yeHROes7g-L4AbY2eJpARxFj5FWTLTKwn41sjVfm5uy8h_o_PZ_Eo2d96k7k2DBL0"/>
+<p class="text-slate-600 dark:text-slate-400">"Joining the design community on Under 25 was the best decision. I connected with so many talented peers, collaborated on amazing projects, and even found a mentor who guided me. It's an incredible platform for creative students."</p>
+<div class="flex justify-start">
+<a class="text-primary dark:text-white text-sm font-medium" href="#">Read More</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="py-8 md:py-12 lg:py-16 bg-white dark:bg-background-dark">
+<div class="px-4 md:px-10 lg:px-20 flex justify-center">
+<div class="w-full max-w-7xl flex flex-col items-center gap-12">
+<div class="flex flex-col items-center gap-4 text-center">
+<h2 class="text-slate-900 dark:text-slate-50 font-bold text-3xl sm:text-4xl md:text-5xl tracking-[-0.015em]">Tutorials</h2>
+<p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg md:text-xl max-w-3xl">Got doubts about the app? Check tutorials</p>
+</div>
+<div class="w-full flex flex-col lg:flex-row items-center gap-8 pt-12">
+<div class="flex-1">
+<img alt="Students watching a tutorial on a laptop" class="rounded-xl w-full h-80 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-OvRc6yP1d9RSINGt5-bXPywtheWlet-_XUMfv5O7t1K0s0GfSf-bWjEFfN8vO3gZzmEZo-dKtDNiiyoAfgo22OmOpJegrLpDyiggCsx1eN4g-JyLCeXtS71yy8LxaSMji0VYzTzJR7PIzXhE2Jt9OoVyx3_If0z3_TV3syHpc5__D-XdlQwrsA9HUgboWToLTPEyr0UeTL9mRRCQ_2RfX9TwO8pAhIlrn4C0cQGEbfbyw3BDe6ul2w4CzcgTDC2Y3fI-TcZGOC0"/>
+</div>
+<div class="flex-1 flex flex-col items-start gap-6">
+<ul class="text-slate-600 dark:text-slate-400 text-base sm:text-lg md:text-xl space-y-4 list-disc pl-5">
+<li>Learn new skills and get ahead with our step-by-step tutorials on everything from coding to content creation.</li>
+<li>Master in-demand skills with expert-led video tutorials and practical exercises designed for students.</li>
+<li>From beginner basics to advanced techniques, our tutorials provide the guidance you need to succeed.</li>
 </ul>
+<div class="pt-4 ml-4">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white dark:bg-white dark:text-black text-sm font-bold leading-normal tracking-[0.015em] gap-2 hover:bg-primary/90 dark:hover:bg-slate-200 transition-colors duration-300">
+<span class="truncate">Check Tutorials</span>
+</button>
 </div>
-<div class="flex flex-col items-start gap-4 p-6 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-3xl">groups</span>
-<h4 class="font-semibold text-gray-900 dark:text-white">Community Support</h4>
 </div>
-<ul class="space-y-2 text-left text-xs text-gray-600 dark:text-gray-400">
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
-<span>Active forums for discussions, Q&amp;A, and collaboration.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
-<span>Direct messaging to connect with fellow entrepreneurs.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
-<span>Read and share success stories for motivation.</span>
-</li>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 dark:bg-slate-900/50 py-16 md:py-24 lg:py-32">
+<div class="px-4 md:px-10 lg:px-20 flex justify-center">
+<div class="w-full max-w-7xl flex flex-col items-center gap-12">
+<div class="flex flex-col items-center gap-4 text-center">
+<h2 class="text-slate-900 dark:text-slate-50 font-bold text-3xl sm:text-4xl md:text-5xl tracking-[-0.015em]">Blog</h2>
+<p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg md:text-xl max-w-3xl">Stay updated with the latest trends, tips, and stories from the student world.</p>
+</div>
+<div class="w-full flex flex-col-reverse lg:flex-row items-center gap-8 pt-12">
+<div class="flex-1 flex flex-col items-start gap-6">
+<ul class="text-slate-600 dark:text-slate-400 text-base sm:text-lg md:text-xl space-y-4 list-disc pl-5">
+<li>Discover articles on career advice, skill development, and student life hacks to help you navigate your journey.</li>
+<li>Get insights from industry experts and successful alumni on how to make the most of your student years.</li>
+<li>Explore stories of innovation, entrepreneurship, and creativity from within the Under 25 community.</li>
 </ul>
+<div class="pt-4 ml-4">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white dark:bg-white dark:text-black text-sm font-bold leading-normal tracking-[0.015em] gap-2 hover:bg-primary/90 dark:hover:bg-slate-200 transition-colors duration-300">
+<span class="truncate">Read Blog</span>
+</button>
 </div>
-<div class="flex flex-col items-start gap-4 p-6 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-3xl">school</span>
-<h4 class="font-semibold text-gray-900 dark:text-white">Expert Guides</h4>
 </div>
-<ul class="space-y-2 text-left text-xs text-gray-600 dark:text-gray-400">
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
-<span>Step-by-step tutorials for various income streams.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
-<span>Downloadable resources, checklists, and templates.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
-<span>Webinars and workshops with industry experts.</span>
-</li>
+<div class="flex-1">
+<img alt="A student writing in a notebook with a laptop in the background" class="rounded-xl w-full h-80 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfncdwpmqel4rPCzOyzcw5SjOEF_uaxhFNZ6tMRue4-ciJKGMyg2b1-v9Ll1kjOGnenqT_J9IogQnudxzWYsMEGuFFRjFHWtqN6FONE_Aq7DPAljOwhp6YwLW1CMDkpvLoY_qj8EpEN-W_Irv1ldOYm_sukdQQyKw9IfZ3oc1iNtj4-C7zFvsKdHzAZe7_KqyCCqlJcARm-7wherfg1JtnjPWSKRXjbpSnamOpwMvNTvWV3d12DPynFPYu1m3spwaxVWD5T7s5bII"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="py-16 md:py-20 lg:py-24 bg-white dark:bg-background-dark">
+<div class="px-4 md:px-10 lg:px-20 flex justify-center">
+<div class="w-full max-w-7xl flex flex-col items-center gap-12">
+<div class="flex flex-col items-center gap-4 text-center">
+<h2 class="text-slate-900 dark:text-slate-50 font-bold text-3xl sm:text-4xl md:text-5xl tracking-[-0.015em]">Communities</h2>
+<p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg md:text-xl max-w-3xl">Connect with peers, join vibrant communities, and collaborate on projects that matter.</p>
+</div>
+<div class="w-full flex flex-col lg:flex-row items-center gap-8 pt-12">
+<div class="flex-1">
+<img alt="A diverse group of students chatting and laughing together." class="rounded-xl w-full h-80 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz1gtxky9RFLu1j1H0tnQRLniL6K4wJh8bCLHRve2YVSgc4JRe55VimW4FuvuhoNsVD9x1ZBL6YfedyBiVwS8UPVriiLt3w2eGnUGlWA0HQ9cHr6UUre4nEUyRA4R1k4JI6iVohkPkSXPW8AfXAuqVbNqbw-8g2phtCGVpA7GQTTPOTarAVZYRcdcNazmP_2KCSG2-CeL_-9Pg9J0cTkbhcCZSDfAUTUIbeqnWjhHjnZki7fbcPUvj8W4ccLfy8ssaITRDtfK74ik"/>
+</div>
+<div class="flex-1 flex flex-col items-start gap-6">
+<ul class="text-slate-600 dark:text-slate-400 text-base sm:text-lg md:text-xl space-y-4 list-disc pl-5">
+<li>Find your tribe in interest-based communities, from coding clubs to marketing masterminds.</li>
+<li>Share your ideas, ask questions, and get valuable feedback from a supportive network of students.</li>
+<li>Participate in community-exclusive events, challenges, and workshops to enhance your skills.</li>
 </ul>
-</div>
-</div>
-</div>
-<div class="px-4 py-8 md:py-12">
-<div class="text-center mb-12">
-<h3 class="text-2xl font-bold text-gray-900 dark:text-white">Success Stories</h3>
-<p class="text-gray-600 dark:text-gray-400 mt-2 max-w-3xl mx-auto text-sm">Be inspired by real stories from our community members who turned ideas into income.</p>
-</div>
-<div class="relative max-w-lg mx-auto h-40">
-<div class="story-card absolute w-full transition-opacity duration-1000 ease-in-out">
-<div class="bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-300 dark:border-gray-700 flex flex-col gap-4">
-<div class="flex items-center gap-3">
-<img class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8YiYSg3JugjuPAHr_o6RlfLBP7AYr_qTFL_5UDOqXybrR80CFDxhmdSVbEYfxyZ-A-jP6rpJjhNkqW1JXVfBR5_JFuKNXRShNCiwdu70OEOID6ESSRdQi5nIsOxi9aemZhWD-6SWmHdizMybZin6cJn52TVLqZ9NzSGtwCyyoFIOiliA0JFHtQr81SftP0nWk685RZrwmtwbgUQdDetzfSqe7U6VhsPFqsZTeefSgq0eYHEBi0utmo9AqUwlw6UzpfaPYZSbmy2E"/>
-<div>
-<h4 class="font-semibold text-gray-900 dark:text-white">From Hobby to Hustle</h4>
-<p class="text-xs text-gray-500 dark:text-gray-400">By Sarah J.</p>
-</div>
-</div>
-<p class="text-xs text-gray-600 dark:text-gray-400">"I always loved baking. Pocket Money Pro gave me the idea to sell custom cakes locally. Now, my weekend hobby pays my rent!"</p>
-</div>
-</div>
-<div class="story-card absolute w-full transition-opacity duration-1000 ease-in-out opacity-0">
-<div class="bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-300 dark:border-gray-700 flex flex-col gap-4">
-<div class="flex items-center gap-3">
-<img class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8YiYSg3JugjuPAHr_o6RlfLBP7AYr_qTFL_5UDOqXybrR80CFDxhmdSVbEYfxyZ-A-jP6rpJjhNkqW1JXVfBR5_JFuKNXRShNCiwdu70OEOID6ESSRdQi5nIsOxi9aemZhWD-6SWmHdizMybZin6cJn52TVLqZ9NzSGtwCyyoFIOiliA0JFHtQr81SftP0nWk685RZrwmtwbgUQdDetzfSqe7U6VhsPFqsZTeefSgq0eYHEBi0utmo9AqUwlw6UzpfaPYZSbmy2E"/>
-<div>
-<h4 class="font-semibold text-gray-900 dark:text-white">Freelance Writing Fortune</h4>
-<p class="text-xs text-gray-500 dark:text-gray-400">By Mark T.</p>
-</div>
-</div>
-<p class="text-xs text-gray-600 dark:text-gray-400">"The guides on freelance writing were a game-changer. I landed my first client within a week and now have a steady stream of projects."</p>
-</div>
-</div>
-<div class="story-card absolute w-full transition-opacity duration-1000 ease-in-out opacity-0">
-<div class="bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-300 dark:border-gray-700 flex flex-col gap-4">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-3xl p-1.5 bg-primary/10 rounded-full">local_florist</span>
-<div>
-<h4 class="font-semibold text-gray-900 dark:text-white">Gardening for Green</h4>
-<p class="text-xs text-gray-500 dark:text-gray-400">By Emily R.</p>
-</div>
-</div>
-<p class="text-xs text-gray-600 dark:text-gray-400">"I started a small urban garden selling fresh herbs to neighbors. It's amazing how a small idea from this community has grown!"</p>
-</div>
-</div>
-</div>
-</div>
-<div class="px-4 py-8 md:py-12" id="get-started">
-<div class="text-center mb-8">
-<h3 class="text-xl font-bold text-gray-900 dark:text-white">Get Started</h3>
-<p class="text-gray-600 dark:text-gray-400 mt-2 max-w-2xl mx-auto text-sm">Stay in the loop and get the latest money-earning ideas through your favorite channels. Join our community on Telegram, subscribe to our newsletter for weekly insights, read our blog for in-depth stories, or talk to us directly with your questions and ideas.</p>
-</div>
-<div class="grid grid-cols-1 gap-4">
-<div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
-<div class="flex items-center gap-4">
-<i class="fab fa-telegram-plane text-primary text-2xl"></i>
-<span class="text-gray-800 dark:text-gray-200 font-semibold text-xs">Join our Telegram Channel</span>
-</div>
-<div class="flex items-center gap-2">
-<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[10px] hover:bg-primary hover:text-white transition-colors" href="#">Join</a>
-<div class="relative has-tooltip">
-<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-base cursor-pointer">info</span>
-<div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
-                                        Get instant updates and join discussions on the latest money-making trends.
-                                    </div>
-</div>
-</div>
-</div>
-<div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
-<div class="flex items-center gap-4">
-<i class="fab fa-whatsapp text-primary text-2xl"></i>
-<span class="text-gray-800 dark:text-gray-200 font-semibold text-xs">Join our WhatsApp Channel</span>
-</div>
-<div class="flex items-center gap-2">
-<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[10px] hover:bg-primary hover:text-white transition-colors" href="#">Join</a>
-<div class="relative has-tooltip">
-<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-base cursor-pointer">info</span>
-<div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
-                                        Get instant updates and connect with us on WhatsApp.
-                                    </div>
-</div>
-</div>
-</div>
-<div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
-<div class="flex items-center gap-4">
-<i class="fas fa-inbox text-primary text-2xl"></i>
-<span class="text-gray-800 dark:text-gray-200 font-semibold text-xs">Subscribe to Newsletter</span>
-</div>
-<div class="flex items-center gap-2">
-<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[10px] hover:bg-primary hover:text-white transition-colors" href="#">Subscribe</a>
-<div class="relative has-tooltip">
-<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-base cursor-pointer">info</span>
-<div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
-                                        Receive a weekly roundup of top ideas and success stories directly in your inbox.
-                                    </div>
-</div>
-</div>
-</div>
-<div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
-<div class="flex items-center gap-4">
-<i class="fas fa-newspaper text-primary text-2xl"></i>
-<span class="text-gray-800 dark:text-gray-200 font-semibold text-xs">Read our Blog</span>
-</div>
-<div class="flex items-center gap-2">
-<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[10px] hover:bg-primary hover:text-white transition-colors" href="#">Visit</a>
-<div class="relative has-tooltip">
-<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-base cursor-pointer">info</span>
-<div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
-                                        Dive deep into detailed articles, case studies, and expert interviews.
-                                    </div>
-</div>
-</div>
-</div>
-<div class="flex items-center justify-between p-4 bg-transparent rounded-xl border border-gray-300 dark:border-gray-600">
-<div class="flex items-center gap-4">
-<i class="fas fa-comments text-primary text-2xl"></i>
-<span class="text-gray-800 dark:text-gray-200 font-semibold text-xs">Talk to Us</span>
-</div>
-<div class="flex items-center gap-2">
-<a class="px-5 py-1.5 bg-transparent rounded-md border border-primary text-primary font-semibold text-[10px] hover:bg-primary hover:text-white transition-colors" href="#">Chat</a>
-<div class="relative has-tooltip">
-<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-base cursor-pointer">info</span>
-<div class="tooltip p-2 rounded-lg bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-800 text-xs w-48 -translate-x-full -left-4">
-                                        Have a question or a brilliant idea to share? We're here to listen.
-                                    </div>
+<div class="pt-4 ml-4">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white dark:bg-white dark:text-black text-sm font-bold leading-normal tracking-[0.015em] gap-2 hover:bg-primary/90 dark:hover:bg-slate-200 transition-colors duration-300">
+<span class="truncate">Join a Community</span>
+</button>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="px-4 py-8 md:py-12">
-<div class="text-center mb-8">
-<h3 class="text-xl font-bold text-gray-900 dark:text-white">Frequently Asked Questions</h3>
-<p class="text-gray-600 dark:text-gray-400 mt-2 max-w-3xl mx-auto text-sm">Have questions? We've got answers. If you can't find what you're looking for, feel free to reach out to us.</p>
 </div>
-<div class="space-y-4">
-<details class="group bg-transparent p-4 rounded-lg border border-gray-300 dark:border-gray-600">
-<summary class="flex items-center justify-between cursor-pointer">
-<h5 class="font-semibold text-gray-900 dark:text-white text-sm">What is Pocket Money Pro?</h5>
-<div class="text-primary">
-<span class="material-symbols-outlined plus-icon">add</span>
-<span class="material-symbols-outlined minus-icon">remove</span>
+<div class="bg-slate-50 dark:bg-slate-900/50 py-16 md:py-24 lg:py-32">
+<div class="px-4 md:px-10 lg:px-20 flex justify-center">
+<div class="w-full max-w-7xl flex flex-col items-center gap-12">
+<div class="flex flex-col items-center gap-4 text-center">
+<h2 class="text-slate-900 dark:text-slate-50 font-bold text-3xl sm:text-4xl md:text-5xl tracking-[-0.015em]">Frequently Asked Questions</h2>
+<p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg md:text-xl max-w-3xl">Have questions? We've got answers. Check out our FAQ section to find what you're looking for.</p>
 </div>
-</summary>
-<p class="text-xs text-gray-600 dark:text-gray-400 mt-3">Pocket Money Pro is a community-driven platform where users can share and discover various money-earning ideas, from side hustles to small business ventures.</p>
-</details>
-<details class="group bg-transparent p-4 rounded-lg border border-gray-300 dark:border-gray-600">
-<summary class="flex items-center justify-between cursor-pointer">
-<h5 class="font-semibold text-gray-900 dark:text-white text-sm">How can I contribute my own ideas?</h5>
-<div class="text-primary">
-<span class="material-symbols-outlined plus-icon">add</span>
-<span class="material-symbols-outlined minus-icon">remove</span>
+<div class="w-full max-w-3xl pt-8 space-y-4" id="faq-container">
+<div class="faq-item border border-slate-200 dark:border-slate-800 rounded-lg p-4">
+<div class="question flex justify-between items-center cursor-pointer">
+<h3 class="text-slate-900 dark:text-slate-50 font-semibold text-lg">What kind of opportunities can I find on the Under 25 app?</h3>
+<span class="material-symbols-outlined icon">expand_more</span>
 </div>
-</summary>
-<p class="text-xs text-gray-600 dark:text-gray-400 mt-3">You can become a contributor by signing up and submitting your ideas through our platform. All submissions are reviewed by our team to ensure quality and originality.</p>
-</details>
-<details class="group bg-transparent p-4 rounded-lg border border-gray-300 dark:border-gray-600">
-<summary class="flex items-center justify-between cursor-pointer">
-<h5 class="font-semibold text-gray-900 dark:text-white text-sm">Is there a cost to use Pocket Money Pro?</h5>
-<div class="text-primary">
-<span class="material-symbols-outlined plus-icon">add</span>
-<span class="material-symbols-outlined minus-icon">remove</span>
-</div>
-</summary>
-<p class="text-xs text-gray-600 dark:text-gray-400 mt-3">No, Pocket Money Pro is completely free to use. Our goal is to make money-earning knowledge accessible to everyone.</p>
-</details>
-<details class="group bg-transparent p-4 rounded-lg border border-gray-300 dark:border-gray-600">
-<summary class="flex items-center justify-between cursor-pointer">
-<h5 class="font-semibold text-gray-900 dark:text-white text-sm">How are the money-earning ideas verified?</h5>
-<div class="text-primary">
-<span class="material-symbols-outlined plus-icon">add</span>
-<span class="material-symbols-outlined minus-icon">remove</span>
-</div>
-</summary>
-<p class="text-xs text-gray-600 dark:text-gray-400 mt-3">Our community and moderation team work together to verify the legitimacy of the ideas shared. We encourage users to share their experiences and feedback to help maintain a trustworthy environment.</p>
-</details>
+<div class="answer pt-2">
+<p class="text-slate-600 dark:text-slate-400">The Under 25 app is your gateway to a wide range of opportunities, including exclusive internships, part-time jobs, freelance projects, and volunteering roles from top companies and startups. We also host various competitions and challenges to help you showcase your skills.</p>
 </div>
 </div>
-<div class="px-4 py-6 md:py-8 my-8 text-center">
-<h3 class="text-xl font-bold text-gray-900 dark:text-white font-display tracking-normal">A Note from Mods</h3>
-<p class="text-gray-600 dark:text-gray-400 mt-4 text-sm font-normal max-w-4xl mx-auto">We're incredibly excited to announce that the full launch of Pocket Money Pro is just around the corner! The journey to this point has been fueled by your invaluable feedback and unwavering support, and for that, we are immensely grateful. Your suggestions have helped shape what this platform is becoming, and we can't wait to share the complete experience with you. Prepare for even more features, more success stories, and a more robust community space designed to help everyone achieve their financial goals. Thank you for being a part of our foundation. The best is yet to come!</p>
+<div class="faq-item border border-slate-200 dark:border-slate-800 rounded-lg p-4">
+<div class="question flex justify-between items-center cursor-pointer">
+<h3 class="text-slate-900 dark:text-slate-50 font-semibold text-lg">Is the Under 25 app free to use?</h3>
+<span class="material-symbols-outlined icon">expand_more</span>
+</div>
+<div class="answer pt-2">
+<p class="text-slate-600 dark:text-slate-400">Yes, the Under 25 app is completely free for all students to download and use. Our mission is to provide equal access to opportunities and resources to help every student succeed.</p>
+</div>
+</div>
+<div class="faq-item border border-slate-200 dark:border-slate-800 rounded-lg p-4">
+<div class="question flex justify-between items-center cursor-pointer">
+<h3 class="text-slate-900 dark:text-slate-50 font-semibold text-lg">How does the community feature work?</h3>
+<span class="material-symbols-outlined icon">expand_more</span>
+</div>
+<div class="answer pt-2">
+<p class="text-slate-600 dark:text-slate-400">Our community feature allows you to connect with like-minded students from across the country. You can join interest-based groups (Spaces), participate in discussions, collaborate on projects, and find mentors to guide you on your journey. It's a great way to network and learn from your peers.</p>
+</div>
+</div>
+<div class="faq-item border border-slate-200 dark:border-slate-800 rounded-lg p-4">
+<div class="question flex justify-between items-center cursor-pointer">
+<h3 class="text-slate-900 dark:text-slate-50 font-semibold text-lg">Can I use the Under 25 app to build my portfolio?</h3>
+<span class="material-symbols-outlined icon">expand_more</span>
+</div>
+<div class="answer pt-2">
+<p class="text-slate-600 dark:text-slate-400">Absolutely! By participating in freelance gigs, internships, and competitions, you can build a strong portfolio of your work. The app provides a platform to showcase your projects and skills to potential employers and collaborators.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </main>
-<footer class="border-t border-gray-200 dark:border-gray-700 mt-12 py-8 px-4">
-<div class="max-w-[960px] mx-auto flex flex-col items-center md:items-start">
-<div class="flex flex-col md:flex-row justify-between items-start gap-8 w-full">
-<div class="flex flex-col gap-4 items-start text-left">
+<footer class="bg-slate-50 dark:bg-slate-900/50 py-16 md:py-24 lg:py-32">
+<div class="px-4 md:px-10 lg:px-20 flex justify-center">
+<div class="w-full max-w-7xl">
+<div class="flex flex-col lg:flex-row justify-between gap-12">
+<div class="flex flex-col items-start gap-6 lg:max-w-xs xl:max-w-sm">
 <div class="flex items-center gap-2">
-<img alt="Pocket Money Pro Logo" class="h-5 w-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdznnQF3bvAL-xb0XWe_lcIFchYyvEUwoBMgCkFXXjPjD_xmi4QvjKXRljPAhgXhcfwW0ZfP_MC0hnC540KvYR7mLYhPAKsj_nccftAJMuiYmrc4m-2edmPyX-d_cpAKXpBlxir2M-G4WFnWCFwvcib5yq1qF3ppKh_dGxGufV246N0lS5keo45_hqZABzXEe3xzHfI1GyjfoZEj6UEz9x_wEnPWhaMn8GlGo2oR1VNCzK3cugi-_v-PtvWaCUOoqCPw7R7sFkSAw"/>
-<h3 class="text-base font-bold text-gray-900 dark:text-white">Pocket Money Pro</h3>
+<img alt="Under 25 Community Logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD32VrImxCVitCOMI38CbLrPI1KbuXEO8QAqgtgmHMMoV_jVCRVBfZF52hJ-WhMVI0S8jSkgZ-B7VG0uktehYpxU8EMaMgB6OOv4PBYNVV-l72lbCyBXLOWrntmjlpo3giS_qJP8NGlM3wzqSiRrbFYXuQ65WOmMl_N5XjE50EM1AUN2whr0Qbo7n-dVYFgLJNzdn12ASSi31uJrITkMO0DgnAoyZHQaj357Qx_c7162VqRETcL-GjSfbYeoHXPAxGF8hr9akP-LC8"/>
+<span class="text-slate-900 dark:text-slate-50 text-xl font-bold">Under 25 Community</span>
 </div>
-<p class="text-xs text-gray-600 dark:text-gray-400 max-w-xs">Your community for finding and sharing practical tips, side hustles, and innovative ways to boost your income.</p>
+<p class="text-slate-600 dark:text-slate-400 text-base">The ultimate app for students to earn, learn, and connect. Find opportunities, build your skills, and join a vibrant community of learners and doers.</p>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-left w-full md:w-auto text-xs">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
 <div>
-<h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Community</h4>
-<ul class="space-y-2">
-<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">About Us</a></li>
-<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">Mission and Vision</a></li>
-<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">Support Us</a></li>
+<h3 class="text-slate-900 dark:text-slate-50 font-bold text-lg mb-4">Community</h3>
+<ul class="space-y-3">
+<li><a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors" href="#">About Us</a></li>
+<li><a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors" href="#">Contributors</a></li>
+<li><a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors" href="#">Submit Story</a></li>
 </ul>
 </div>
 <div>
-<h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Legal &amp; Support</h4>
-<ul class="space-y-2">
-<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">TOS</a></li>
-<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">Privacy Policy</a></li>
-<li><a class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#">Contact Us</a></li>
+<h3 class="text-slate-900 dark:text-slate-50 font-bold text-lg mb-4">Legal &amp; Support</h3>
+<ul class="space-y-3">
+<li><a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors" href="#">Privacy</a></li>
+<li><a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors" href="#">Terms</a></li>
+<li><a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors" href="#">Contact</a></li>
 </ul>
 </div>
 <div>
-<h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Social Media</h4>
-<ul class="space-y-2">
-<li><a class="flex items-center justify-start gap-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#"><i class="fab fa-youtube"></i>@pocketmoney_pro</a></li>
-<li><a class="flex items-center justify-start gap-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#"><i class="fab fa-instagram"></i>@pocketmoney_pro</a></li>
-<li><a class="flex items-center justify-start gap-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary" href="#"><i class="fab fa-facebook"></i>@pocketmoney_pro</a></li>
-</ul>
+<h3 class="text-slate-900 dark:text-slate-50 font-bold text-lg mb-4">Follow</h3>
+<div class="flex flex-col gap-4">
+<a class="flex items-center gap-3 group" href="#">
+<i class="fab fa-facebook text-slate-700 dark:text-slate-300 text-base group-hover:text-primary dark:group-hover:text-white transition-colors"></i>
+<span class="text-slate-600 dark:text-slate-400 group-hover:text-primary dark:group-hover:text-white transition-colors text-sm">@under25community</span>
+</a>
+<a class="flex items-center gap-3 group" href="#">
+<i class="fab fa-instagram text-slate-700 dark:text-slate-300 text-base group-hover:text-primary dark:group-hover:text-white transition-colors"></i>
+<span class="text-slate-600 dark:text-slate-400 group-hover:text-primary dark:group-hover:text-white transition-colors text-sm">@under25community</span>
+</a>
+<a class="flex items-center gap-3 group" href="#">
+<i class="fab fa-youtube text-slate-700 dark:text-slate-300 text-base group-hover:text-primary dark:group-hover:text-white transition-colors"></i>
+<span class="text-slate-600 dark:text-slate-400 group-hover:text-primary dark:group-hover:text-white transition-colors text-sm">@under25community</span>
+</a>
 </div>
 </div>
 </div>
-<div class="mt-8 pt-6 text-center text-gray-500 dark:text-gray-400 w-full">
-<p class="text-[10px]">© 2024 Pocket Money Pro. All rights reserved.</p>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-800 mt-12 pt-8 text-center text-slate-600 dark:text-slate-400 text-sm">
+<p>© 2024 Under 25 Community. All rights reserved.</p>
+</div>
 </div>
 </div>
 </footer>
 </div>
 </div>
-</div>
-</div>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const stories = document.querySelectorAll('.story-card');
-        let currentStoryIndex = 0;
-        function showNextStory() {
-            stories.forEach((story, index) => {
-                if (index === currentStoryIndex) {
-                    story.classList.remove('opacity-0');
-                    story.classList.add('opacity-100');
-                } else {
-                    story.classList.remove('opacity-100');
-                    story.classList.add('opacity-0');
-                }
-            });
-            currentStoryIndex = (currentStoryIndex + 1) % stories.length;
+        const themeToggleDesktop = document.getElementById('theme-toggle-desktop');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const htmlElement = document.documentElement;
+        function toggleTheme() {
+            htmlElement.classList.toggle('dark');
         }
-        setInterval(showNextStory, 10000);
-        showNextStory(); 
-    });
-</script>
+        themeToggleDesktop.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+        // Mobile Menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenuButton = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        function toggleMenu() {
+            mobileMenu.classList.toggle('open');
+        }
+        menuToggle.addEventListener('click', toggleMenu);
+        closeMenuButton.addEventListener('click', toggleMenu);
+        // Main Carousel
+        const carouselWrapper = document.getElementById('carousel-wrapper');
+        const carouselContainer = carouselWrapper.querySelector('.carousel-container');
+        const carouselItems = carouselWrapper.querySelectorAll('.carousel-item');
+        const carouselIndicators = document.getElementById('carousel-indicators');
+        let mainCurrentIndex = 0;
+        let mainIntervalId;
+        function updateMainCarousel() {
+            carouselContainer.style.transform = `translateX(-${mainCurrentIndex * 100}%)`;
+            if (carouselIndicators) {
+                const indicators = carouselIndicators.children;
+                for (let i = 0; i < indicators.length; i++) {
+                    indicators[i].classList.toggle('active', i === mainCurrentIndex);
+                    const isDark = htmlElement.classList.contains('dark');
+                    const activeColor = isDark ? 'bg-white' : 'bg-black';
+                    const inactiveColor = 'bg-gray-400';
+                    indicators[i].classList.toggle(activeColor, i === mainCurrentIndex);
+                    indicators[i].classList.toggle(inactiveColor, i !== mainCurrentIndex);
+                }
+            }
+        }
+        function createMainIndicators() {
+            if (!carouselIndicators) return;
+            carouselItems.forEach((_, i) => {
+                const button = document.createElement('button');
+                button.classList.add('w-1.5', 'h-1.5', 'rounded-full', 'transition-all', 'duration-300');
+                button.addEventListener('click', () => {
+                    mainCurrentIndex = i;
+                    updateMainCarousel();
+                    resetMainInterval();
+                });
+                carouselIndicators.appendChild(button);
+            });
+        }
+        function startMainInterval() {
+           mainIntervalId = setInterval(() => {
+                mainCurrentIndex = (mainCurrentIndex + 1) % carouselItems.length;
+                updateMainCarousel();
+            }, 5000);
+        }
+        function resetMainInterval() {
+            clearInterval(mainIntervalId);
+            startMainInterval();
+        }
+        createMainIndicators();
+        updateMainCarousel();
+        startMainInterval();
+        // Story Carousel
+        const storyCarouselContainer = document.getElementById('story-carousel-container');
+        if (storyCarouselContainer) {
+            const storyCards = storyCarouselContainer.querySelectorAll('.story-card');
+            let storyCurrentIndex = 0;
+            let storyIntervalId;
+            function showStoryCard(index) {
+                storyCards.forEach((card, i) => {
+                    card.classList.toggle('active', i === index);
+                });
+            }
+            function nextStoryCard() {
+                storyCurrentIndex = (storyCurrentIndex + 1) % storyCards.length;
+                showStoryCard(storyCurrentIndex);
+            }
+            function startStoryInterval() {
+                storyIntervalId = setInterval(nextStoryCard, 5000);
+            }
+            function stopStoryInterval() {
+                clearInterval(storyIntervalId);
+            }
+            storyCarouselContainer.addEventListener('mouseenter', stopStoryInterval);
+            storyCarouselContainer.addEventListener('mouseleave', startStoryInterval);
+            showStoryCard(storyCurrentIndex);
+            startStoryInterval();
+        }
+        // FAQ Accordion
+        const faqContainer = document.getElementById('faq-container');
+        if (faqContainer) {
+            const faqItems = faqContainer.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.question');
+                question.addEventListener('click', () => {
+                    const currentlyActive = document.querySelector('.faq-item.active');
+                    if (currentlyActive && currentlyActive !== item) {
+                        currentlyActive.classList.remove('active');
+                    }
+                    item.classList.toggle('active');
+                });
+            });
+        }
+    </script>
 </body></html>
