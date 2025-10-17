@@ -101,6 +101,16 @@
         #mobile-menu.open {
             transform: translateX(0);
         }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .scrolling-logos {
+            animation: scroll 40s linear infinite;
+        }
+        .dark .invert-logo {
+            filter: invert(1);
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display">
@@ -213,7 +223,30 @@
 <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Partnerships Built</p>
 </div>
 </div>
-<div class="flex justify-center">
+<div class="py-8 space-y-6">
+<p class="text-center text-slate-600 dark:text-slate-400">Trusted by brands like:</p>
+<div class="relative w-full overflow-hidden">
+<div class="flex scrolling-logos">
+<div class="flex w-max items-center gap-16 px-8">
+<img alt="Brand Logo 1" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFFRB9E9de1Nv34I7XQZ_Dhe6VGS8kp6Bep-dZCKkpEanMPKntSqr1S9b2bI7WKXOu8Evb6MlkAWT23y33JvPZi6gmJ32uRNOPtFx1LSut_Cp-o6qY-wFCoU8dTjfXDhRK3Po4q6QPjLBcmyCnYtabVG6_JgGEWbhOJDj91mViXERmPv_mx53Vphvkb8U9fV8rErOSkTmKZ2ITuU_0i-nDdZHcKH-j0yp_r6jlj6dssE3O23Ho6w-L6aAMgbKdzu2qhIW4-hBccrQ"/>
+<img alt="Brand Logo 2" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwzmHwLrT0Uah8V8_Ms2UizSM621CzlFYjX0jaFlg82MGCzp0MBwXoMOI5gh3VpBBGXsQjiMkM83y4A8R-1bMWCcu-EGGqxPnkz--v8bP1Z9pkNwVzHDNHmZb0lnFO1BFAbZ17kxJ14SN-Y7LuxRZhdmZeBdKjXKu1a4Pr0TuZ9Brw8ffb1KW6hGLto6annWvHd6FikHyzBnQntfRFjV9yFcekKISK7N3IeeYqAQgqpWezc0OkOo1piAehaNxyDh8acDT20xNLACc"/>
+<img alt="Brand Logo 3" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtgNKhYQmWx0-rwo9_W90fE2UXTnE3ZFqPltjctE5Ttyzs1k3zTefsoJnpu3lCCv7kjqj_PPyxa8qDtRWcbo2G7-NSGR8hVpbsaM_LV2U2oAvbTnz0yIEWQE_0pyWuk1MaNWmqXuW0sO5snSXGq-1DceXUJNPkulSy4eM0cNu6yMfU6O3LGiC9MwQkUBNvpOKiDh8jonI2NQBpDI7vfcUNwt1GL2C-j9rqGNFM02UeXXmWFIHRM3cCO1V0VecCvdMDqnSkyLT8vug"/>
+<img alt="Brand Logo 4" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcwsNb62DnZRq0jDfw1xc_U-cWJP2NZyv9UXBLNfoRHzHHw-rFXFy5uDhdeQpypI1JCngOaFMcluYlRwulSruNgsy3toLEKG0HMU9vOA8LOeu3j5ZR61w22o2gBIA6oXHCdU7jPdi_egLizoV6lYC5bx6ULtK7QFwcnNmdRgyR8pQXRAVu6c08BPurmH62qvBwhV_tEDoXYdj5mXZ12SqCRNcsDfQRdkaqHk67uDhS-uSnDxPKn6d-eErNdeFlKNgkhKfxNQTCNPE"/>
+<img alt="Brand Logo 5" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHT7s1bGlQvdMy4xC38oAj7dYTHwho8CQRRb_SxD3UcQKQc4fZxwY71hjumqCF1tOn1plpwXiCprrTa80oHvH_tlfeM72bRpQbZDO42Po4UYsqq-n0NaJBYEjvNb5wWTvhEUZ4KrZD7iqFVz2NMJJiWgU7GpyeJeOBuNUbLET_O6BciSCSTJySL_j9U1t62gF6nPeptEasXqQbBQwDOVeGxsl8aGdPBB7YcxhcFdP9vKYv9xG7Lz2e3iugPZ5U09qoBEErGNaSIVI"/>
+<img alt="Brand Logo 6" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOiS3GyviVKPyVq1N2SaAv0Uc0My2xMi9kR-FJ2DXM0qCXNzv0ZTBZC8N5069VDQg1FxgltNzozw9SpXcft0fo1qA63zN_27lY2veO9DLlNE80Rme-yyjcO4L89h9hVfZeXQpPkBZBbxlQLvU8-lfC0huovJZbOgz8S3HigmqIq7gj2eKeOwTJEKpbNRv57K3Z8HrlcFoGsrihAFJ6F3fu6Fb_VB5Fu-1p-U4ukLahbW-VFfYfzu2incYU6O5XKMx2amHqWxEsz-0"/>
+</div>
+<div class="flex w-max items-center gap-16 px-8">
+<img alt="Brand Logo 1" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8j9_OSTVQnY-5tBobN34M-GAVIkNulZO2DCfArMgASfd_jLn6F_xkP1t4E-eCHFgSkZniRS88mJFrC6qFEIqm9pRRfELHl2rYqNa9OL9_CuuUtF6AuJuNwVHJnbvy_JTPZCpWWtHR8dAqniCgA9VnLOL8YteCLLg3Qp-5ShWZNmwpArFoJV7RHVYVKFdbSKoc6Q3ZFKkVQcpoYoW5VQKEoAG0_2o53ubPjpq2tbMQGQ-s9vBinKtBCYfaWE7HnHtPN4AIUkj-qsY"/>
+<img alt="Brand Logo 2" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-cEzxmTo4iAWl4T6ElB3_Sg-HbKKETWOgi1d32XeIszxQNzOxXaS_qnRb23G_UwBvlZph0nFO9NNVvjEBdsLH_2WmmDd-jL0BLLVZ7o0PDV8hdL8b59gRvKnOTAfhlJhm1-Zp7HIKGTMWqfNHzRm73TzIE-UYKoyvLosAQSQJlSNavQtAqy3ZOqY2Oo7G5DygltLsj-Odf7AihiixGFP5BZrCtq9uKwelkKvvPbO_6vVtPIZFheznIR0rVbVEebZv7ey08fImGog"/>
+<img alt="Brand Logo 3" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbLdmvfOZGiQr7SrO_mDZ8A6oNchK2ELrnqYW-3FYfKpYSDVoThKQzRTLwAclNt3W3Ui1HuHoQdiEa2Ul9iLuItwdrptD9SRCcv7OLjlyBiuQREW21spkGtZpPkfXS4RhidbPKbaxHIz8BXQPIx35XWs1oGMRBqznAicnH37mXoBhADBDDzY94rwDIqkyQmp92lQwufjYNWYrqcy-fWd8CLEhiF9zHgZKxo-RB1e-FJsIXyBBU57As751WHR_esAsrVayQCUijOMo"/>
+<img alt="Brand Logo 4" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAQSFa0vdAOhc5s3dpmoQ4yOtAa2WcvGu5yzWV3qEwrOrNoEkAwKm1wa7KbNiwc_7iDXZqmdOZ4cIida0e2CaRmG56c5brBejkUEPAdwtxOsIQNMm-aD2KNzsSzO4RF8SK3oV-gjdSD0nvd41RVu6k2SR0I507d_KyGIsbzLndHdDtofDDf9iTcX6_SHpHTggNX7ruEp31h15lFzkFqRS6_ftT-hNTdnGht_nLFWiYhRW7QZcCBwsHUvzk4OQMgNdP-SBE3PfKnrM"/>
+<img alt="Brand Logo 5" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyOrYzxxQiTSygk7vfjfxeTSk1aXewW0jZ2ZlcR-DdBP7iq4tIvt5WO35rES136auZioPHb_EjW4cyLDFIEV9NQ9-DWKcZSeO2f5c-9e97Bf1ofNBLAHxHHQ6GFaOr4nN15GOJsmNlk35TFoe1sEbKQIxN7s_ZqBbl3GALXegxMdTpEYl8XI4No2AhXMNHMnDYl5GFYiWy9tAKPlzNbEtiKvEKsaWuK7xyLwlabgElUb7YPyVdm2srG-TVPQoiYegykA4L63z_7jc"/>
+<img alt="Brand Logo 6" class="h-8 md:h-10 object-contain dark:invert-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDwl0NztdWpfXSmn5W78BnjsKv2PCoqfR5kxEVHBhq1cCvmMc8jz4OYqHLtqE5NfjTWKzzpWapj6GCDxndIii4CmTnP4BTRs3Qj3wGgQooqUReLTPvFlSXHTnWLY96aZGUv0O19wBpZ8y6-rcOBiV8laKRZWeadPFXwC8Qqno7SkrDYhO4MKTR9Fl5Qrocpv1uir4nNyoPcxwPHWG4K0z0TU04f-hdMhdRU0n0VQSaQTh5H0cpn6bgtlIi0v_RkY3iMQgOkh44z0Q"/>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center mt-8">
 <a class="flex items-center justify-center gap-2.5 bg-black text-white dark:bg-white dark:text-black rounded-lg px-6 py-3.5 text-lg font-semibold" href="#">
 <i class="fa-solid fa-download !text-white dark:!text-black"></i>
 <span>Install App Now</span>
