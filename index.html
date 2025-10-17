@@ -199,6 +199,20 @@
                                 Discover exclusive internships, part-time jobs, and freelancing gigs. Connect with peers, join communities, and collaborate on exciting projects.
                             </p>
 </div>
+<div class="flex justify-center items-center gap-8 md:gap-12 lg:gap-16 py-8" id="stats-counter">
+<div class="text-center">
+<h3 class="text-slate-900 dark:text-slate-50 text-2xl md:text-3xl lg:text-4xl font-bold" data-final="1M+" data-target="1000000">0</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Installations</p>
+</div>
+<div class="text-center">
+<h3 class="text-slate-900 dark:text-slate-50 text-2xl md:text-3xl lg:text-4xl font-bold" data-final="₹1Cr+" data-target="10000000">0</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Distributed</p>
+</div>
+<div class="text-center">
+<h3 class="text-slate-900 dark:text-slate-50 text-2xl md:text-3xl lg:text-4xl font-bold" data-final="310" data-target="310">0</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Partnerships Built</p>
+</div>
+</div>
 <div class="flex justify-center">
 <a class="flex items-center justify-center gap-2.5 bg-black text-white dark:bg-white dark:text-black rounded-lg px-6 py-3.5 text-lg font-semibold" href="#">
 <i class="fa-solid fa-download !text-white dark:!text-black"></i>
@@ -598,6 +612,46 @@
                     item.classList.toggle('active');
                 });
             });
+        }
+        // Animated Counter
+        const statsCounter = document.getElementById('stats-counter');
+        function animateCounter(element, target, finalDisplay) {
+            const duration = 2000; 
+            const start = 0;
+            let startTime = null;
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                const currentValue = Math.floor(progress * (target - start) + start);
+                element.innerHTML = currentValue.toLocaleString();
+                if (progress < 1) {
+                    requestAnimationFrame(animation);
+                } else {
+                    element.innerHTML = finalDisplay;
+                }
+            }
+            requestAnimationFrame(animation);
+        }
+        function startCounters() {
+            const counters = statsCounter.querySelectorAll('h3[data-target]');
+            counters.forEach(counter => {
+                const target = parseInt(counter.dataset.target);
+                const finalDisplay = counter.dataset.final;
+                animateCounter(counter, target, finalDisplay);
+            });
+        }
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+        if (statsCounter) {
+            observer.observe(statsCounter);
         }
     </script>
 </body></html>
