@@ -41,6 +41,9 @@
                 'GRAD' 0,
                 'opsz' 24
         }
+        .icon-hover:hover {
+            color: #25D366;
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-sans text-text-light dark:text-text-dark">
@@ -52,11 +55,11 @@
 </div>
 <nav class="hidden md:flex items-center space-x-8 text-sm text-secondary-text-light dark:text-secondary-text-dark">
 <a class="hover:text-text-light dark:hover:text-text-dark" href="#">About Us</a>
-<a class="hover:text-text-light dark:hover:text-text-dark" href="#">Share with your friends</a>
-<a class="hover:text-text-light dark:hover:text-text-dark" href="#">Support Us</a>
 <a class="hover:text-text-light dark:hover:text-text-dark" href="#">Privacy Policy</a>
 <a class="hover:text-text-light dark:hover:text-text-dark" href="#">Terms and Conditions</a>
 <a class="hover:text-text-light dark:hover:text-text-dark" href="#">Contact Us</a>
+<a class="hover:text-text-light dark:hover:text-text-dark" href="#">Share with your friends</a>
+<a class="hover:text-text-light dark:hover:text-text-dark" href="#">Support Us</a>
 </nav>
 <div class="flex items-center">
 <button class="p-2 rounded-full" id="darkModeToggle">
@@ -76,11 +79,11 @@
 </div>
 <nav class="flex flex-col space-y-2 text-sm text-secondary-text-light dark:text-secondary-text-dark">
 <a class="hover:text-text-light dark:hover:text-text-dark px-3 py-2 rounded-md" href="#">About Us</a>
-<a class="hover:text-text-light dark:hover:text-text-dark px-3 py-2 rounded-md" href="#">Share with your friends</a>
-<a class="hover:text-text-light dark:hover:text-text-dark px-3 py-2 rounded-md" href="#">Support Us</a>
 <a class="hover:text-text-light dark:hover:text-text-dark px-3 py-2 rounded-md" href="#">Privacy Policy</a>
 <a class="hover:text-text-light dark:hover:text-text-dark px-3 py-2 rounded-md" href="#">Terms and Conditions</a>
 <a class="hover:text-text-light dark:hover:text-text-dark px-3 py-2 rounded-md" href="#">Contact Us</a>
+<a class="hover:text-text-light dark:hover:text-text-dark px-3 py-2 rounded-md" href="#">Share with your friends</a>
+<a class="hover:text-text-light dark:hover:text-text-dark px-3 py-2 rounded-md" href="#">Support Us</a>
 </nav>
 </div>
 </header>
@@ -90,16 +93,17 @@
 <p class="text-secondary-text-light dark:text-secondary-text-dark mb-8">
                     Pocket Money Pro is an exclusive online community for ambitious individuals looking to master their finances, develop new skills, and connect with like-minded peers. We provide a supportive environment where members can learn, grow, and achieve their financial goals together.
                 </p>
-<div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+<div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
 <a class="bg-primary text-white font-semibold py-3 px-6 rounded-full flex items-center justify-center space-x-2" href="https://chat.whatsapp.com/your-group-link" target="_blank">
-<i class="fab fa-whatsapp"></i>
+<i class="fab fa-whatsapp text-xl"></i>
 <span>Join WhatsApp</span>
 </a>
 <a class="bg-blue-500 text-white font-semibold py-3 px-6 rounded-full flex items-center justify-center space-x-2" href="https://t.me/your-channel-link" target="_blank">
-<i class="fab fa-telegram"></i>
+<i class="fab fa-telegram text-xl"></i>
 <span>Join Telegram</span>
 </a>
 </div>
+<p class="text-sm text-secondary-text-light dark:text-secondary-text-dark mt-4">100% free forever</p>
 <div class="mt-12 aspect-video">
 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full rounded-xl" frameborder="0" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player"></iframe>
 </div>
@@ -109,19 +113,19 @@
 <h2 class="text-2xl font-bold mb-8">Why join us?</h2>
 <ul class="space-y-6">
 <li class="flex items-start">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4">group</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">group</span>
 <div>
 <h3 class="font-semibold">Networking</h3>
 </div>
 </li>
 <li class="flex items-start">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4">lightbulb</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">lightbulb</span>
 <div>
 <h3 class="font-semibold">Skill Development</h3>
 </div>
 </li>
 <li class="flex items-start">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4">work</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">work</span>
 <div>
 <h3 class="font-semibold">Career Opportunities</h3>
 </div>
@@ -129,14 +133,14 @@
 <li class="flex items-start">
 <div class="bg-icon-bg-light dark:bg-icon-bg-dark rounded-lg p-2 mr-4 relative">
 <span class="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">31</span>
-<span class="material-symbols-outlined text-gray-500">calendar_today</span>
+<span class="material-symbols-outlined text-primary icon-hover">calendar_today</span>
 </div>
 <div>
 <h3 class="font-semibold">Exclusive Events</h3>
 </div>
 </li>
 <li class="flex items-start">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4">forum</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">forum</span>
 <div>
 <h3 class="font-semibold">Supportive Community</h3>
 </div>
@@ -147,27 +151,27 @@
 <h2 class="text-2xl font-bold mb-8">Who can join?</h2>
 <ul class="space-y-6">
 <li class="flex items-center space-x-4">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full">school</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full icon-hover">school</span>
 <span class="font-semibold">Students</span>
 </li>
 <li class="flex items-center space-x-4">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full">code</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full icon-hover">code</span>
 <span class="font-semibold">Freelancers</span>
 </li>
 <li class="flex items-center space-x-4">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full">business_center</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full icon-hover">business_center</span>
 <span class="font-semibold">Self-employed</span>
 </li>
 <li class="flex items-center space-x-4">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full">rocket_launch</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full icon-hover">rocket_launch</span>
 <span class="font-semibold">Entrepreneurs</span>
 </li>
 <li class="flex items-center space-x-4">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full">home</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full icon-hover">home</span>
 <span class="font-semibold">Housewives</span>
 </li>
 <li class="flex items-center space-x-4">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full">public</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full icon-hover">public</span>
 <span class="font-semibold">Anyone &amp; Everyone</span>
 </li>
 </ul>
@@ -176,27 +180,60 @@
 <h2 class="text-2xl font-bold mb-8">What you'll get?</h2>
 <ul class="space-y-6">
 <li class="flex items-start">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4">savings</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">savings</span>
 <div>
 <h3 class="font-semibold">Daily financial tips and tricks.</h3>
 </div>
 </li>
 <li class="flex items-start">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4">library_books</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">library_books</span>
 <div>
 <h3 class="font-semibold">Access to a curated library of resources.</h3>
 </div>
 </li>
 <li class="flex items-start">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4">groups</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">groups</span>
 <div>
 <h3 class="font-semibold">Supportive community to discuss ideas.</h3>
 </div>
 </li>
 <li class="flex items-start">
-<span class="material-symbols-outlined text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4">mic</span>
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">mic</span>
 <div>
 <h3 class="font-semibold">Exclusive Q&amp;A sessions with experts.</h3>
+</div>
+</li>
+</ul>
+</section>
+<section class="max-w-xl mx-auto text-left mb-24">
+<h2 class="text-2xl font-bold mb-8">How it works</h2>
+<ul class="space-y-6">
+<li class="flex items-start">
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">login</span>
+<div>
+<h3 class="font-semibold">1. Join the community</h3>
+<p class="text-secondary-text-light dark:text-secondary-text-dark">Sign up for our WhatsApp or Telegram group.</p>
+</div>
+</li>
+<li class="flex items-start">
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">paid</span>
+<div>
+<h3 class="font-semibold">2. Discover earning apps</h3>
+<p class="text-secondary-text-light dark:text-secondary-text-dark">Get access to a list of verified apps that pay.</p>
+</div>
+</li>
+<li class="flex items-start">
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">task</span>
+<div>
+<h3 class="font-semibold">3. Complete tasks &amp; earn</h3>
+<p class="text-secondary-text-light dark:text-secondary-text-dark">Follow instructions, complete tasks, and get paid.</p>
+</div>
+</li>
+<li class="flex items-start">
+<span class="material-symbols-outlined text-primary bg-icon-bg-light dark:bg-icon-bg-dark rounded-full p-2 mr-4 icon-hover">social_leaderboard</span>
+<div>
+<h3 class="font-semibold">4. Grow with the community</h3>
+<p class="text-secondary-text-light dark:text-secondary-text-dark">Share your progress and learn from others.</p>
 </div>
 </li>
 </ul>
@@ -206,38 +243,60 @@
 <ul class="space-y-6">
 <li class="flex items-start">
 <a class="flex items-center space-x-4" href="#">
-<i class="fab fa-youtube text-2xl text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full w-10 h-10 flex items-center justify-center"></i>
+<i class="fab fa-youtube text-2xl text-primary bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full w-10 h-10 flex items-center justify-center icon-hover"></i>
 <span class="font-semibold text-text-light dark:text-text-dark">@pocketmoney_pro on YouTube</span>
 </a>
 </li>
 <li class="flex items-start">
 <a class="flex items-center space-x-4" href="#">
-<i class="fab fa-instagram text-2xl text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full w-10 h-10 flex items-center justify-center"></i>
+<i class="fab fa-instagram text-2xl text-primary bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full w-10 h-10 flex items-center justify-center icon-hover"></i>
 <span class="font-semibold text-text-light dark:text-text-dark">@pocketmoney_pro on Instagram</span>
 </a>
 </li>
 <li class="flex items-start">
 <a class="flex items-center space-x-4" href="#">
-<i class="fab fa-facebook text-2xl text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full w-10 h-10 flex items-center justify-center"></i>
+<i class="fab fa-facebook text-2xl text-primary bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full w-10 h-10 flex items-center justify-center icon-hover"></i>
 <span class="font-semibold text-text-light dark:text-text-dark">@pocketmoney_pro on Facebook</span>
 </a>
 </li>
 <li class="flex items-start">
 <a class="flex items-center space-x-4" href="#">
-<i class="fab fa-twitter text-2xl text-yellow-500 bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full w-10 h-10 flex items-center justify-center"></i>
+<i class="fab fa-twitter text-2xl text-primary bg-icon-bg-light dark:bg-icon-bg-dark p-2 rounded-full w-10 h-10 flex items-center justify-center icon-hover"></i>
 <span class="font-semibold text-text-light dark:text-text-dark">@pocketmoney_pro on Twitter</span>
 </a>
 </li>
 </ul>
+</section>
+<section class="max-w-xl mx-auto text-left mb-24">
+<h2 class="text-2xl font-bold mb-8">FAQ</h2>
+<div class="space-y-4">
+<div>
+<h3 class="font-semibold">Is this really free?</h3>
+<p class="text-secondary-text-light dark:text-secondary-text-dark">Yes, joining our community and accessing our list of apps is 100% free. We believe in providing value without any hidden costs.</p>
+</div>
+<div>
+<h3 class="font-semibold">How much can I earn?</h3>
+<p class="text-secondary-text-light dark:text-secondary-text-dark">Earnings vary depending on the apps you use and the time you invest. We provide the resources, but your income is in your hands.</p>
+</div>
+<div>
+<h3 class="font-semibold">Are the apps safe to use?</h3>
+<p class="text-secondary-text-light dark:text-secondary-text-dark">We vet all apps before sharing them with our community. However, we always recommend you do your own research and read user reviews.</p>
+</div>
+</div>
 </section>
 <section class="max-w-xl mx-auto text-left mb-24 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
 <h2 class="text-2xl font-bold mb-4">A Note from Mods:</h2>
 <p class="text-secondary-text-light dark:text-secondary-text-dark mb-6">
         We're committed to building a fully functional, transparent platform that empowers everyone to generate income online. Your honest feedback and unwavering support are the cornerstones of our development. Every contribution, no matter how small, fuels our mission and brings us closer to our shared goal. We value your trust immensely and promise to always be transparent in our operations. Thank you for being a vital part of our journey.
     </p>
-<a class="bg-transparent border border-primary text-primary font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center space-x-2 hover:bg-primary hover:text-white transition-colors text-sm" href="#">
+<div class="flex items-center space-x-4">
+<a class="bg-transparent border border-primary text-primary font-semibold py-1 px-3 rounded-full inline-flex items-center justify-center space-x-2 hover:bg-primary hover:text-white transition-colors text-sm" href="#">
 <span>Support Us</span>
 </a>
+<a class="bg-primary text-white font-semibold py-1 px-3 rounded-full inline-flex items-center justify-center space-x-2 text-sm" href="#">
+<span>Join Now</span>
+</a>
+</div>
 </section>
 </main>
 <footer class="text-center text-sm text-secondary-text-light dark:text-secondary-text-dark py-8">
@@ -270,4 +329,5 @@
             mobileMenu.classList.add('hidden');
         });
     </script>
+
 </body></html>
