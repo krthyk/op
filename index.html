@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Direct Report: The Downside of Gamification</title>
+<title>The Downside of Gamification</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <script>
@@ -37,22 +37,27 @@ tailwind.config = {
         'GRAD' 0,
         'opsz' 24
 }
+button.no-hover:hover {
+    background-color: inherit !important;
+}
 </style>
 </head>
-<body class="font-sans bg-background-light text-gray-900 dark:bg-background-dark dark:text-gray-100 antialiased flex flex-col min-h-screen">
 
+<body class="font-sans bg-background-light text-gray-900 dark:bg-background-dark dark:text-gray-100 antialiased flex flex-col min-h-screen">
 <header class="bg-gray-50 dark:bg-gray-900/50 border-b border-gray-200 dark:border-gray-800">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex justify-between items-center h-16">
-<div class="flex items-center space-x-2">
-<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9J1LnCmIGEYHbMEMV8jXdcWeCL6NkAjq28U5EAlU7leKivDlBr6dTH6wiihm6kuO7n9U21sLDAazRVpZrsRCNSvAkByo8H0qOrir4zF3eJ5Bkl_WRE2NcR77GusKpwlWiWKfeb4NbYwxctL85h16h-f8SWeps8SWXNE840wOPf1I0fLQFpw9WlqI3T7RXZS4SSvN6Vm5DiZy4BM9nDHtjajxWHo4oHNZ_LnPD09F072g3x7U43bwpsBRT7A1kdRjymFlRiPy-FwE" alt="Gamification Icon" class="w-6 h-6"/>
+<div class="flex items-center space-x-3">
+<img alt="Gamification Icon" class="w-8 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9J1LnCmIGEYHbMEMV8jXdcWeCL6NkAjq28U5EAlU7leKivDlBr6dTH6wiihm6kuO7n9U21sLDAazRVpZrsRCNSvAkByo8H0qOrir4zF3eJ5Bkl_WRE2NcR77GusKpwlWiWKfeb4NbYwxctL85h16h-f8SWeps8SWXNE840wOPf1I0fLQFpw9WlqI3T7RXZS4SSvN6Vm5DiZy4BM9nDHtjajxWHo4oHNZ_LnPD09F072g3x7U43bwpsBRT7A1kdRjymFlRiPy-FwE"/>
 <h1 class="text-base font-medium text-gray-800 dark:text-gray-200">Gamification</h1>
 </div>
-<div class="flex items-center space-x-4">
-<button id="theme-toggle" class="flex items-center space-x-1 px-2 py-0.5 text-xs font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">
-<span id="theme-toggle-dark-icon" class="material-symbols-outlined text-base">dark_mode</span>
-<span id="theme-toggle-light-icon" class="material-symbols-outlined text-base hidden">light_mode</span>
-<span id="theme-toggle-text" class="text-xs">Dark Mode</span>
+<div class="flex items-center space-x-2">
+<button id="share-btn" class="p-2 rounded-full no-hover text-gray-600 dark:text-gray-300" aria-label="Share this page">
+<span class="material-symbols-outlined text-xl">ios_share</span>
+</button>
+<button id="theme-toggle" class="p-2 rounded-full no-hover text-gray-600 dark:text-gray-300" aria-label="Toggle theme">
+<span id="theme-toggle-dark-icon" class="material-symbols-outlined text-xl">dark_mode</span>
+<span id="theme-toggle-light-icon" class="material-symbols-outlined text-xl hidden">light_mode</span>
 </button>
 </div>
 </div>
@@ -62,22 +67,23 @@ tailwind.config = {
 <main class="flex-grow">
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
 <div class="text-left mb-12">
-<h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">Direct Report: The Downside of Gamification</h1>
+<h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">The Downside of Gamification</h1>
 <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl">
 This report highlights how the concept of gamification, initially designed to make learning and participation more engaging, has gradually lost its original purpose and effectiveness for many users. It identifies the key challenges that have emerged from the current implementation and provides constructive suggestions to help restore fairness, motivation, and genuine engagement among users.
 </p>
 </div>
 
-<div class="prose dark:prose-invert max-w-none space-y-10">
-
+<div class="space-y-12">
 <!-- Introduction -->
 <section>
-<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Introduction</h2>
-<p>
+<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Introduction</h2>
+<p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
 The purpose of this report is to reflect on how the gamification model, which was once intended to enhance user engagement through rewards and challenges, has evolved into something less beneficial for the average student. The report aims to bring forward key findings based on real user experiences and observations, while also offering practical suggestions to improve the overall system.
 </p>
-<p>The report is structured into three major sections:</p>
-<ol class="list-decimal list-inside">
+<p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+The report is structured into three major sections:
+</p>
+<ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300 space-y-1">
 <li>Key Findings – outlining the main issues users currently face.</li>
 <li>Potential Suggestions for Improvement – providing actionable ideas to address these challenges.</li>
 <li>Final Take – emphasizing why it is important to reconsider and refine the existing approach to gamification.</li>
@@ -86,87 +92,71 @@ The purpose of this report is to reflect on how the gamification model, which wa
 
 <!-- Key Findings -->
 <section>
-<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Key Findings</h2>
+<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Key Findings</h2>
+<ul class="space-y-6 text-gray-700 dark:text-gray-300">
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Disappearing Missions and Reduced Earning Opportunities:</span> With the focus shifting toward leaderboards and XP-based rewards, several meaningful missions such as reflections, surveys, and riddles have either disappeared or no longer provide monetary rewards. These missions now only offer XP, which disadvantages users who are not interested in leaderboard rankings. Missions like Video missions are not a cup of tea for everyone. There will always be users who are shy or introverted and may not feel comfortable sharing videos publicly. Such users rely on other mission types to participate and earn, yet currently, apart from design missions, there are no alternative opportunities for them to earn if they are not interested in the XP leaderboard. This limits inclusivity and makes the earning system feel restrictive.</li>
 
-<p><strong>• Disappearing Missions and Reduced Earning Opportunities</strong><br/>
-With the focus shifting toward leaderboards and XP-based rewards, several meaningful missions such as reflections, surveys, and riddles have either disappeared or no longer provide monetary rewards. These missions now only offer XP, which disadvantages users who are not interested in leaderboard rankings. Missions like Video missions are not a cup of tea for everyone. There will always be users who are shy or introverted and may not feel comfortable sharing videos publicly. Such users rely on other mission types to participate and earn, yet currently, apart from design missions, there are no alternative opportunities for them to earn if they are not interested in the XP leaderboard. This limits inclusivity and makes the earning system feel restrictive.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Unfair XP Distribution:</span> The current XP structure seems to heavily favor new users, leaving consistent, long-term users feeling demotivated and overlooked. Many users have expressed that the leaderboard feels biased, often dominated by accounts with large friend bases, inactive profiles, or newly created accounts. This perception of unfairness has led to disappointment and a loss of trust in the system.</li>
 
-<p><strong>• Unfair XP Distribution</strong><br/>
-The current XP structure seems to heavily favor new users, leaving consistent, long-term users feeling demotivated and overlooked. Many users have expressed that the leaderboard feels biased, often dominated by accounts with large friend bases, inactive profiles, or newly created accounts. This perception of unfairness has led to disappointment and a loss of trust in the system.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Overwhelming Mission Load and Lack of Authentic Participation:</span> Users are often presented with multiple missions every day, including quizzes, reflections, surveys, riddles, creative writing, and puzzles. This volume can be overwhelming and, as answers to most missions are easily available online or can be generated using AI, genuine participation has declined. Many users now rely on multiple accounts, external groups, or shared answers, reducing the purpose and authenticity of these activities.</li>
 
-<p><strong>• Overwhelming Mission Load and Lack of Authentic Participation</strong><br/>
-Users are often presented with multiple missions every day, including quizzes, reflections, surveys, riddles, creative writing, and puzzles. This volume can be overwhelming and, as answers to most missions are easily available online or can be generated using AI, genuine participation has declined. Many users now rely on multiple accounts, external groups, or shared answers, reducing the purpose and authenticity of these activities.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Community Disruption and Feed Inconvenience:</span> The frequent posting of mission screenshots and answer requests clutters the feed, creating irritation among users who expect genuine and meaningful content. Helping others is often met with criticism or hostility from those who view it as decreasing their own chances of winning, which further disrupts the sense of community and mutual support.</li>
 
-<p><strong>• Community Disruption and Feed Inconvenience</strong><br/>
-The frequent posting of mission screenshots and answer requests clutters the feed, creating irritation among users who expect genuine and meaningful content. Helping others is often met with criticism or hostility from those who view it as decreasing their own chances of winning, which further disrupts the sense of community and mutual support.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Leaderboard-Related Panic and Negativity:</span> When leaderboard updates are delayed or rankings appear inconsistent, users often panic and flood the feed with complaints or negative comments. Despite repeated explanations about backend processes, these reactions cause unnecessary chaos and affect the app’s overall environment and user morale.</li>
 
-<p><strong>• Leaderboard-Related Panic and Negativity</strong><br/>
-When leaderboard updates are delayed or rankings appear inconsistent, users often panic and flood the feed with complaints or negative comments. Despite repeated explanations about backend processes, these reactions cause unnecessary chaos and affect the app’s overall environment and user morale.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Evaluation Pressure and Inconsistencies:</span> Since many missions are semi-automated, the pressure to evaluate submissions quickly can result in inconsistencies and discrepancies in XP distribution. This creates further mistrust among users who expect transparency and fairness in the evaluation process.</li>
 
-<p><strong>• Evaluation Pressure and Inconsistencies</strong><br/>
-Since many missions are semi-automated, the pressure to evaluate submissions quickly can result in inconsistencies and discrepancies in XP distribution. This creates further mistrust among users who expect transparency and fairness in the evaluation process.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Toxic Competition and Emotional Burnout:</span> Although competition can be motivating, the current structure has turned excessively competitive. The presence of bots, answer-sharing groups, and unfair tactics demotivates genuine users. Many participants experience emotional burnout when, despite their efforts, they fail to achieve top positions, leading to frustration and distress.</li>
 
-<p><strong>• Toxic Competition and Emotional Burnout</strong><br/>
-Although competition can be motivating, the current structure has turned excessively competitive. The presence of bots, answer-sharing groups, and unfair tactics demotivates genuine users. Many participants experience emotional burnout when, despite their efforts, they fail to achieve top positions, leading to frustration and distress.</p>
-
-<p><strong>• Decline in Overall Engagement</strong><br/>
-Several users who were once active on the app have now become passive, participating only to complete missions without genuine enthusiasm. The excitement that gamification was supposed to bring has diminished, replaced by fatigue and disappointment.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Decline in Overall Engagement:</span> Several users who were once active on the app have now become passive, participating only to complete missions without genuine enthusiasm. The excitement that gamification was supposed to bring has diminished, replaced by fatigue and disappointment.</li>
+</ul>
 </section>
 
-<!-- Potential Suggestions -->
+<!-- Suggestions -->
 <section>
-<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Potential Suggestions for Improvement</h2>
+<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Potential Suggestions for Improvement</h2>
+<ul class="space-y-6 text-gray-700 dark:text-gray-300">
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Prioritize Genuine and Reflective Missions:</span> Focus more on reflection and survey missions that encourage authentic thought and self-expression. Add creative writing or skill-based tasks to maintain variety and engagement while ensuring that submissions are genuinely user-driven and not externally sourced.</li>
 
-<p><strong>• Prioritize Genuine and Reflective Missions</strong><br/>
-Focus more on reflection and survey missions that encourage authentic thought and self-expression. Add creative writing or skill-based tasks to maintain variety and engagement while ensuring that submissions are genuinely user-driven and not externally sourced.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Refine XP Distribution System:</span> Remove XP rewards for basic activities such as registration, profile setup, and referrals, as these give unfair advantages and discourage consistent users. A fairer XP model should prioritize genuine participation and contribution.</li>
 
-<p><strong>• Refine XP Distribution System</strong><br/>
-Remove XP rewards for basic activities such as registration, profile setup, and referrals, as these give unfair advantages and discourage consistent users. A fairer XP model should prioritize genuine participation and contribution.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Ensure Transparent and Fair Evaluation:</span> Strengthen the evaluation system to make it more consistent and transparent. Clear communication about how XP and rankings are determined can rebuild trust and credibility among users.</li>
 
-<p><strong>• Ensure Transparent and Fair Evaluation</strong><br/>
-Strengthen the evaluation system to make it more consistent and transparent. Clear communication about how XP and rankings are determined can rebuild trust and credibility among users.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Uphold Positive Community Standards:</span> Take strict action against users who engage in disruptive behavior, create unnecessary chaos, or misuse the platform for unfair advantages. Encouraging positive interactions will help restore a healthy and respectful community atmosphere.</li>
 
-<p><strong>• Uphold Positive Community Standards</strong><br/>
-Take strict action against users who engage in disruptive behavior, create unnecessary chaos, or misuse the platform for unfair advantages. Encouraging positive interactions will help restore a healthy and respectful community atmosphere.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Introduce an OG Status System:</span> Implement an “OG Status” feature for long-term, dedicated users who consistently contribute positively to the app. Recognizing and rewarding loyalty will motivate others to engage more meaningfully.</li>
 
-<p><strong>• Introduce an OG Status System</strong><br/>
-Implement an “OG Status” feature for long-term, dedicated users who consistently contribute positively to the app. Recognizing and rewarding loyalty will motivate others to engage more meaningfully.</p>
-
-<p><strong>• Collect User Feedback Regularly</strong><br/>
-Launch periodic survey missions to gather honest feedback about the leaderboard, gamification features, and overall user experience. Listening to the community’s opinions will guide better and more user-focused updates.</p>
+<li><span class="font-semibold text-gray-800 dark:text-gray-200">Collect User Feedback Regularly:</span> Launch periodic survey missions to gather honest feedback about the leaderboard, gamification features, and overall user experience. Listening to the community’s opinions will guide better and more user-focused updates.</li>
+</ul>
 </section>
 
 <!-- Final Take -->
 <section>
-<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Final Take</h2>
-<p>
+<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Final Take</h2>
+<p class="text-gray-700 dark:text-gray-300 leading-relaxed">
 Gamification, at its core, is not just about rankings or rewards. It is about recognition, inclusion, and creating an environment where users feel valued and inspired. The current system, despite good intentions, has drifted away from that purpose. By prioritizing fairness, transparency, and authenticity, the platform can regain the trust and enthusiasm of its users.
 </p>
-<p>
+<p class="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
 Considering these findings and suggestions is essential to realign the app with its original vision: to make learning and participation both meaningful and enjoyable for everyone. I hope the app team will carefully review this report and take prompt action to improve the user experience by making necessary changes to the leaderboard and XP rewards system.
 </p>
 </section>
 
-<!-- Opinions + Check Also -->
-<section class="mt-12">
+<!-- Opinions and Check Also -->
+<div class="mt-12">
 <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Opinions</h2>
-<p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-Write your genuine feedback, opinions using portal - 
-<a href="#" class="text-primary hover:underline dark:text-blue-400 dark:hover:text-blue-300">click here to open</a>
-</p>
+<p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">Write your genuine feedback or opinions using the portal – <a href="#" class="text-primary hover:underline dark:text-blue-400 dark:hover:text-blue-300">click here to open</a></p>
+
 <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Check Also</h2>
 <a href="#" class="text-lg text-primary hover:underline dark:text-blue-400 dark:hover:text-blue-300">Alternative Proposals to Leaderboards</a>
-</section>
+</div>
 
 </div>
 </div>
 </main>
 
-<footer class="mt-auto py-8 mb-4">
+<footer class="mt-auto py-8">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<p class="text-center text-xs text-gray-500 dark:text-gray-400">
-Made with <span class="align-middle">❤️</span> for explorers, <a href="#" class="text-inherit no-underline hover:underline">by explorers</a>
-</p>
+<p class="text-center text-[11px] text-gray-500 dark:text-gray-400">Made with <span class="align-middle">❤️</span> for explorers, <a href="#" class="text-inherit no-underline hover:underline">by explorers</a></p>
 </div>
 </footer>
 
@@ -174,19 +164,18 @@ Made with <span class="align-middle">❤️</span> for explorers, <a href="#" cl
 const themeToggleBtn = document.getElementById('theme-toggle');
 const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-const themeToggleText = document.getElementById('theme-toggle-text');
+const shareBtn = document.getElementById('share-btn');
 
+// Theme Toggle Logic
 if (localStorage.getItem('color-theme') === 'dark' ||
-(!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+   (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     themeToggleLightIcon.classList.remove('hidden');
     themeToggleDarkIcon.classList.add('hidden');
     document.documentElement.classList.add('dark');
-    themeToggleText.textContent = 'Light Mode';
 } else {
     themeToggleDarkIcon.classList.remove('hidden');
     themeToggleLightIcon.classList.add('hidden');
     document.documentElement.classList.remove('dark');
-    themeToggleText.textContent = 'Dark Mode';
 }
 
 themeToggleBtn.addEventListener('click', function() {
@@ -196,25 +185,39 @@ themeToggleBtn.addEventListener('click', function() {
         if (localStorage.getItem('color-theme') === 'light') {
             document.documentElement.classList.add('dark');
             localStorage.setItem('color-theme', 'dark');
-            themeToggleText.textContent = 'Light Mode';
         } else {
             document.documentElement.classList.remove('dark');
             localStorage.setItem('color-theme', 'light');
-            themeToggleText.textContent = 'Dark Mode';
         }
     } else {
         if (document.documentElement.classList.contains('dark')) {
             document.documentElement.classList.remove('dark');
             localStorage.setItem('color-theme', 'light');
-            themeToggleText.textContent = 'Dark Mode';
         } else {
             document.documentElement.classList.add('dark');
             localStorage.setItem('color-theme', 'dark');
-            themeToggleText.textContent = 'Light Mode';
         }
     }
 });
-</script>
 
+// Share button functionality
+shareBtn.addEventListener('click', async () => {
+    const shareData = {
+        title: 'The Downside of Gamification',
+        text: 'Read this insightful report on the challenges and suggested improvements in gamification systems.',
+        url: window.location.href
+    };
+    try {
+        if (navigator.share) {
+            await navigator.share(shareData);
+        } else {
+            await navigator.clipboard.writeText(window.location.href);
+            alert('Link copied to clipboard!');
+        }
+    } catch (err) {
+        console.error('Share failed:', err);
+    }
+});
+</script>
 </body>
 </html>
