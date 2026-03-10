@@ -1,338 +1,482 @@
 <!DOCTYPE html>
-<html class="" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Alternative Proposal to XP Leaderboard</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#1d4ed8",
-                        "background-light": "#ffffff",
-                        "background-dark": "#000000",
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.5rem",
-                    },
-                },
-            },
-        };
-    </script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24
-        }
-        [x-cloak] { display: none !important; }
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-<script defer="" src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-</head>
-<body class="font-sans bg-background-light text-gray-900 dark:bg-background-dark dark:text-gray-100 antialiased flex flex-col min-h-screen" x-data="{ infoModalOpen: false }" x-on:keydown.escape="infoModalOpen = false">
-<header class="bg-gray-50 dark:bg-gray-900/50 border-b border-gray-200 dark:border-gray-800">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex justify-between items-center h-16">
-<div class="flex items-center space-x-3">
-<img alt="Gamification Icon" class="w-8 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9J1LnCmIGEYHbMEMV8jXdcWeCL6NkAjq28U5EAlU7leKivDlBr6dTH6wiihm6kuO7n9U21sLDAazRVpZrsRCNSvAkByo8H0qOrir4zF3eJ5Bkl_WRE2NcR77GusKpwlWiWKfeb4NbYwxctL85h16h-f8SWeps8SWXNE840wOPf1I0fLQFpw9WlqI3T7RXZS4SSvN6Vm5DiZy4BM9nDHtjajxWHo4oHNZ_LnPD09F072g3x7U43bwpsBRT7A1kdRjymFlRiPy-FwE"/>
-<h1 class="text-base font-medium text-gray-800 dark:text-gray-200">Gamification</h1>
-</div>
-<div class="flex items-center space-x-2">
-<button @click="infoModalOpen = true" class="p-2 rounded-full text-gray-600 dark:text-gray-300">
-<span class="material-symbols-outlined text-xl">info</span>
-</button>
-<button class="p-2 rounded-full text-gray-600 dark:text-gray-300" id="share-button">
-<span class="material-symbols-outlined text-xl">ios_share</span>
-</button>
-<button class="p-2 rounded-full text-gray-600 dark:text-gray-300" id="theme-toggle">
-<span class="material-symbols-outlined text-xl" id="theme-toggle-dark-icon">dark_mode</span>
-<span class="material-symbols-outlined text-xl hidden" id="theme-toggle-light-icon">light_mode</span>
-</button>
-</div>
-</div>
-</div>
-</header>
-<main class="flex-grow">
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-<div class="text-left mb-12">
-<h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">Alternative Proposal to XP Leaderboard</h1>
-<p class="text-gray-700 dark:text-gray-300 leading-relaxed">This report is a detailed proposal outlining an alternative to the current XP leaderboard system used within the platform. It presents observations, drawbacks, and user sentiment associated with the existing model and introduces a more purpose-driven initiative called “Under 25 Creators.”</p>
-<p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">The proposal aims to realign engagement strategies with the platform’s core objectives of helping students learn, earn, and communicate effectively. It also focuses on creating a healthy, inclusive, and motivational environment that encourages creativity, consistent participation, and meaningful recognition.</p>
-</div>
-<div class="mb-12">
-<p class="text-gray-800 dark:text-gray-200 font-semibold mb-4">This report is structured into sections as follows:</p>
-<ol class="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
-<li><a class="font-semibold text-gray-800 dark:text-gray-200 hover:underline" href="#introduction">Introduction</a> – Highlights the challenges with the current XP leaderboard system and its misalignment with the platform’s objectives.</li>
-<li><a class="font-semibold text-gray-800 dark:text-gray-200 hover:underline" href="#proposed-initiative">Proposed Initiative: Under 25 Creators</a> – Introduces a new engagement model focused on creativity, authenticity, and community participation.</li>
-<li><a class="font-semibold text-gray-800 dark:text-gray-200 hover:underline" href="#objective">Objective</a> – Defines the goals of the initiative, including fostering learning, collaboration, and recognition among students.</li>
-<li><a class="font-semibold text-gray-800 dark:text-gray-200 hover:underline" href="#how-it-works">How It Works</a> – Details participation, content creation, evaluation, and reward mechanisms.</li>
-<li><a class="font-semibold text-gray-800 dark:text-gray-200 hover:underline" href="#comparison">Comparison: XP Leaderboard vs Under 25 Creators Program</a> – Provides a clear side-by-side analysis of the current and proposed systems.</li>
-<li><a class="font-semibold text-gray-800 dark:text-gray-200 hover:underline" href="#benefits">Benefits of the Under 25 Creators Initiative</a> – Outlines advantages for users and the platform.</li>
-<li><a class="font-semibold text-gray-800 dark:text-gray-200 hover:underline" href="#additional-suggestions">Additional Suggestions</a> – Recommends supplementary actions to enhance engagement and recognition.</li>
-<li><a class="font-semibold text-gray-800 dark:text-gray-200 hover:underline" href="#final-take">Final Take</a> – Summarizes the rationale, potential impact, and long-term value of adopting the proposed initiative.</li>
-</ol>
-</div>
-<div class="space-y-12">
-<div id="introduction">
-<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Introduction</h2>
-<div class="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-<p>In the previous report, I highlighted several issues with the current gamification system, particularly the XP leaderboard. While gamification can boost short-term engagement, it does not fully align with the long-term purpose of the platform.</p>
-<div>
-<h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Limited relevance to the target audience</h3>
-<p>The platform caters to students under 25 who come here to learn, earn, and communicate. The XP leaderboard does not effectively support these goals or contribute to meaningful growth for users.</p>
-</div>
-<div>
-<h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Temporary engagement</h3>
-<p>Missions such as Strategize and Earn, Mega Reward Missions, Midnight Missions, and Surprise Missions have successfully brought excitement and competition to the app. However, the XP leaderboard has shown limited and inconsistent impact on overall participation.</p>
-</div>
-<div>
-<h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Negative community perception</h3>
-<p>Over time, a mindset has developed that not participating in the leaderboard is a flex. This attitude goes against the values of inclusivity, motivation, and equal participation that the platform promotes.</p>
-</div>
-<div>
-<h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Operational complexity</h3>
-<p>Evaluating every mission manually increases the workload on the evaluation team and raises the possibility of delays or errors. This affects fairness, transparency, and user trust in the system.</p>
-</div>
-<p>To address these concerns, this proposal suggests a more balanced and meaningful engagement model that sustains participation, encourages creativity, and supports the core mission of the platform.</p>
-</div>
-</div>
-<div id="proposed-initiative">
-<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Proposal: Under 25 Creators</h2>
-<p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">The Under 25 Creators program highlights consistent and original content from students across different spaces. Top contributors are recognized through awards, badges, and community appreciation.</p>
-<h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4" id="objective">Objective</h3>
-<p class="text-gray-700 dark:text-gray-300 leading-relaxed">The objective of the Under 25 Creators program is to encourage students to create, share, and engage with original, high-quality content that reflects their ideas, creativity, and perspectives. This initiative focuses on building a culture of recognition, collaboration, and community while maintaining a healthy sense of competition.</p>
-</div>
-<div id="how-it-works">
-<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">How It Works</h2>
-<ul class="list-disc list-outside ml-5 space-y-4 text-gray-700 dark:text-gray-300">
-<li>
-<p><span class="font-semibold text-gray-800 dark:text-gray-200">Interest Based Participation:</span> Users select at least three spaces to participate in. One from City, one from Domain, and one from Entertainment.</p>
-</li>
-<li>
-<p><span class="font-semibold text-gray-800 dark:text-gray-200">Consistent Content Creation:</span> Users post regularly in their chosen spaces. Evaluation will focus on content quality, originality, relatability, and contribution to the community.</p>
-</li>
-<li>
-<p><span class="font-semibold text-gray-800 dark:text-gray-200">Active Participation:</span> Users participate in discussions, challenges, and activities within their spaces to remain active and engaged.</p>
-</li>
-<li>
-<p><span class="font-semibold text-gray-800 dark:text-gray-200">Authenticity:</span> Genuine and creative posts are prioritized. Copied, low-effort, or AI-generated content will not be considered for rewards or recognition.</p>
-</li>
-<li>
-<p><span class="font-semibold text-gray-800 dark:text-gray-200">Community Voting and Evaluation:</span> At the end of each season, members of each space vote for their favorite creators. Engagement data and quality metrics are used to ensure fair and transparent results.</p>
-</li>
-<li>
-<p><span class="font-semibold text-gray-800 dark:text-gray-200">Space Awards and Rewards:</span> Winners in each space receive Space Awards and cash rewards, while runner ups are awarded certificates, fostering a sense of achievement, recognition, and belonging within the community.</p>
-</li>
-<li>
-<p><span class="font-semibold text-gray-800 dark:text-gray-200">Long Term Recognition:</span> After several seasons, consistent contributors with high-quality and impactful content will receive a badge such as “Best Under 25 Creator.” This badge symbolizes creativity, reliability, and excellence within the community.</p>
-</li>
-</ul>
-</div>
-<div id="comparison">
-<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">Comparison: XP Leaderboard vs Under 25 Creators Program</h2>
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-gray-100 dark:bg-gray-800/50">
-<th class="py-3 px-4 font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700">Aspect</th>
-<th class="py-3 px-4 font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700">XP Leaderboard</th>
-<th class="py-3 px-4 font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700">Under 25 Creators Program</th>
-</tr>
-</thead>
-<tbody class="text-gray-700 dark:text-gray-300">
-<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/20">
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top"><span class="font-medium text-gray-800 dark:text-gray-200">Purpose Alignment</span></td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Focuses on collecting XP and ranks.</td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Promotes learning, creativity, and collaboration through meaningful content.</td>
-</tr>
-<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/20">
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top"><span class="font-medium text-gray-800 dark:text-gray-200">Motivation Type</span></td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Quantity based.</td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Quality based.</td>
-</tr>
-<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/20">
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top"><span class="font-medium text-gray-800 dark:text-gray-200">User Perception</span></td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Often seen as exclusive. Not participating is viewed as a flex.</td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Inclusive and open to all users regardless of experience.</td>
-</tr>
-<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/20">
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top"><span class="font-medium text-gray-800 dark:text-gray-200">Engagement Quality</span></td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Encourages short-term participation.</td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Builds sustained engagement through creativity and contribution.</td>
-</tr>
-<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/20">
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top"><span class="font-medium text-gray-800 dark:text-gray-200">Content Quality</span></td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Can result in repetitive or low-effort posts.</td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Rewards originality, authenticity, and value-driven content.</td>
-</tr>
-<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/20">
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top"><span class="font-medium text-gray-800 dark:text-gray-200">Evaluation Process</span></td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Manual and time consuming.</td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Combines metrics with community voting for fairness and transparency.</td>
-</tr>
-<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/20">
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top"><span class="font-medium text-gray-800 dark:text-gray-200">Community Impact</span></td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Limited collaboration and peer connection.</td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Encourages peer recognition and strengthens the sense of belonging.</td>
-</tr>
-<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/20">
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top"><span class="font-medium text-gray-800 dark:text-gray-200">Recognition</span></td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Based on numerical ranking.</td>
-<td class="py-3 px-4 border-b border-gray-200 dark:border-gray-700 align-top">Based on quality, consistency, and impact within spaces.</td>
-</tr>
-<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/20">
-<td class="py-3 px-4 align-top"><span class="font-medium text-gray-800 dark:text-gray-200">Long Term Value</span></td>
-<td class="py-3 px-4 align-top">Creates temporary excitement.</td>
-<td class="py-3 px-4 align-top">Promotes lasting engagement, creativity, and loyalty.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="benefits">
-<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Benefits of the Under 25 Creators Initiative</h2>
-<ul class="list-disc list-outside ml-5 space-y-4 text-gray-700 dark:text-gray-300">
-<li>
-<p>Encourages students to learn, earn, and connect in a meaningful way.</p>
-</li>
-<li>
-<p>Promotes authentic content creation instead of performative participation.</p>
-</li>
-<li>
-<p>Builds a stronger and more inclusive student community.</p>
-</li>
-<li>
-<p>Recognizes consistent effort and creativity with credibility and transparency.</p>
-</li>
-<li>
-<p>Reduces workload for the evaluation team with a balanced review process.</p>
-</li>
-<li>
-<p>Provides the platform with opportunities to showcase student creators on official channels.</p>
-</li>
-<li>
-<p>Strengthens long-term user engagement and community loyalty.</p>
-</li>
-</ul>
-</div>
-<div id="additional-suggestions">
-<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Additional Suggestions</h2>
-<ul class="list-disc list-outside ml-5 space-y-4 text-gray-700 dark:text-gray-300">
-<li>
-<p>Share creator stories and achievements across official Under 25 social media pages.</p>
-</li>
-<li>
-<p>Introduce mentorship or networking opportunities for top performers.</p>
-</li>
-<li>
-<p>Promote ttt academy courses at affordable prices for students to learn and improvise content creation</p>
-</li>
-</ul>
-</div>
-<div id="final-take">
-<h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Final Take</h2>
-<div class="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-<p>The Under 25 Creators initiative aligns perfectly with the vision of empowering young individuals to learn, earn, and express themselves. It promotes creativity, consistency, and collaboration while fostering an inclusive and motivating environment.</p>
-<p>Recently, there has been a visible decline in active users, with many leaving due to dissatisfaction with the current leaderboard system or a lack of recognition. Genuine creators and writers are either not posting or not receiving the appreciation they deserve. A performative community cannot sustain long-term growth for a platform like Under 25, which has immense potential.</p>
-<p>The community is made up of young people from diverse regions, languages, cultures, and skill sets, yet many genuine voices go unnoticed. A program like Under 25 Creators can help surface these talents and inspire more meaningful participation. Even a hybrid model combining aspects of the XP system and the Creators program could serve as a valuable experiment.</p>
-<p>Under 25 has the potential to become a platform where the next generation of creators begins their journey. Exploring this idea could redefine how students express themselves, collaborate, and grow together in a supportive digital community.</p>
-</div>
-</div>
-<div class="mt-16 border-t border-gray-200 dark:border-gray-800 pt-8">
-<h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Opinions</h2>
-<p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">Write your genuine feedback, opinions using portal - <a class="text-primary hover:underline dark:text-blue-400 dark:hover:text-blue-300" href="#">click here to open</a></p>
-<h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Check Also</h2>
-<a class="text-lg text-primary hover:underline dark:text-blue-400 dark:hover:text-blue-300" href="#">Alternative Proposals to Leaderboards</a>
-</div>
-</div>
-</div></main>
-<footer class="mt-auto py-8">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<p class="text-center text-[11px] text-gray-500 dark:text-gray-400">Made with <span class="align-middle" style="opacity: 0.75">❤️</span> <a class="text-inherit no-underline hover:underline" href="#">by explorers</a></p>
-</div>
-</footer>
-<div class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center p-4" x-cloak="" x-show="infoModalOpen" x-transition:enter="ease-out duration-300" x-transition:enter-end="opacity-100" x-transition:enter-start="opacity-0" x-transition:leave="ease-in duration-200" x-transition:leave-end="opacity-0" x-transition:leave-start="opacity-100">
-<div @click.outside="infoModalOpen = false" class="bg-background-light dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md p-6" x-show="infoModalOpen" x-transition:enter="ease-out duration-300" x-transition:enter-end="opacity-100 scale-100" x-transition:enter-start="opacity-0 scale-95" x-transition:leave="ease-in duration-200" x-transition:leave-end="opacity-0 scale-95" x-transition:leave-start="opacity-100 scale-100">
-<div class="flex justify-between items-center mb-4">
-<h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">About This Report</h2>
-<button @click="infoModalOpen = false" class="p-2 rounded-full text-gray-500 dark:text-gray-400">
-<span class="material-symbols-outlined">close</span>
-</button>
-</div>
-<div class="space-y-3 text-gray-700 dark:text-gray-300">
-<p>This is a direct report on the impact of gamification on individuals under 25.</p>
-<p>It outlines an alternative proposal to the current XP leaderboard system, introducing a new initiative called "Under 25 Creators" designed to foster a more engaging and motivational environment.</p>
-</div>
-</div>
-</div>
-<script>
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-    // Change the icons inside the button based on previous settings
-    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        themeToggleLightIcon.classList.remove('hidden');
-        themeToggleDarkIcon.classList.add('hidden');
-        document.documentElement.classList.add('dark');
-    } else {
-        themeToggleDarkIcon.classList.remove('hidden');
-        themeToggleLightIcon.classList.add('hidden');
-        document.documentElement.classList.remove('dark');
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buy Me a Chai ☕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --orange: #ff8c2a;
+      --orange-dim: rgba(255,140,42,0.18);
+      --orange-glow: rgba(255,100,0,0.35);
+      --bg: #150800;
+      --text: #fff5e8;
+      --muted: #a07060;
+      --dim: #7a5040;
+      --faint: #3a1e10;
     }
-    themeToggleBtn.addEventListener('click', function() {
-        // toggle icons
-        themeToggleDarkIcon.classList.toggle('hidden');
-        themeToggleLightIcon.classList.toggle('hidden');
-        // if set via local storage previously
-        if (localStorage.getItem('color-theme')) {
-            if (localStorage.getItem('color-theme') === 'light') {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            }
-        // if NOT set via local storage previously
-        } else {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            }
-        }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      font-family: 'Hind', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background */
+    .bg-layer {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 50% at 70% -10%, rgba(200,80,0,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 10% 80%, rgba(120,40,0,0.2) 0%, transparent 50%);
+    }
+
+    .page {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 44px 16px 64px;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .badge {
+      background: rgba(255,140,42,0.1);
+      border: 1px solid rgba(255,140,42,0.28);
+      color: #ffb347;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      padding: 6px 18px; border-radius: 100px; margin-bottom: 24px;
+      animation: fade-down 0.5s ease both;
+    }
+
+    .cup-wrap {
+      position: relative; width: 84px; height: 84px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 26px;
+      animation: fade-down 0.5s 0.1s ease both;
+    }
+
+    .cup-glow {
+      position: absolute; inset: -14px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,120,0,0.28) 0%, transparent 70%);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    .cup-emoji { font-size: 68px; line-height: 1; animation: float 3s ease-in-out infinite; position: relative; }
+
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @keyframes pulse { 0%,100%{opacity:.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.15)} }
+    @keyframes fade-down { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fade-up   { from{opacity:0;transform:translateY(14px)}  to{opacity:1;transform:translateY(0)} }
+    @keyframes pop       { from{transform:scale(0)} to{transform:scale(1)} }
+
+    h1 {
+      font-family: 'Yeseva One', serif;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      color: var(--text); text-align: center; line-height: 1.1;
+      margin-bottom: 10px;
+      animation: fade-down 0.5s 0.15s ease both;
+    }
+    h1 em { color: var(--orange); font-style: normal; }
+
+    .subtitle {
+      color: var(--muted); font-size: 15px; text-align: center;
+      max-width: 340px; line-height: 1.65; margin-bottom: 36px;
+      font-weight: 300;
+      animation: fade-down 0.5s 0.2s ease both;
+    }
+
+    /* Card */
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,140,42,0.18);
+      border-radius: 24px; padding: 28px;
+      width: 100%; max-width: 440px;
+      backdrop-filter: blur(16px);
+      animation: fade-up 0.5s 0.25s ease both;
+    }
+
+    .section-label {
+      color: var(--dim); font-size: 11px; letter-spacing: 2.5px;
+      text-transform: uppercase; margin-bottom: 13px; font-weight: 600;
+    }
+
+    /* Presets */
+    .presets { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 14px; }
+
+    .preset-btn {
+      background: rgba(255,140,42,0.05);
+      border: 1.5px solid rgba(255,140,42,0.15);
+      border-radius: 14px; padding: 13px 12px;
+      cursor: pointer; transition: all 0.18s;
+      text-align: left; color: var(--text);
+      position: relative; overflow: hidden;
+    }
+    .preset-btn:last-child { grid-column: span 2; }
+    .preset-btn:hover { border-color: rgba(255,140,42,0.42); background: rgba(255,140,42,0.09); transform: translateY(-1px); }
+    .preset-btn.active {
+      border-color: var(--orange);
+      background: rgba(255,140,42,0.13);
+      box-shadow: 0 0 0 3px rgba(255,140,42,0.1);
+    }
+    .preset-btn.active::after {
+      content: '✓'; position: absolute; top: 8px; right: 11px;
+      font-size: 12px; color: var(--orange); font-weight: 700;
+    }
+    .p-emoji  { font-size: 18px; display: block; margin-bottom: 4px; }
+    .p-label  { font-size: 13px; font-weight: 600; display: block; margin-bottom: 2px; color: #e8d0b8; }
+    .p-amount { font-size: 20px; font-weight: 700; color: var(--orange); font-family: 'Yeseva One', serif; }
+    .p-desc   { font-size: 11px; color: var(--dim); display: block; margin-top: 3px; }
+
+    /* Divider */
+    .divider {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--faint); font-size: 11px; letter-spacing: 1.5px;
+      text-transform: uppercase; margin: 14px 0;
+    }
+    .divider::before,.divider::after { content:''; flex:1; height:1px; background:rgba(255,140,42,0.1); }
+
+    /* Custom input */
+    .custom-wrap { position: relative; }
+    .rupee { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--orange); font-family:'Yeseva One',serif; font-size:20px; pointer-events:none; }
+    .custom-input {
+      width:100%; background:rgba(255,255,255,0.04);
+      border:1.5px solid rgba(255,140,42,0.18);
+      border-radius:14px; padding:14px 16px 14px 38px;
+      color:var(--text); font-size:20px;
+      font-family:'Yeseva One',serif; outline:none;
+      transition:border 0.2s;
+      -moz-appearance:textfield;
+    }
+    .custom-input::-webkit-inner-spin-button,
+    .custom-input::-webkit-outer-spin-button { -webkit-appearance:none; }
+    .custom-input:focus { border-color:var(--orange); }
+    .custom-input::placeholder { color:#3a1e10; font-family:'Hind',sans-serif; font-size:14px; }
+
+    /* Pay button */
+    .pay-btn {
+      width:100%; margin-top:22px;
+      background:linear-gradient(135deg,#ff9a3c,#d94f00);
+      border:none; border-radius:14px; color:white;
+      font-size:16px; font-weight:700; padding:17px;
+      cursor:pointer; font-family:'Hind',sans-serif;
+      letter-spacing:0.3px; transition:all 0.2s;
+      box-shadow:0 4px 24px rgba(255,100,0,0.35);
+      display:flex; align-items:center; justify-content:center; gap:10px;
+    }
+    .pay-btn:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 8px 32px rgba(255,100,0,0.45); }
+    .pay-btn:disabled { opacity:.35; cursor:not-allowed; }
+
+    /* Thank you */
+    .thank-you { text-align:center; padding:12px 0; display:none; }
+    .ty-emoji { font-size:64px; display:block; margin-bottom:16px; animation:pop 0.5s cubic-bezier(0.175,0.885,0.32,1.275); }
+    .ty-title { font-family:'Yeseva One',serif; color:var(--text); font-size:2rem; margin-bottom:8px; }
+    .ty-amount {
+      display:inline-block; margin:14px auto;
+      background:rgba(255,140,42,0.12); border:1px solid rgba(255,140,42,0.3);
+      border-radius:50px; padding:8px 22px;
+      color:var(--orange); font-family:'Yeseva One',serif; font-size:1.5rem;
+    }
+    .ty-msg { color:var(--muted); font-size:14px; line-height:1.7; }
+    .reset-btn {
+      margin-top:20px; background:none;
+      border:1px solid rgba(255,140,42,0.25);
+      border-radius:10px; color:var(--orange);
+      padding:9px 22px; font-size:13px; cursor:pointer;
+      font-family:'Hind',sans-serif; transition:all 0.2s;
+    }
+    .reset-btn:hover { background:rgba(255,140,42,0.1); }
+
+    /* Overlay & Sheet */
+    .overlay {
+      position:fixed; inset:0;
+      background:rgba(0,0,0,0.72);
+      backdrop-filter:blur(6px);
+      z-index:50; display:none;
+      align-items:flex-end; justify-content:center;
+    }
+    .overlay.show { display:flex; animation:fade-in 0.2s ease; }
+    @keyframes fade-in { from{opacity:0} to{opacity:1} }
+
+    .sheet {
+      background:#1e0d03;
+      border:1px solid rgba(255,140,42,0.2);
+      border-radius:24px 24px 0 0;
+      padding:28px 24px 44px;
+      width:100%; max-width:480px;
+      animation:slide-up 0.32s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes slide-up { from{transform:translateY(100%);opacity:0} to{transform:translateY(0);opacity:1} }
+
+    .sheet-handle {
+      width:36px; height:4px;
+      background:rgba(255,140,42,0.25);
+      border-radius:2px; margin:0 auto 20px;
+    }
+    .sheet-title { font-family:'Yeseva One',serif; color:var(--text); font-size:1.3rem; margin-bottom:4px; }
+    .sheet-sub { color:var(--dim); font-size:13px; margin-bottom:22px; }
+    .sheet-sub strong { color:var(--orange); }
+
+    .app-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:20px; }
+
+    .app-btn {
+      display:flex; flex-direction:column; align-items:center; gap:7px;
+      background:rgba(255,255,255,0.04);
+      border:1.5px solid rgba(255,140,42,0.15);
+      border-radius:16px; padding:14px 6px;
+      cursor:pointer; transition:all 0.18s;
+      color:#e8d0b8; font-size:11px; font-weight:600;
+      font-family:'Hind',sans-serif; text-decoration:none;
+    }
+    .app-btn:hover {
+      border-color:rgba(255,140,42,0.5);
+      background:rgba(255,140,42,0.1);
+      transform:translateY(-3px);
+      box-shadow:0 6px 18px rgba(255,100,0,0.2);
+    }
+    .app-icon {
+      width:38px; height:38px; border-radius:10px;
+      object-fit:contain; background:white; padding:4px;
+    }
+
+    .sheet-note {
+      display:flex; align-items:flex-start; gap:8px;
+      background:rgba(255,140,42,0.06);
+      border:1px solid rgba(255,140,42,0.12);
+      border-radius:12px; padding:12px 14px;
+      color:var(--dim); font-size:12px; line-height:1.55;
+      margin-bottom:14px;
+    }
+
+    .close-sheet {
+      width:100%; background:transparent;
+      border:1px solid rgba(255,140,42,0.18);
+      border-radius:12px; color:var(--dim);
+      padding:11px; cursor:pointer;
+      font-family:'Hind',sans-serif; font-size:13px;
+      transition:all 0.2s;
+    }
+    .close-sheet:hover { background:rgba(255,255,255,0.04); color:#c4967a; }
+
+    .footer { margin-top:32px; color:#3a1e10; font-size:12px; text-align:center; }
+  </style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+
+<div class="page">
+  <div class="badge">🍵 Support My Work</div>
+
+  <div class="cup-wrap">
+    <div class="cup-glow"></div>
+    <span class="cup-emoji">☕</span>
+  </div>
+
+  <h1>Buy me a <em>Chai</em></h1>
+  <p class="subtitle">If my work has helped you, treat me to a cup of chai — every sip keeps the ideas flowing!</p>
+
+  <div class="card">
+
+    <!-- Picker -->
+    <div id="picker-view">
+      <p class="section-label">Pick your chai</p>
+      <div class="presets" id="presets"></div>
+
+      <div class="divider">or enter custom</div>
+
+      <div class="custom-wrap">
+        <span class="rupee">₹</span>
+        <input class="custom-input" id="custom-amt" type="number" min="10" placeholder="Type any amount (min ₹10)" />
+      </div>
+
+      <button class="pay-btn" id="pay-btn" disabled>
+        <span>☕</span>
+        <span id="pay-label">Send Chai via UPI</span>
+        <span>→</span>
+      </button>
+    </div>
+
+    <!-- Thank You -->
+    <div class="thank-you" id="thankyou-view">
+      <span class="ty-emoji">🫶</span>
+      <div class="ty-title">Shukriya!</div>
+      <div class="ty-amount" id="ty-amount">₹—</div>
+      <p class="ty-msg">Your support means the world to me.<br>Ab chai peete hain! ☕🎉</p>
+      <button class="reset-btn" onclick="resetPage()">← Send another chai</button>
+    </div>
+
+  </div>
+
+  <p class="footer">No middlemen &nbsp;·&nbsp; Secure UPI &nbsp;·&nbsp; Direct to creator 🫖</p>
+</div>
+
+<!-- UPI App Bottom Sheet -->
+<div class="overlay" id="overlay" onclick="closeSheet(event)">
+  <div class="sheet" id="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Choose your UPI app</div>
+    <div class="sheet-sub">Paying <strong id="sheet-amount">₹—</strong> to John</div>
+
+    <div class="app-grid" id="app-grid"></div>
+
+    <div class="sheet-note">
+      <span>ℹ️</span>
+      <span id="sheet-note-text">Tap an app to open it with the amount pre-filled.</span>
+    </div>
+
+    <button class="close-sheet" onclick="document.getElementById('overlay').classList.remove('show')">Cancel</button>
+  </div>
+</div>
+
+<script>
+  const UPI_ID    = "john@upi";
+  const PAYEE_NAME = "John";
+
+  const PRESETS = [
+    { label:"1 Chai",           emoji:"☕",         amount:10,  desc:"A small sip of support" },
+    { label:"3 Chais",          emoji:"☕☕☕",      amount:30,  desc:"Keep me going today" },
+    { label:"Chai + Biscuit",   emoji:"🍪",         amount:51,  desc:"The classic combo" },
+    { label:"Full Tapri Round", emoji:"🫖",         amount:101, desc:"You're the best!" },
+    { label:"Month of Chais",   emoji:"🌟",         amount:499, desc:"Legendary supporter" },
+  ];
+
+  const UPI_APPS = [
+    { name:"GPay",       icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/512px-Google_Pay_Logo.svg.png" },
+    { name:"PhonePe",    icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/PhonePe_Logo.svg/512px-PhonePe_Logo.svg.png" },
+    { name:"Paytm",      icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Paytm_logo.png/512px-Paytm_logo.png" },
+    { name:"BHIM",       icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/BHIM_SVG_logo.svg/512px-BHIM_SVG_logo.svg.png" },
+    { name:"Amazon Pay", icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/512px-Amazon_logo.svg.png" },
+  ];
+
+  let selectedIndex = 0;
+  let customAmt = "";
+
+  function getAmount() {
+    if (customAmt && parseInt(customAmt) >= 10) return parseInt(customAmt);
+    if (selectedIndex !== null) return PRESETS[selectedIndex].amount;
+    return 0;
+  }
+
+  function buildUpiUrl(amount) {
+    const params = new URLSearchParams({
+      pa: UPI_ID,
+      pn: PAYEE_NAME,
+      am: amount.toString(),
+      cu: "INR",
+      tn: "Buying you a chai ☕"
     });
-    const shareButton = document.getElementById('share-button');
-    shareButton.addEventListener('click', async () => {
-        if (navigator.share) {
-            try {
-                await navigator.share({
-                    title: document.title,
-                    text: 'Check out this report on the impact of gamification.',
-                    url: window.location.href
-                });
-                console.log('Report shared successfully');
-            } catch (error) {
-                console.error('Error sharing:', error);
-            }
-        } else {
-            alert('Web Share API is not supported in your browser.');
-        }
+    return "upi://pay?" + params.toString();
+  }
+
+  function updatePayBtn() {
+    const amt = getAmount();
+    const btn = document.getElementById("pay-btn");
+    const lbl = document.getElementById("pay-label");
+    if (amt >= 10) {
+      btn.disabled = false;
+      lbl.textContent = "Send ₹" + amt + " via UPI";
+    } else {
+      btn.disabled = true;
+      lbl.textContent = "Send Chai via UPI";
+    }
+  }
+
+  // Render presets
+  const presetsEl = document.getElementById("presets");
+  PRESETS.forEach((p, i) => {
+    const btn = document.createElement("button");
+    btn.className = "preset-btn" + (i === 0 ? " active" : "");
+    if (i === PRESETS.length - 1) btn.style.gridColumn = "span 2";
+    btn.innerHTML = `
+      <span class="p-emoji">${p.emoji}</span>
+      <span class="p-label">${p.label}</span>
+      <span class="p-amount">₹${p.amount}</span>
+      <span class="p-desc">${p.desc}</span>
+    `;
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".preset-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      selectedIndex = i;
+      customAmt = "";
+      document.getElementById("custom-amt").value = "";
+      updatePayBtn();
     });
+    presetsEl.appendChild(btn);
+  });
+
+  // Custom input
+  document.getElementById("custom-amt").addEventListener("input", (e) => {
+    customAmt = e.target.value;
+    if (customAmt) {
+      selectedIndex = null;
+      document.querySelectorAll(".preset-btn").forEach(b => b.classList.remove("active"));
+    } else {
+      selectedIndex = 0;
+      document.querySelectorAll(".preset-btn")[0].classList.add("active");
+    }
+    updatePayBtn();
+  });
+
+  // Pay button
+  document.getElementById("pay-btn").addEventListener("click", () => {
+    const amt = getAmount();
+    if (amt < 10) return;
+    openSheet(amt);
+  });
+
+  // Render app grid
+  const appGrid = document.getElementById("app-grid");
+  UPI_APPS.forEach(app => {
+    const btn = document.createElement("a");
+    btn.className = "app-btn";
+    btn.href = "#";
+    btn.innerHTML = `<img class="app-icon" src="${app.icon}" alt="${app.name}" onerror="this.parentElement.querySelector('.app-icon').style.display='none'"/> ${app.name}`;
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const amt = getAmount();
+      const upiUrl = buildUpiUrl(amt);
+      window.location.href = upiUrl;
+      setTimeout(() => {
+        document.getElementById("overlay").classList.remove("show");
+        document.getElementById("picker-view").style.display = "none";
+        const tyView = document.getElementById("thankyou-view");
+        tyView.style.display = "block";
+        document.getElementById("ty-amount").textContent = "₹" + amt + " chai received!";
+      }, 2200);
+    });
+    appGrid.appendChild(btn);
+  });
+
+  function openSheet(amt) {
+    document.getElementById("sheet-amount").textContent = "₹" + amt;
+    document.getElementById("sheet-note-text").textContent =
+      `Tap an app to open it with ₹${amt} pre-filled to ${UPI_ID}. Works on mobile with UPI apps installed.`;
+    document.getElementById("overlay").classList.add("show");
+  }
+
+  function closeSheet(e) {
+    if (e.target === document.getElementById("overlay")) {
+      document.getElementById("overlay").classList.remove("show");
+    }
+  }
+
+  function resetPage() {
+    selectedIndex = 0;
+    customAmt = "";
+    document.getElementById("custom-amt").value = "";
+    document.querySelectorAll(".preset-btn").forEach((b, i) => {
+      b.classList.toggle("active", i === 0);
+    });
+    document.getElementById("picker-view").style.display = "";
+    document.getElementById("thankyou-view").style.display = "none";
+    updatePayBtn();
+  }
+
+  updatePayBtn();
 </script>
-</body></html>
+</body>
+</html>
+
