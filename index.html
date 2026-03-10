@@ -9,106 +9,552 @@
     :root {
       --black: #0a0a0a;
       --white: #f8f7f4;
-      --gray-1: #1a1a1a;
-      --gray-2: #2e2e2e;
-      --gray-3: #5a5a5a;
-      --gray-4: #9a9a9a;
-      --gray-5: #d4d4d4;
-      --gray-6: #ebebeb;
+      --g1: #1a1a1a;
+      --g3: #5a5a5a;
+      --g4: #9a9a9a;
+      --g5: #d4d4d4;
+      --g6: #ebebeb;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      background: var(--white);
-      color: var(--black);
+      background: var(--white); color: var(--black);
       font-family: 'DM Sans', sans-serif;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
+      min-height: 100vh; -webkit-font-smoothing: antialiased;
     }
 
+    /* ── Page ── */
     .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       padding: 48px 20px 64px;
     }
 
-    .label {
-      font-size: 11px;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      color: var(--gray-4);
-      margin-bottom: 36px;
-      font-weight: 500;
+    .eyebrow {
+      font-size: 11px; letter-spacing: 3.5px; text-transform: uppercase;
+      color: var(--g4); margin-bottom: 32px; font-weight: 500;
     }
 
-    .cup-wrap { margin-bottom: 28px; }
     .cup-emoji {
-      font-size: 56px; line-height: 1; display: block;
-      animation: float 4s ease-in-out infinite;
-      filter: grayscale(1);
+      font-size: 54px; line-height: 1; display: block;
+      margin-bottom: 24px; animation: float 4s ease-in-out infinite;
+      filter: grayscale(1); text-align: center;
     }
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 
     h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.4rem, 7vw, 3.8rem);
-      color: var(--black); text-align: center;
-      line-height: 1.1; margin-bottom: 12px;
-      letter-spacing: -0.5px;
+      font-size: clamp(2.2rem, 7vw, 3.6rem);
+      text-align: center; line-height: 1.1;
+      margin-bottom: 10px; letter-spacing: -0.5px;
     }
-    h1 em { font-style: italic; color: var(--gray-3); }
+    h1 em { font-style: italic; color: var(--g3); }
 
     .subtitle {
-      font-size: 15px; color: var(--gray-3); text-align: center;
-      max-width: 320px; line-height: 1.65; margin-bottom: 48px;
+      font-size: 15px; color: var(--g3); text-align: center;
+      max-width: 310px; line-height: 1.65; margin-bottom: 40px;
       font-weight: 300;
     }
 
+    /* ── Card ── */
     .card {
       width: 100%; max-width: 420px;
-      border: 1px solid var(--gray-5);
-      border-radius: 20px; padding: 32px;
-      background: #fff;
+      border: 1px solid var(--g5); border-radius: 20px;
+      padding: 32px; background: #fff;
     }
 
-    .section-label {
+    /* ── Section label ── */
+    .slabel {
       font-size: 10px; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--gray-4);
-      margin-bottom: 14px; font-weight: 600;
+      text-transform: uppercase; color: var(--g4);
+      margin-bottom: 12px; font-weight: 600;
     }
 
-    .presets { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+    /* ── Instagram input ── */
+    .ig-wrap { position: relative; margin-bottom: 24px; }
+    .ig-at {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: var(--g3); font-size: 16px; font-weight: 600; pointer-events: none;
+    }
+    .ig-input {
+      width: 100%; background: var(--white);
+      border: 1.5px solid var(--g5); border-radius: 12px;
+      padding: 13px 14px 13px 32px;
+      color: var(--black); font-size: 15px; font-weight: 500;
+      font-family: 'DM Sans', sans-serif; outline: none;
+      transition: border 0.15s; letter-spacing: 0.2px;
+    }
+    .ig-input:focus { border-color: var(--black); }
+    .ig-input::placeholder { color: var(--g5); font-weight: 400; font-style: italic; }
 
+    /* ── Separator ── */
+    .sep {
+      height: 1px; background: var(--g6); margin-bottom: 24px;
+    }
+
+    /* ── Presets ── */
+    .presets { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
     .preset-btn {
-      background: var(--white); border: 1.5px solid var(--gray-5);
+      background: var(--white); border: 1.5px solid var(--g5);
       border-radius: 12px; padding: 14px 13px;
       cursor: pointer; text-align: left; color: var(--black);
       transition: all 0.15s; position: relative;
     }
     .preset-btn:last-child { grid-column: span 2; }
-    .preset-btn:hover { border-color: var(--gray-3); }
+    .preset-btn:hover { border-color: var(--g3); }
     .preset-btn.active {
       border-color: var(--black); background: var(--black); color: var(--white);
     }
     .preset-btn.active .p-amount { color: var(--white); }
-    .preset-btn.active .p-desc   { color: var(--gray-4); }
+    .preset-btn.active .p-desc   { color: var(--g4); }
     .preset-btn.active::after {
       content: '✓'; position: absolute; top: 10px; right: 12px;
-      font-size: 12px; color: var(--white); font-weight: 600;
+      font-size: 12px; color: var(--white); font-weight: 700;
     }
     .p-emoji  { font-size: 16px; display: block; margin-bottom: 6px; filter: grayscale(1); }
     .p-label  { font-size: 12px; font-weight: 600; display: block; margin-bottom: 3px; }
     .p-amount { font-size: 22px; font-family: 'DM Serif Display', serif; color: var(--black); }
-    .p-desc   { font-size: 11px; color: var(--gray-4); display: block; margin-top: 3px; }
+    .p-desc   { font-size: 11px; color: var(--g4); display: block; margin-top: 3px; }
 
+    /* ── Divider ── */
     .divider {
       display: flex; align-items: center; gap: 12px;
-      color: var(--gray-4); font-size: 11px; letter-spacing: 2px;
-      text-transform: uppercase; margin: 16px 0;
+      color: var(--g4); font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; margin: 14px 0;
+    }
+    .divider::before,.divider::after { content:''; flex:1; height:1px; background: var(--g6); }
+
+    /* ── Custom input ── */
+    .custom-wrap { position: relative; }
+    .rupee {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--g3); font-family: 'DM Serif Display', serif;
+      font-size: 20px; pointer-events: none;
+    }
+    .custom-input {
+      width: 100%; background: var(--white);
+      border: 1.5px solid var(--g5); border-radius: 12px;
+      padding: 14px 16px 14px 36px; color: var(--black);
+      font-size: 20px; font-family: 'DM Serif Display', serif;
+      outline: none; transition: border 0.15s; -moz-appearance: textfield;
+    }
+    .custom-input::-webkit-inner-spin-button,
+    .custom-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+    .custom-input:focus { border-color: var(--black); }
+    .custom-input::placeholder {
+      color: var(--g5); font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-style: italic;
+    }
+
+    /* ── Transaction note preview ── */
+    .note-preview {
+      margin-top: 14px;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--white); border: 1px solid var(--g6);
+      border-radius: 10px; padding: 10px 14px;
+      font-size: 12px; color: var(--g4);
+      transition: opacity 0.2s;
+    }
+    .note-preview span { color: var(--g3); font-weight: 500; }
+
+    /* ── Pay button ── */
+    .pay-btn {
+      width: 100%; margin-top: 20px;
+      background: var(--black); border: 2px solid var(--black);
+      border-radius: 12px; color: var(--white);
+      font-size: 15px; font-weight: 600; padding: 16px;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .pay-btn:hover:not(:disabled) {
+      background: var(--g1);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .pay-btn:disabled {
+      background: var(--g6); border-color: var(--g6);
+      color: var(--g4); cursor: not-allowed;
+    }
+
+    /* ── Status views ── */
+    .status-view { display: none; text-align: center; padding: 8px 0; }
+
+    /* Waiting */
+    .spinner-wrap {
+      margin: 0 auto 20px; width: 48px; height: 48px;
+      border: 2px solid var(--g5); border-top-color: var(--black);
+      border-radius: 50%; animation: spin 0.85s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .wait-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem; color: var(--black); margin-bottom: 8px;
+    }
+    .wait-msg { font-size: 13px; color: var(--g3); line-height: 1.65; }
+
+    /* Thank you */
+    .big-icon {
+      font-size: 52px; display: block; margin-bottom: 16px;
+      animation: pop 0.45s cubic-bezier(0.175,0.885,0.32,1.275) both;
+    }
+    @keyframes pop { from{transform:scale(0)} to{transform:scale(1)} }
+
+    .ty-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--black); margin-bottom: 6px;
+    }
+    .ty-username {
+      font-size: 13px; color: var(--g4); margin-bottom: 14px;
+      letter-spacing: 0.3px;
+    }
+    .ty-amount {
+      display: inline-block; margin: 4px auto 16px;
+      border: 1.5px solid var(--black); border-radius: 50px;
+      padding: 7px 22px; font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem; color: var(--black);
+    }
+    .ty-msg { font-size: 14px; color: var(--g3); line-height: 1.7; margin-bottom: 24px; }
+
+    /* Instagram receipt button */
+    .ig-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--black); color: var(--white);
+      border: none; border-radius: 12px;
+      padding: 13px 22px; cursor: pointer;
+      font-size: 14px; font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: none; transition: all 0.15s;
+      margin-bottom: 12px;
+    }
+    .ig-btn:hover { background: var(--g1); transform: translateY(-1px); }
+
+    .ig-btn svg { flex-shrink: 0; }
+
+    .ig-note {
+      font-size: 11px; color: var(--g4); line-height: 1.5;
+    }
+
+    /* Failed */
+    .fail-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; color: var(--black); margin-bottom: 6px;
+    }
+    .fail-username { font-size: 13px; color: var(--g4); margin-bottom: 12px; }
+    .fail-msg { font-size: 14px; color: var(--g3); line-height: 1.7; margin-bottom: 24px; }
+    .retry-btn {
+      background: var(--black); color: var(--white);
+      border: 2px solid var(--black); border-radius: 12px;
+      padding: 13px 28px; cursor: pointer;
+      font-size: 14px; font-weight: 600;
+      font-family: 'DM Sans', sans-serif; transition: all 0.15s;
+    }
+    .retry-btn:hover { background: var(--g1); transform: translateY(-1px); }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 32px; font-size: 12px;
+      color: var(--g5); letter-spacing: 0.5px; text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <p class="eyebrow">Support my work</p>
+  <span class="cup-emoji">☕</span>
+  <h1>Buy me a <em>Chai</em></h1>
+  <p class="subtitle">If my work has helped you, treat me to a cup of chai — every sip keeps the ideas flowing.</p>
+
+  <div class="card">
+
+    <!-- ── Picker ── -->
+    <div id="picker-view">
+
+      <p class="slabel">Your Instagram</p>
+      <div class="ig-wrap">
+        <span class="ig-at">@</span>
+        <input class="ig-input" id="ig-input" type="text"
+               placeholder="yourhandle" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      </div>
+
+      <div class="sep"></div>
+
+      <p class="slabel">Choose an amount</p>
+      <div class="presets" id="presets"></div>
+
+      <div class="divider">or type custom</div>
+
+      <div class="custom-wrap">
+        <span class="rupee">₹</span>
+        <input class="custom-input" id="custom-amt" type="number" min="10"
+               placeholder="Enter any amount (min ₹10)"/>
+      </div>
+
+      <!-- Transaction note preview -->
+      <div class="note-preview" id="note-preview">
+        📝 Note: <span id="note-text">chai from @yourhandle</span>
+      </div>
+
+      <button class="pay-btn" id="pay-btn" disabled>
+        <span>☕</span>
+        <span id="pay-label">Send Chai via UPI</span>
+        <span style="font-size:18px;font-weight:300">→</span>
+      </button>
+    </div>
+
+    <!-- ── Waiting ── -->
+    <div class="status-view" id="waiting-view">
+      <div class="spinner-wrap"></div>
+      <div class="wait-title">Waiting for payment…</div>
+      <p class="wait-msg">
+        Your UPI app should be open.<br/>
+        Complete the payment — this page will update automatically.
+      </p>
+    </div>
+
+    <!-- ── Thank you ── -->
+    <div class="status-view" id="thankyou-view">
+      <span class="big-icon">🫶</span>
+      <div class="ty-title">Shukriya!</div>
+      <div class="ty-username" id="ty-username">Thank you, @—</div>
+      <div class="ty-amount" id="ty-amount">₹—</div>
+      <p class="ty-msg">
+        Your chai just fuelled something good.<br/>
+        This means the world — truly. ☕✨
+      </p>
+      <a id="ig-receipt-btn" class="ig-btn" href="#" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        Send receipt on Instagram
+      </a>
+      <br/>
+      <p class="ig-note">Opens a DM to @karthik.rar — paste your receipt there 📋</p>
+    </div>
+
+    <!-- ── Failed ── -->
+    <div class="status-view" id="failed-view">
+      <span class="big-icon">😔</span>
+      <div class="fail-title">Chai spilled.</div>
+      <div class="fail-username" id="fail-username">Better luck next time, @—</div>
+      <p class="fail-msg">
+        Looks like the payment didn't go through<br/>
+        or was cancelled. No worries at all!
+      </p>
+      <button class="retry-btn" onclick="resetPage()">← Try again</button>
+    </div>
+
+  </div>
+
+  <p class="footer">No middlemen &nbsp;·&nbsp; Secure UPI &nbsp;·&nbsp; Direct to creator</p>
+</div>
+
+<script>
+  const UPI_ID      = "karthik@upi";
+  const PAYEE_NAME  = "Karthik";
+  const CREATOR_IG  = "karthik.rar";
+
+  const PRESETS = [
+    { label:"1 Chai",           emoji:"☕",     amount:10,  desc:"A small sip of support" },
+    { label:"3 Chais",          emoji:"☕☕☕",  amount:30,  desc:"Keep me going today" },
+    { label:"Chai + Biscuit",   emoji:"🍪",     amount:51,  desc:"The classic combo" },
+    { label:"Full Tapri Round", emoji:"🫖",     amount:101, desc:"You're the best!" },
+    { label:"Month of Chais",   emoji:"🌟",     amount:499, desc:"Legendary supporter" },
+  ];
+
+  let selectedIndex = 0;
+  let customAmt     = "";
+  let igUser        = "";
+  let lastAmount    = 0;
+  let pageHidden    = false;
+
+  /* ── Helpers ── */
+  function getAmount() {
+    if (customAmt && parseInt(customAmt) >= 10) return parseInt(customAmt);
+    if (selectedIndex !== null) return PRESETS[selectedIndex].amount;
+    return 0;
+  }
+
+  function getNote() {
+    const handle = igUser.trim() ? "@" + igUser.trim().replace(/^@/,"") : "a supporter";
+    return "chai from " + handle;
+  }
+
+  function buildUpiUrl(amount) {
+    // Callback URL so UPI apps redirect back with ?paid=1 on success
+    const callbackUrl = window.location.href.split("?")[0]
+      + "?paid=1&user=" + encodeURIComponent(igUser.trim().replace(/^@/,""))
+      + "&amt=" + amount;
+    const p = new URLSearchParams({
+      pa: UPI_ID,
+      pn: PAYEE_NAME,
+      am: amount.toString(),
+      cu: "INR",
+      tn: getNote(),
+      url: callbackUrl
+    });
+    return "upi://pay?" + p.toString();
+  }
+
+  function showView(id) {
+    ["picker-view","waiting-view","thankyou-view","failed-view"].forEach(v => {
+      document.getElementById(v).style.display = v === id ? "block" : "none";
+    });
+  }
+
+  function updateUI() {
+    const amt  = getAmount();
+    const user = igUser.trim().replace(/^@/,"");
+    const btn  = document.getElementById("pay-btn");
+    const lbl  = document.getElementById("pay-label");
+    const note = document.getElementById("note-text");
+
+    note.textContent = user ? "chai from @" + user : "chai from @yourhandle";
+    lbl.textContent  = amt >= 10 ? "Send ₹" + amt + " via UPI" : "Send Chai via UPI";
+    btn.disabled     = amt < 10 || !user;
+  }
+
+  /* ── Presets ── */
+  const presetsEl = document.getElementById("presets");
+  PRESETS.forEach((p, i) => {
+    const btn = document.createElement("button");
+    btn.className = "preset-btn" + (i === 0 ? " active" : "");
+    if (i === PRESETS.length - 1) btn.style.gridColumn = "span 2";
+    btn.innerHTML = `
+      <span class="p-emoji">${p.emoji}</span>
+      <span class="p-label">${p.label}</span>
+      <span class="p-amount">₹${p.amount}</span>
+      <span class="p-desc">${p.desc}</span>`;
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".preset-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      selectedIndex = i; customAmt = "";
+      document.getElementById("custom-amt").value = "";
+      updateUI();
+    });
+    presetsEl.appendChild(btn);
+  });
+
+  document.getElementById("custom-amt").addEventListener("input", e => {
+    customAmt = e.target.value;
+    if (customAmt) {
+      selectedIndex = null;
+      document.querySelectorAll(".preset-btn").forEach(b => b.classList.remove("active"));
+    } else {
+      selectedIndex = 0;
+      document.querySelectorAll(".preset-btn")[0].classList.add("active");
+    }
+    updateUI();
+  });
+
+  document.getElementById("ig-input").addEventListener("input", e => {
+    igUser = e.target.value;
+    updateUI();
+  });
+
+  /* ── Pay button ── */
+  document.getElementById("pay-btn").addEventListener("click", () => {
+    const amt = getAmount();
+    if (amt < 10 || !igUser.trim()) return;
+    lastAmount  = amt;
+    pageHidden  = false;
+
+    // Open UPI deep link
+    window.location.href = buildUpiUrl(amt);
+
+    // After short delay switch to waiting view
+    setTimeout(() => showView("waiting-view"), 800);
+  });
+
+  /* ── Detect user returning WITHOUT completing payment ──
+     visibilitychange fires hidden→visible when user switches back from UPI app.
+     If the UPI app redirected back successfully, the URL will have ?paid=1
+     and the page-load handler above will catch it before this fires.
+  ── */
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      pageHidden = true;
+      return;
+    }
+    // Page became visible again
+    if (!pageHidden) return;
+    pageHidden = false;
+
+    const params = new URLSearchParams(window.location.search);
+    // If we're in waiting view and no paid param in URL → user returned without paying
+    const currentView = document.getElementById("waiting-view");
+    if (currentView.style.display !== "none" && !params.get("paid")) {
+      const user = igUser.trim().replace(/^@/,"") || "friend";
+      showFailed(user);
+    }
+  });
+
+  /* ── Handle success redirect (UPI app calls back with ?paid=1) ── */
+  function checkRedirect() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("paid") === "1") {
+      const user = params.get("user") || "";
+      const amt  = params.get("amt")  || "";
+      // Clean URL without reloading
+      window.history.replaceState({}, "", window.location.pathname);
+      showSuccess(user, amt);
+    }
+  }
+
+  function showSuccess(user, amt) {
+    const handle = user ? "@" + user : "friend";
+    document.getElementById("ty-username").textContent = "Thank you, " + handle + " 🙏";
+    document.getElementById("ty-amount").textContent   = amt ? "₹" + amt + " received!" : "Chai received!";
+    document.getElementById("ty-msg") && null;
+
+    // Build receipt text for clipboard
+    const receipt = [
+      "☕ Chai Receipt",
+      "From: " + handle,
+      "To: @" + CREATOR_IG,
+      "Amount: ₹" + (amt || "—"),
+      "UPI: " + UPI_ID,
+      "Note: chai from " + handle,
+      "Thank you! 🫶"
+    ].join("\n");
+
+    // Set IG DM button — opens DM + auto-copies receipt
+    const igBtn = document.getElementById("ig-receipt-btn");
+    igBtn.href = "https://ig.me/m/" + CREATOR_IG;
+    igBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(receipt).catch(() => {});
+    });
+
+    showView("thankyou-view");
+  }
+
+  function showFailed(user) {
+    const handle = user ? "@" + user : "friend";
+    document.getElementById("fail-username").textContent = "Better luck next time, " + handle;
+    showView("failed-view");
+  }
+
+  function resetPage() {
+    selectedIndex = 0; customAmt = ""; pageHidden = false;
+    document.getElementById("custom-amt").value = "";
+    document.getElementById("ig-input").value = "";
+    igUser = "";
+    document.querySelectorAll(".preset-btn").forEach((b, i) =>
+      b.classList.toggle("active", i === 0));
+    updateUI();
+    showView("picker-view");
+  }
+
+  /* ── Init ── */
+  checkRedirect();
+  showView(document.getElementById("thankyou-view").style.display === "block"
+    ? "thankyou-view" : "picker-view");
+  updateUI();
+</script>
+</body>
+</html>
     }
     .divider::before,.divider::after { content:''; flex:1; height:1px; background: var(--gray-6); }
 
