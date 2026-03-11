@@ -693,4 +693,30 @@
 
   /* INTERSECTION OBSERVER */
   function setupScrollObserver() {
-    const target = document.getElementById('screen-ms
+    const target = document.getElementById('screen-msg').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+
+  /* INTERSECTION OBSERVER */
+  function setupScrollObserver() {
+    const target = document.getElementById('screen-msg');
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { showMessage(); obs.disconnect(); }
+    }, { threshold: 0.05 });
+    obs.observe(target);
+  }
+
+  function showMessage() {
+    if (msgShown) return;
+    msgShown = true;
+    const msg    = document.getElementById('screen-msg');
+    const footer = document.getElementById('site-footer');
+    msg.classList.remove('msg-hidden');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      msg.classList.add('visible');
+      footer.style.display = 'block';
+    }));
+  }
+</script>
+</body>
+</html>
