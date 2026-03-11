@@ -1,552 +1,696 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buy Karthik a Chai</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --ink:       #0d0c0a;
-      --ink-soft:  #1c1a16;
-      --gold:      #c9a96e;
-      --gold-dim:  #8a7148;
-      --gold-faint:rgba(201,169,110,0.12);
-      --gold-line: rgba(201,169,110,0.22);
-      --cream:     #f0e8d5;
-      --cream-dim: #b8aa92;
-      --cream-mute:#6b6050;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dontclickonthis.link</title>
+  <meta name="description" content="You were warned. Yet here you are." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&family=Google+Sans+Text:wght@300;400&display=swap" rel="stylesheet" />
 
+  <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #ffffff;
+      --surface:  #f8f9fa;
+      --border:   #e8eaed;
+      --text:     #202124;
+      --muted:    #5f6368;
+      --accent:   #1a73e8;
+      --accent-s: #e8f0fe;
+      --red:      #d93025;
+      --sans:     'Google Sans', 'Product Sans', sans-serif;
+      --body:     'Google Sans Text', 'Google Sans', sans-serif;
+    }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--ink);
-      color: var(--cream);
-      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
       min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    /* ── Grain overlay ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.5;
-    }
-
-    /* ── Ambient glow ── */
-    body::after {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse 60% 45% at 50% -5%, rgba(201,169,110,0.1) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 30% at 100% 100%, rgba(201,169,110,0.05) 0%, transparent 55%);
-    }
-
-    /* ── Layout ── */
-    .page {
-      position: relative; z-index: 1;
+    /* ── SCREENS ── */
+    .screen {
       min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 60px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+      position: relative;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .screen.visible { opacity: 1; transform: translateY(0); }
+    .screen.hidden  { display: none; }
+
+    /* ══════════════════════════
+       SCREEN 1 — GATE
+    ══════════════════════════ */
+    #screen-gate {
+      text-align: center;
+      max-width: 500px;
+      margin: auto;
     }
 
-    /* ── Staggered reveal ── */
-    .reveal {
-      opacity: 0; transform: translateY(18px);
-      animation: reveal 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
-    }
-    @keyframes reveal {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .d1 { animation-delay: 0.05s; }
-    .d2 { animation-delay: 0.15s; }
-    .d3 { animation-delay: 0.25s; }
-    .d4 { animation-delay: 0.35s; }
-    .d5 { animation-delay: 0.45s; }
-
-    /* ── Ornament ── */
-    .ornament {
-      display: flex; align-items: center; gap: 14px;
-      margin-bottom: 28px; color: var(--gold-dim);
-    }
-    .ornament-line { width: 48px; height: 1px; background: var(--gold-line); }
-    .ornament-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--gold-dim); font-weight: 400;
+    .site-label {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.75rem;
     }
 
-    /* ── Cup ── */
-    .cup {
-      font-size: 48px; line-height: 1; display: block;
-      margin-bottom: 22px; text-align: center;
-      animation: drift 5s ease-in-out infinite;
-      filter: sepia(0.3) brightness(0.9);
+    .gate-lines {
+      list-style: none;
+      margin-bottom: 2.75rem;
     }
-    @keyframes drift { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-5px) rotate(1deg)} }
+    .gate-lines li {
+      font-family: var(--sans);
+      font-size: clamp(1rem, 2.8vw, 1.25rem);
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--text);
+      padding: 0.2rem 0;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.42s ease, transform 0.42s ease;
+    }
+    .gate-lines li.show { opacity: 1; transform: translateY(0); }
+    .gate-lines li strong { font-weight: 500; }
 
-    /* ── Headline ── */
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.6rem, 8vw, 4.4rem);
-      font-weight: 300; line-height: 1.08;
-      text-align: center; letter-spacing: -0.5px;
-      color: var(--cream); margin-bottom: 14px;
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
-    h1 em { font-style: italic; color: var(--gold); }
+    .btn-row.show { opacity: 1; }
 
-    /* ── Subtitle ── */
-    .subtitle {
-      font-size: 14px; color: var(--cream-mute); text-align: center;
-      max-width: 300px; line-height: 1.75; margin-bottom: 52px;
-      font-weight: 300; letter-spacing: 0.1px;
+    .btn {
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.6rem 1.75rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.16s, box-shadow 0.16s, transform 0.1s;
+      border: 1.5px solid transparent;
     }
+    .btn:active { transform: scale(0.97); }
 
-    /* ── Card ── */
-    .card {
-      width: 100%; max-width: 400px;
-      border: 1px solid var(--gold-line);
-      border-radius: 4px;
-      background: rgba(255,255,255,0.02);
-      backdrop-filter: blur(20px);
-      overflow: hidden;
+    .btn-yes {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
     }
-
-    /* Card thin gold top accent */
-    .card::before {
-      content: '';
-      display: block; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    .btn-yes:hover {
+      background: #1557b0;
+      box-shadow: 0 2px 12px rgba(26,115,232,0.3);
     }
-
-    .card-body { padding: 36px 32px 32px; }
-
-    /* ── Field label ── */
-    .field-label {
-      font-size: 10px; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--gold-dim);
-      margin-bottom: 10px; font-weight: 500;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .field-label::after { content:''; flex:1; height:1px; background: var(--gold-line); }
-
-    /* ── Instagram field ── */
-    .ig-wrap { position: relative; margin-bottom: 30px; }
-    .ig-prefix {
-      position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-      color: var(--gold); font-family: 'Cormorant Garamond', serif;
-      font-size: 20px; font-weight: 400; pointer-events: none;
-      padding-bottom: 2px;
-    }
-    .ig-input {
-      width: 100%; background: transparent;
-      border: none; border-bottom: 1px solid var(--gold-line);
-      padding: 8px 0 8px 22px;
-      color: var(--cream); font-size: 16px; font-weight: 400;
-      font-family: 'Outfit', sans-serif; outline: none;
-      transition: border-color 0.2s; letter-spacing: 0.3px;
-    }
-    .ig-input:focus { border-color: var(--gold); }
-    .ig-input::placeholder { color: var(--cream-mute); font-style: italic; font-weight: 300; }
-
-    /* ── Presets ── */
-    .presets {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 8px; margin-bottom: 18px;
-    }
-    .preset-btn {
+    .btn-no {
       background: transparent;
-      border: 1px solid var(--gold-line);
-      border-radius: 2px; padding: 14px 8px;
-      cursor: pointer; text-align: center; color: var(--cream-dim);
-      transition: all 0.2s; position: relative;
+      color: var(--muted);
+      border-color: var(--border);
     }
-    .preset-btn:hover { border-color: var(--gold-dim); color: var(--cream); }
-    .preset-btn.active {
-      border-color: var(--gold);
-      background: var(--gold-faint);
-      color: var(--cream);
-    }
-    .preset-btn.active .pb-amt { color: var(--gold); }
-    .pb-emoji { font-size: 14px; display: block; margin-bottom: 5px; filter: sepia(0.5); }
-    .pb-amt   { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; display: block; color: var(--cream-dim); transition: color 0.2s; }
-    .pb-label { font-size: 10px; display: block; margin-top: 3px; color: var(--cream-mute); letter-spacing: 0.3px; }
+    .btn-no:hover { border-color: #bbb; color: var(--text); }
 
-    /* last preset full width */
-    .preset-btn:last-child { grid-column: span 3; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px; }
-    .preset-btn:last-child .pb-emoji { margin: 0; }
-    .preset-btn:last-child .pb-label { margin: 0; }
+    #no-msg {
+      margin-top: 1.2rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-style: italic;
+      opacity: 0;
+      min-height: 1.4rem;
+      transition: opacity 0.32s;
+    }
+    #no-msg.show { opacity: 1; }
 
-    /* ── Or divider ── */
-    .or {
-      display: flex; align-items: center; gap: 14px;
-      margin: 18px 0; color: var(--cream-mute);
-      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-    }
-    .or::before,.or::after { content:''; flex:1; height:1px; background: var(--gold-line); }
-
-    /* ── Custom input ── */
-    .custom-wrap { position: relative; }
-    .custom-prefix {
-      position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-      color: var(--gold); font-family: 'Cormorant Garamond', serif;
-      font-size: 22px; pointer-events: none; padding-bottom: 2px;
-    }
-    .custom-input {
-      width: 100%; background: transparent;
-      border: none; border-bottom: 1px solid var(--gold-line);
-      padding: 8px 0 8px 22px;
-      color: var(--cream); font-size: 22px;
-      font-family: 'Cormorant Garamond', serif; font-weight: 300;
-      outline: none; transition: border-color 0.2s;
-      -moz-appearance: textfield;
-    }
-    .custom-input::-webkit-inner-spin-button,
-    .custom-input::-webkit-outer-spin-button { -webkit-appearance: none; }
-    .custom-input:focus { border-color: var(--gold); }
-    .custom-input::placeholder {
-      color: var(--cream-mute); font-style: italic; font-size: 16px; font-weight: 300;
+    /* ══════════════════════════
+       SCREEN 2 — RICKROLL
+    ══════════════════════════ */
+    #screen-roll {
+      gap: 1.4rem;
+      max-width: 660px;
+      width: 100%;
+      margin: auto;
     }
 
-    /* ── Transaction note preview ── */
-    .note-pill {
-      margin-top: 20px;
-      display: flex; align-items: center; gap: 9px;
-      padding: 9px 14px;
-      border: 1px solid var(--gold-line); border-radius: 2px;
-      background: var(--gold-faint);
-      font-size: 12px; color: var(--cream-mute);
-      letter-spacing: 0.2px; transition: opacity 0.3s;
+    .roll-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: #fce8e6;
+      color: var(--red);
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.85rem;
+      border-radius: 100px;
     }
-    .note-pill .note-icon { color: var(--gold); font-size: 13px; }
-    .note-pill span { color: var(--cream-dim); font-style: italic; }
 
-    /* ── Pay button ── */
-    .card-footer {
-      border-top: 1px solid var(--gold-line);
-      padding: 0;
+    .video-wrap {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
     }
-    .pay-btn {
-      width: 100%; background: transparent;
-      border: none; padding: 20px 32px;
-      color: var(--cream); cursor: pointer;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px; font-weight: 500;
-      letter-spacing: 2.5px; text-transform: uppercase;
-      display: flex; align-items: center; justify-content: center; gap: 14px;
-      transition: all 0.25s; position: relative; overflow: hidden;
+    .video-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
     }
-    .pay-btn::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(201,169,110,0.07), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.5s ease;
-    }
-    .pay-btn:hover:not(:disabled)::before { transform: translateX(100%); }
-    .pay-btn:hover:not(:disabled) { color: var(--gold); letter-spacing: 3.5px; }
-    .pay-btn:disabled { color: var(--cream-mute); cursor: not-allowed; opacity: 0.4; }
-    .pay-btn .arrow { font-size: 20px; transition: transform 0.25s; font-style: normal; }
-    .pay-btn:hover:not(:disabled) .arrow { transform: translateX(5px); }
 
-    /* ── Status views ── */
-    .status-view { display: none; }
+    .roll-caption { text-align: center; }
+    .roll-caption h2 {
+      font-family: var(--sans);
+      font-size: clamp(1.2rem, 3.2vw, 1.65rem);
+      font-weight: 500;
+    }
+    .roll-caption .sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+    .roll-caption .never {
+      font-size: 0.88rem;
+      color: var(--accent);
+      margin-top: 0.35rem;
+      font-style: italic;
+    }
 
-    /* Waiting */
-    #waiting-view {
-      padding: 52px 32px;
-      display: none; flex-direction: column; align-items: center; text-align: center;
+    /* ── REACTIONS ── */
+    .reaction-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      text-align: center;
+      width: 100%;
     }
-    .ring {
-      width: 52px; height: 52px; margin-bottom: 28px;
-      border: 1px solid var(--gold-line);
-      border-top-color: var(--gold);
-      border-radius: 50%;
-      animation: spin 1.2s linear infinite;
+    .reaction-label {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .wait-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem; font-weight: 300; color: var(--cream);
-      margin-bottom: 10px;
+    .emoji-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      justify-content: center;
     }
-    .wait-sub { font-size: 13px; color: var(--cream-mute); line-height: 1.7; }
+    .emoji-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.18rem;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 0.45rem 0.55rem;
+      cursor: pointer;
+      min-width: 52px;
+      transition: border-color 0.14s, background 0.14s, transform 0.1s, box-shadow 0.14s;
+    }
+    .emoji-btn:hover {
+      border-color: #bbb;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .emoji-btn.picked {
+      border-color: var(--accent);
+      background: var(--accent-s);
+    }
+    .emoji-glyph { font-size: 1.45rem; line-height: 1; }
+    .emoji-count {
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1;
+    }
+    .emoji-btn.picked .emoji-count { color: var(--accent); }
 
-    /* Thank you */
-    #thankyou-view {
-      padding: 52px 32px 40px;
-      display: none; flex-direction: column; align-items: center; text-align: center;
+    /* ── SCROLL DOWN BUTTON ── */
+    .scroll-down-btn {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      border-radius: 100px;
+      padding: 0.58rem 1.5rem;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.16s, color 0.16s;
+      animation: softpulse 2.2s ease-in-out infinite;
     }
-    .ty-mark {
-      width: 54px; height: 54px; margin-bottom: 24px;
-      border: 1px solid var(--gold);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      animation: popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
+    .scroll-down-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      animation: none;
     }
-    @keyframes popIn { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
-    .ty-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem; font-weight: 300; color: var(--cream);
-      margin-bottom: 6px; letter-spacing: -0.3px;
+    @keyframes softpulse {
+      0%,100% { opacity: 0.5; }
+      50%      { opacity: 1; }
     }
-    .ty-username { font-size: 12px; color: var(--gold-dim); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px; }
-    .ty-amount-chip {
-      border: 1px solid var(--gold);
-      border-radius: 1px; padding: 8px 24px;
-      font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
-      color: var(--gold); margin-bottom: 20px;
-      background: var(--gold-faint);
-    }
-    .ty-msg { font-size: 14px; color: var(--cream-mute); line-height: 1.75; margin-bottom: 28px; font-weight: 300; }
 
-    /* Instagram DM button */
-    .ig-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: transparent; color: var(--cream);
-      border: 1px solid var(--gold-line); border-radius: 2px;
-      padding: 13px 24px; cursor: pointer;
-      font-size: 13px; font-weight: 500; letter-spacing: 1.5px;
-      text-transform: uppercase; font-family: 'Outfit', sans-serif;
-      text-decoration: none; transition: all 0.25s;
-      margin-bottom: 10px;
+    /* ══════════════════════════
+       SCREEN 3 — MESSAGE
+    ══════════════════════════ */
+    #screen-msg {
+      max-width: 580px;
+      margin: auto;
+      gap: 2.25rem;
+      padding-top: 4rem;
+      padding-bottom: 5rem;
     }
-    .ig-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .ig-hint { font-size: 11px; color: var(--cream-mute); letter-spacing: 0.3px; }
+    #screen-msg.msg-hidden {
+      opacity: 0 !important;
+      pointer-events: none;
+      transform: translateY(18px);
+    }
 
-    /* Failed */
-    #failed-view {
-      padding: 52px 32px 40px;
-      display: none; flex-direction: column; align-items: center; text-align: center;
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
     }
-    .fail-mark {
-      width: 54px; height: 54px; margin-bottom: 24px;
-      border: 1px solid rgba(201,169,110,0.3);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      animation: popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
-    }
-    .fail-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem; font-weight: 300; color: var(--cream);
-      margin-bottom: 6px;
-    }
-    .fail-username { font-size: 12px; color: var(--cream-mute); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
-    .fail-msg { font-size: 14px; color: var(--cream-mute); line-height: 1.75; margin-bottom: 28px; font-weight: 300; }
-    .retry-btn {
-      background: transparent; color: var(--cream);
-      border: 1px solid var(--gold-line); border-radius: 2px;
-      padding: 13px 28px; cursor: pointer;
-      font-size: 13px; font-weight: 500; letter-spacing: 1.5px;
-      text-transform: uppercase; font-family: 'Outfit', sans-serif;
-      transition: all 0.25s;
-    }
-    .retry-btn:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* ── Footer ── */
-    .footer {
-      margin-top: 36px;
-      display: flex; align-items: center; gap: 14px;
-      color: var(--cream-mute); font-size: 11px;
-      letter-spacing: 2.5px; text-transform: uppercase;
-      opacity: 0.5;
+    /* message text */
+    .msg-block { width: 100%; }
+    .msg-block h3 {
+      font-family: var(--sans);
+      font-size: clamp(1.15rem, 2.8vw, 1.5rem);
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 1rem;
     }
-    .footer-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold-dim); }
+    .msg-block p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #3c4043;
+    }
+    .msg-block p + p { margin-top: 0.7rem; }
+
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.55rem 1rem;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #3c4043;
+      background: var(--accent-s);
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* section heading */
+    .section-head {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    /* links */
+    .links-section { width: 100%; }
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+      gap: 0.55rem;
+    }
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.84rem;
+      font-weight: 500;
+      background: var(--bg);
+      transition: border-color 0.14s, background 0.14s, box-shadow 0.14s;
+    }
+    .link-item:hover {
+      border-color: var(--accent);
+      background: var(--accent-s);
+      box-shadow: 0 1px 6px rgba(26,115,232,0.1);
+    }
+    .link-icon { font-size: 1.05rem; flex-shrink: 0; }
+    .link-meta { display: flex; flex-direction: column; gap: 0.08rem; }
+    .link-sub {
+      font-size: 0.68rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* quotes */
+    .quotes-section { width: 100%; }
+    .quote-card {
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 0.55rem;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .quote-card:hover { border-color: #ccc; background: var(--surface); }
+    .quote-card p {
+      font-style: italic;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #3c4043;
+    }
+    .quote-attr {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* goodbye */
+    .goodbye-block { text-align: center; }
+    .goodbye-block h2 {
+      font-family: var(--sans);
+      font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+      font-weight: 500;
+    }
+    .goodbye-block p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    /* footer */
+    footer {
+      text-align: center;
+      padding: 1.75rem 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.73rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .heart { color: var(--red); }
+
+    @media (max-width: 480px) {
+      .link-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-<div class="page">
 
-  <div class="ornament reveal d1">
-    <div class="ornament-line"></div>
-    <span class="ornament-text">Support Karthik</span>
-    <div class="ornament-line"></div>
+<!-- ═══════════════════════════
+     SCREEN 1 — GATE
+═══════════════════════════ -->
+<section id="screen-gate" class="screen">
+  <p class="site-label">dontclickonthis.link</p>
+
+  <ul class="gate-lines">
+    <li>Why did you click this link despite being told <strong>not to?</strong> 🤨</li>
+    <li>Why do hoomans always do what they're told <strong>not to!?</strong> 😑</li>
+    <li>Well... here you are anyway.</li>
+    <li>Do you wanna enter <strong>the forbidden site?</strong> 😏</li>
+  </ul>
+
+  <div class="btn-row" id="btn-row">
+    <button class="btn btn-yes" onclick="enterSite()">YES 🙋🏻</button>
+    <button class="btn btn-no"  onclick="sayNo()">NO 🙅🏻</button>
   </div>
 
-  <span class="cup reveal d2">☕</span>
+  <p id="no-msg"></p>
+</section>
 
-  <h1 class="reveal d3">Buy me a<br/><em>Chai</em></h1>
-  <p class="subtitle reveal d4">If my work has brought you value,<br/>honour it with a warm cup.</p>
 
-  <div class="card reveal d5">
+<!-- ═══════════════════════════
+     SCREEN 2 — RICKROLL
+═══════════════════════════ -->
+<section id="screen-roll" class="screen hidden">
 
-    <!-- ── Picker ── -->
-    <div id="picker-view">
-      <div class="card-body">
+  <span class="roll-chip">⚠ forbidden content unlocked</span>
 
-        <div class="field-label">Your Instagram</div>
-        <div class="ig-wrap">
-          <span class="ig-prefix">@</span>
-          <input class="ig-input" id="ig-input" type="text"
-                 placeholder="yourhandle"
-                 autocorrect="off" autocapitalize="off" spellcheck="false"/>
-        </div>
+  <div class="video-wrap">
+    <iframe id="yt-frame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
 
-        <div class="field-label">Choose amount</div>
-        <div class="presets" id="presets"></div>
+  <div class="roll-caption">
+    <h2>You got Rick Rolled in big 2026 🥀</h2>
+    <p class="sub">This meme is so immortal dawg ☠️</p>
+    <p class="never">🎵 Never gonna give you up... 🎵</p>
+  </div>
 
-        <div class="or">or</div>
+  <div class="reaction-box">
+    <p class="reaction-label">How's it feel? Pick one</p>
+    <div class="emoji-grid" id="emoji-grid"></div>
+  </div>
 
-        <div class="custom-wrap">
-          <span class="custom-prefix">₹</span>
-          <input class="custom-input" id="custom-amt" type="number"
-                 min="10" placeholder="Enter custom amount"/>
-        </div>
+  <button class="scroll-down-btn" onclick="goToMessage()">↓ scroll down ↓</button>
 
-        <div class="note-pill" id="note-pill">
-          <span class="note-icon">✦</span>
-          Note: <span id="note-text">chai from @yourhandle</span>
-        </div>
+</section>
 
-      </div>
 
-      <div class="card-footer">
-        <button class="pay-btn" id="pay-btn" disabled>
-          <span id="pay-label">Send via UPI</span>
-          <em class="arrow">→</em>
-        </button>
-      </div>
-    </div>
+<!-- ═══════════════════════════
+     SCREEN 3 — MESSAGE
+═══════════════════════════ -->
+<section id="screen-msg" class="screen msg-hidden">
 
-    <!-- ── Waiting ── -->
-    <div id="waiting-view">
-      <div class="ring"></div>
-      <div class="wait-title">Awaiting payment…</div>
-      <p class="wait-sub">Complete the payment in your UPI app.<br/>This page will update on your return.</p>
-    </div>
+  <div class="msg-block">
+    <h3>Now that you're here... we've got something to tell you.</h3>
+    <p>You're doing great. Take care of yourself and your loved ones 🤗</p>
+    <p>
+      Few things change no matter how much time passes... this meme is one of them.
+      Family, friends, memories, regrets... and sometimes we ourselves become one of those things.
+      We miss that other version of us that used to exist.
+    </p>
+    <p>
+      It's good to visit that innocent kid version of yourself sometimes,
+      to realise you're doing much better than what their tiny brain expected back then.
+      (Mine just wanted to learn HTML so I could hack NASA 😭)
+    </p>
 
-    <!-- ── Thank you ── -->
-    <div id="thankyou-view">
-      <div class="ty-mark">✦</div>
-      <div class="ty-title">Shukriya.</div>
-      <div class="ty-username" id="ty-username">@—</div>
-      <div class="ty-amount-chip" id="ty-amount">₹—</div>
-      <p class="ty-msg">Your chai just fuelled something beautiful.<br/>This means the world — truly.</p>
-      <a id="ig-receipt-btn" class="ig-btn" href="#" target="_blank" rel="noopener">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <circle cx="12" cy="12" r="4"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-        </svg>
-        Send receipt on Instagram
+    <blockquote>"Humour is also a way of saying something serious."</blockquote>
+
+    <p>And seriously... sorry for rick rolling you, dawg 🤧</p>
+    <p>
+      If possible, connect with others. Be friendly. Stay positive. Contribute to good things.
+      Because it is <strong>never too late</strong> to be kind, polite, and a loving human being.
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="links-section">
+    <p class="section-head">Do something good today</p>
+    <div class="link-grid">
+      <a class="link-item" href="https://www.givewell.org" target="_blank" rel="noopener">
+        <span class="link-icon">🌍</span>
+        <span class="link-meta">GiveWell<span class="link-sub">Effective giving research</span></span>
       </a>
-      <p class="ig-hint">Opens DM to @karthik.rar · receipt copied to clipboard</p>
+      <a class="link-item" href="https://www.kiva.org" target="_blank" rel="noopener">
+        <span class="link-icon">🤝</span>
+        <span class="link-meta">Kiva<span class="link-sub">Microloans for real people</span></span>
+      </a>
+      <a class="link-item" href="https://opencollective.com" target="_blank" rel="noopener">
+        <span class="link-icon">💛</span>
+        <span class="link-meta">Open Collective<span class="link-sub">Support open source humans</span></span>
+      </a>
+      <a class="link-item" href="https://www.charitywater.org" target="_blank" rel="noopener">
+        <span class="link-icon">💧</span>
+        <span class="link-meta">Charity: Water<span class="link-sub">Clean water for all</span></span>
+      </a>
+      <a class="link-item" href="https://www.volunteermatch.org" target="_blank" rel="noopener">
+        <span class="link-icon">🙌</span>
+        <span class="link-meta">VolunteerMatch<span class="link-sub">Find local good deeds</span></span>
+      </a>
+      <a class="link-item" href="https://randomactsofkindness.org" target="_blank" rel="noopener">
+        <span class="link-icon">🌱</span>
+        <span class="link-meta">Random Acts of Kindness<span class="link-sub">Tiny ideas, big ripples</span></span>
+      </a>
     </div>
-
-    <!-- ── Failed ── -->
-    <div id="failed-view">
-      <div class="fail-mark">✕</div>
-      <div class="fail-title">Chai spilled.</div>
-      <div class="fail-username" id="fail-username">—</div>
-      <p class="fail-msg">The payment didn't go through<br/>or was cancelled. No worries.</p>
-      <button class="retry-btn" onclick="resetPage()">Try again</button>
-    </div>
-
   </div>
 
-  <div class="footer reveal d5">
-    <span>Secure UPI</span>
-    <div class="footer-dot"></div>
-    <span>No middlemen</span>
-    <div class="footer-dot"></div>
-    <span>Direct to creator</span>
+  <div class="divider"></div>
+
+  <div class="quotes-section">
+    <p class="section-head">A lil boost for the road</p>
+
+    <div class="quote-card">
+      <p>"You don't have to be great to start, but you have to start to be great."</p>
+      <span class="quote-attr">Zig Ziglar</span>
+    </div>
+    <div class="quote-card">
+      <p>"In the middle of difficulty lies opportunity."</p>
+      <span class="quote-attr">Albert Einstein</span>
+    </div>
+    <div class="quote-card">
+      <p>"The only person you are destined to become is the person you decide to be."</p>
+      <span class="quote-attr">Ralph Waldo Emerson</span>
+    </div>
+    <div class="quote-card">
+      <p>"Rest if you must, but don't you quit."</p>
+      <span class="quote-attr">John Greenleaf Whittier</span>
+    </div>
+    <div class="quote-card">
+      <p>"It is never too late to be kind, polite, and a loving human being."</p>
+      <span class="quote-attr">someone on the internet... but it still counts</span>
+    </div>
   </div>
 
-</div>
+  <div class="divider"></div>
+
+  <div class="goodbye-block">
+    <h2>BYE 🙋🏻</h2>
+    <p>(But not goodbye... because we'll meet again somehow 😝)</p>
+  </div>
+
+</section>
+
+<footer id="site-footer" style="display:none;">
+  Made with <span class="heart">♥</span> from
+  <a href="#" target="_blank" rel="noopener">randomsite.com</a>
+  &nbsp;·&nbsp; shipping freeware &amp; open source things
+</footer>
+
 
 <script>
-  /* ─────────────────────────────
-     CONFIG
-  ───────────────────────────── */
-  const UPI_ID      = "8309872126@kotak811";
-  const PAYEE_NAME  = "Karthik";
-  const CREATOR_IG  = "karthik.rar";
+  const emojiList = ['💀','😭','😂','🫡','😤','❤️','🤯','😐','🕺🏻','💃🏻','😒','💢'];
+  const counts = {};
+  emojiList.forEach(e => counts[e] = 0);
 
-  const PRESETS = [
-    { emoji:"☕",  label:"1 Chai",      amount:10  },
-    { emoji:"☕☕", label:"3 Chais",     amount:30  },
-    { emoji:"🍪",  label:"Chai+Biscuit",amount:51  },
-    { emoji:"🫖",  label:"Tapri Round", amount:101 },
-    { emoji:"🌟",  label:"Month of Chai",amount:499 },
+  let pickedEmoji = null;
+  let noCount  = 0;
+  let entered  = false;
+  let msgShown = false;
+
+  /* INIT */
+  window.addEventListener('DOMContentLoaded', () => {
+    const gate = document.getElementById('screen-gate');
+    gate.classList.add('visible');
+
+    const lines = gate.querySelectorAll('.gate-lines li');
+    lines.forEach((li, i) => {
+      setTimeout(() => li.classList.add('show'), 300 + i * 430);
+    });
+    setTimeout(() => {
+      document.getElementById('btn-row').classList.add('show');
+    }, 300 + lines.length * 430 + 100);
+
+    buildEmojiGrid();
+  });
+
+  /* EMOJI GRID */
+  function buildEmojiGrid() {
+    const grid = document.getElementById('emoji-grid');
+    emojiList.forEach(emoji => {
+      const btn = document.createElement('button');
+      btn.className = 'emoji-btn';
+      btn.dataset.emoji = emoji;
+      btn.innerHTML = `<span class="emoji-glyph">${emoji}</span><span class="emoji-count" id="cnt-${encodeURIComponent(emoji)}">0</span>`;
+      btn.addEventListener('click', () => pickReaction(emoji, btn));
+      grid.appendChild(btn);
+    });
+  }
+
+  function pickReaction(emoji, btn) {
+    const wasPicked = btn.classList.contains('picked');
+
+    if (pickedEmoji && pickedEmoji !== emoji) {
+      counts[pickedEmoji] = Math.max(0, counts[pickedEmoji] - 1);
+      refreshCount(pickedEmoji);
+    }
+
+    document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('picked'));
+
+    if (!wasPicked) {
+      btn.classList.add('picked');
+      counts[emoji]++;
+      refreshCount(emoji);
+      pickedEmoji = emoji;
+    } else {
+      counts[emoji] = Math.max(0, counts[emoji] - 1);
+      refreshCount(emoji);
+      pickedEmoji = null;
+    }
+  }
+
+  function refreshCount(emoji) {
+    const el = document.getElementById('cnt-' + encodeURIComponent(emoji));
+    if (el) el.textContent = counts[emoji];
+  }
+
+  /* NO BUTTON */
+  const noLines = [
+    "Sure... and yet you're still here 👀",
+    "Uh huh. Any second now. 👁️👁️",
+    "The exit is wherever you scroll away 🚪",
+    "Okay... you're basically in at this point 😌"
   ];
 
-  /* ─────────────────────────────
-     STATE
-  ───────────────────────────── */
-  let selectedIdx = 0;
-  let customAmt   = "";
-  let igUser      = "";
-  let lastAmt     = 0;
-  let wentToApp   = false;   // tracks if UPI deep link was opened
-
-  /* ─────────────────────────────
-     HELPERS
-  ───────────────────────────── */
-  const $  = id => document.getElementById(id);
-  const qs = sel => document.querySelector(sel);
-
-  function getAmount() {
-    const c = parseInt(customAmt);
-    if (customAmt && c >= 10) return c;
-    if (selectedIdx !== null) return PRESETS[selectedIdx].amount;
-    return 0;
+  function sayNo() {
+    const el = document.getElementById('no-msg');
+    el.textContent = noLines[Math.min(noCount, noLines.length - 1)];
+    el.classList.add('show');
+    noCount++;
   }
 
-  function getHandle() {
-    return igUser.trim().replace(/^@+/, "");
+  /* YES BUTTON */
+  function enterSite() {
+    if (entered) return;
+    entered = true;
+
+    const gate = document.getElementById('screen-gate');
+    gate.style.transition = 'opacity 0.42s';
+    gate.style.opacity = '0';
+
+    setTimeout(() => {
+      gate.classList.add('hidden');
+      const roll = document.getElementById('screen-roll');
+      roll.classList.remove('hidden');
+
+      document.getElementById('yt-frame').src =
+        'https://www.youtube.com/embed/DLzxrzFCyOs?autoplay=1&rel=0&modestbranding=1';
+
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        roll.classList.add('visible');
+      }));
+
+      setupScrollObserver();
+    }, 420);
   }
 
-  function getNote() {
-    const h = getHandle();
-    return h ? "chai from @" + h : "chai";
+  /* SCROLL DOWN BUTTON */
+  function goToMessage() {
+    showMessage();
+    setTimeout(() => {
+      document.getElementById('screen-msg').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
   }
 
-  /* ── Build UPI URL (NO url= param — it causes failures on most apps) ── */
-  function buildUpiUrl(amount) {
-    const params = new URLSearchParams({
-      pa: UPI_ID,
-      pn: PAYEE_NAME,
-      am: amount.toFixed(2),
-      cu: "INR",
-      tn: getNote()
-    });
-    return "upi://pay?" + params.toString();
-  }
-
-  /* ─────────────────────────────
-     VIEW MANAGER
-  ───────────────────────────── */
-  const VIEWS = ["picker-view","waiting-view","thankyou-view","failed-view"];
-
-  function showView(id) {
-    VIEWS.forEach(v => {
-      const el = $(v);
-      el.style.display = "none";
-    });
-    const target = $(id);
-    target.style.display = "flex";
-    target.style.flexDirection = "column";
-    target.style.alignItems = "center";
-    // picker needs block not flex
-    if (id === "picker-view") target.style.display = "block";
-  }
-
-  /* ─────────────────────────────
-     UI UPDATES
-  ───────────────────────────── */
-  function updateUI() {
-    const amt    = getAmount();
-    const handle = getHandle();
-    const btn    = $("pay-btn");
-    const lbl    = $("pay-label");
-    const note   = $("note-text");
-
-    note.textContent   = handle ? "chai from @" + handle : "chai from @yourhandle";
-    lb
+  /* INTERSECTION OBSERVER */
+  function setupScrollObserver() {
+    const target = document.getElementById('screen-ms
