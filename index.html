@@ -1,722 +1,677 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dontclickonthis.link</title>
-  <meta name="description" content="You were warned. Yet here you are." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&family=Google+Sans+Text:wght@300;400&display=swap" rel="stylesheet" />
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-    :root {
-      --bg:       #ffffff;
-      --surface:  #f8f9fa;
-      --border:   #e8eaed;
-      --text:     #202124;
-      --muted:    #5f6368;
-      --accent:   #1a73e8;
-      --accent-s: #e8f0fe;
-      --red:      #d93025;
-      --sans:     'Google Sans', 'Product Sans', sans-serif;
-      --body:     'Google Sans Text', 'Google Sans', sans-serif;
-    }
+<title>6 Underrated UPI Apps You Should Try in 2026</title>
 
-    html { scroll-behavior: smooth; }
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--body);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    /* ── SCREENS ── */
-    .screen {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 1.5rem;
-      position: relative;
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .screen.visible { opacity: 1; transform: translateY(0); }
-    .screen.hidden  { display: none; }
+<style>
 
-    /* ══════════════════════════
-       SCREEN 1 — GATE
-    ══════════════════════════ */
-    #screen-gate {
-      text-align: center;
-      max-width: 500px;
-      margin: auto;
-    }
+*{margin:0;padding:0;box-sizing:border-box}
 
-    .site-label {
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 2.75rem;
-    }
+body{
+font-family:'Google Sans',sans-serif;
+line-height:1.8;
+background:#fff;
+color:#111;
+transition:0.3s
+}
 
-    .gate-lines {
-      list-style: none;
-      margin-bottom: 2.75rem;
-    }
-    .gate-lines li {
-      font-family: var(--sans);
-      font-size: clamp(1rem, 2.8vw, 1.25rem);
-      font-weight: 400;
-      line-height: 1.7;
-      color: var(--text);
-      padding: 0.2rem 0;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.42s ease, transform 0.42s ease;
-    }
-    .gate-lines li.show { opacity: 1; transform: translateY(0); }
-    .gate-lines li strong { font-weight: 500; }
+.dark{
+background:#111;
+color:#eee
+}
 
-    .btn-row {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .btn-row.show { opacity: 1; }
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 22px
+}
 
-    .btn {
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.6rem 1.75rem;
-      border-radius: 100px;
-      cursor: pointer;
-      transition: background 0.16s, box-shadow 0.16s, transform 0.1s;
-      border: 1.5px solid transparent;
-    }
-    .btn:active { transform: scale(0.97); }
+/* NAV */
 
-    .btn-yes {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-    }
-    .btn-yes:hover {
-      background: #1557b0;
-      box-shadow: 0 2px 12px rgba(26,115,232,0.3);
-    }
-    .btn-no {
-      background: transparent;
-      color: var(--muted);
-      border-color: var(--border);
-    }
-    .btn-no:hover { border-color: #bbb; color: var(--text); }
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 30px;
+border-bottom:1px solid #eee
+}
 
-    #no-msg {
-      margin-top: 1.2rem;
-      font-size: 0.88rem;
-      color: var(--muted);
-      font-style: italic;
-      opacity: 0;
-      min-height: 1.4rem;
-      transition: opacity 0.32s;
-    }
-    #no-msg.show { opacity: 1; }
+.dark nav{border-color:#333}
 
-    /* ══════════════════════════
-       SCREEN 2 — RICKROLL
-    ══════════════════════════ */
-    #screen-roll {
-      gap: 1.4rem;
-      max-width: 660px;
-      width: 100%;
-      margin: auto;
-    }
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:20px;
+font-weight:600
+}
 
-    .roll-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      background: #fce8e6;
-      color: var(--red);
-      font-family: var(--sans);
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.28rem 0.85rem;
-      border-radius: 100px;
-    }
+.brand img{width:28px}
 
-    .video-wrap {
-      width: 100%;
-      aspect-ratio: 16/9;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: #000;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-    }
-    .video-wrap iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
+/* TOGGLE */
 
-    .roll-caption { text-align: center; }
-    .roll-caption h2 {
-      font-family: var(--sans);
-      font-size: clamp(1.2rem, 3.2vw, 1.65rem);
-      font-weight: 500;
-    }
-    .roll-caption .sub {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-top: 0.25rem;
-    }
-    .roll-caption .never {
-      font-size: 0.88rem;
-      color: var(--accent);
-      margin-top: 0.35rem;
-      font-style: italic;
-    }
+.toggle{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:14px
+}
 
-    /* ── REACTIONS ── */
-    .reaction-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.2rem 1.4rem;
-      text-align: center;
-      width: 100%;
-    }
-    .reaction-label {
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-    .emoji-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      justify-content: center;
-    }
-    .emoji-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.18rem;
-      background: var(--bg);
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      padding: 0.45rem 0.55rem;
-      cursor: pointer;
-      min-width: 52px;
-      transition: border-color 0.14s, background 0.14s, transform 0.1s, box-shadow 0.14s;
-    }
-    .emoji-btn:hover {
-      border-color: #bbb;
-      transform: translateY(-2px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    }
-    .emoji-btn.picked {
-      border-color: var(--accent);
-      background: var(--accent-s);
-    }
-    .emoji-glyph { font-size: 1.45rem; line-height: 1; }
-    .emoji-count {
-      font-family: var(--sans);
-      font-size: 0.62rem;
-      font-weight: 500;
-      color: var(--muted);
-      line-height: 1;
-    }
-    .emoji-btn.picked .emoji-count { color: var(--accent); }
+.switch{
+position:relative;
+display:inline-block;
+width:44px;
+height:22px
+}
 
-    /* ── SCROLL DOWN BUTTON ── */
-    .scroll-down-btn {
-      font-family: var(--sans);
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--accent);
-      border: 1.5px solid var(--accent);
-      border-radius: 100px;
-      padding: 0.58rem 1.5rem;
-      background: transparent;
-      cursor: pointer;
-      transition: background 0.16s, color 0.16s;
-      animation: softpulse 2.2s ease-in-out infinite;
-    }
-    .scroll-down-btn:hover {
-      background: var(--accent);
-      color: #fff;
-      animation: none;
-    }
-    @keyframes softpulse {
-      0%,100% { opacity: 0.5; }
-      50%      { opacity: 1; }
-    }
+.switch input{display:none}
 
-    /* ══════════════════════════
-       SCREEN 3 — MESSAGE
-    ══════════════════════════ */
-    #screen-msg {
-      max-width: 580px;
-      margin: auto;
-      gap: 2.25rem;
-      padding-top: 4rem;
-      padding-bottom: 5rem;
-    }
-    #screen-msg.msg-hidden {
-      opacity: 0 !important;
-      pointer-events: none;
-      transform: translateY(18px);
-    }
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;left:0;right:0;bottom:0;
+background:#ccc;
+border-radius:20px
+}
 
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-    }
+.slider:before{
+content:"";
+position:absolute;
+height:16px;width:16px;
+left:3px;bottom:3px;
+background:white;
+border-radius:50%;
+transition:.3s
+}
 
-    /* message text */
-    .msg-block { width: 100%; }
-    .msg-block h3 {
-      font-family: var(--sans);
-      font-size: clamp(1.15rem, 2.8vw, 1.5rem);
-      font-weight: 500;
-      line-height: 1.4;
-      margin-bottom: 1rem;
-    }
-    .msg-block p {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: #3c4043;
-    }
-    .msg-block p + p { margin-top: 0.7rem; }
+input:checked + .slider{
+background:#6a5cff
+}
 
-    blockquote {
-      border-left: 3px solid var(--accent);
-      padding: 0.55rem 1rem;
-      margin: 1.2rem 0;
-      font-size: 0.95rem;
-      font-style: italic;
-      color: #3c4043;
-      background: var(--accent-s);
-      border-radius: 0 8px 8px 0;
-    }
+input:checked + .slider:before{
+transform:translateX(20px)
+}
 
-    /* section heading */
-    .section-head {
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.9rem;
-    }
+/* HERO */
 
-    /* links */
-    .links-section { width: 100%; }
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
-      gap: 0.55rem;
-    }
-    .link-item {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.7rem 0.9rem;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.84rem;
-      font-weight: 500;
-      background: var(--bg);
-      transition: border-color 0.14s, background 0.14s, box-shadow 0.14s;
-    }
-    .link-item:hover {
-      border-color: var(--accent);
-      background: var(--accent-s);
-      box-shadow: 0 1px 6px rgba(26,115,232,0.1);
-    }
-    .link-icon { font-size: 1.05rem; flex-shrink: 0; }
-    .link-meta { display: flex; flex-direction: column; gap: 0.08rem; }
-    .link-sub {
-      font-size: 0.68rem;
-      color: var(--muted);
-      font-weight: 400;
-    }
+.hero{margin-top:50px}
 
-    /* quotes */
-    .quotes-section { width: 100%; }
-    .quote-card {
-      padding: 0.85rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 0.55rem;
-      transition: border-color 0.15s, background 0.15s;
-    }
-    .quote-card:hover { border-color: #ccc; background: var(--surface); }
-    .quote-card p {
-      font-style: italic;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: #3c4043;
-    }
-    .quote-attr {
-      display: block;
-      margin-top: 0.4rem;
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
+.hero h1{
+font-size:36px;
+margin-bottom:16px
+}
 
-    /* goodbye */
-    .goodbye-block { text-align: center; }
-    .goodbye-block h2 {
-      font-family: var(--sans);
-      font-size: clamp(1.4rem, 3.5vw, 1.9rem);
-      font-weight: 500;
-    }
-    .goodbye-block p {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-top: 0.4rem;
-    }
+.hero p{color:#555}
 
-    /* footer */
-    footer {
-      text-align: center;
-      padding: 1.75rem 1rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.73rem;
-      color: var(--muted);
-    }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-    .heart { color: var(--red); }
+.dark .hero p{color:#bbb}
 
-    @media (max-width: 480px) {
-      .link-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+/* APP SECTION */
+
+.app{
+margin-top:70px
+}
+
+.app h2{
+font-size:26px;
+margin-bottom:8px
+}
+
+.rating{
+margin-bottom:10px
+}
+
+.star{
+color:#ddd
+}
+
+.star.filled{
+color:#f7b500
+}
+
+.app img{
+width:100%;
+border-radius:10px;
+margin:18px 0
+}
+
+.source{
+font-size:12px;
+color:#888;
+margin-bottom:14px
+}
+
+.section-title{
+font-weight:600;
+margin-top:16px
+}
+
+ul{
+list-style:none;
+margin-top:8px
+}
+
+li{
+margin:6px 0
+}
+
+/* BUTTONS */
+
+.buttons{
+margin-top:16px;
+display:flex;
+gap:10px;
+flex-wrap:wrap
+}
+
+.buttons a{
+text-decoration:none;
+border:1px solid #ddd;
+padding:9px 14px;
+border-radius:7px;
+font-size:14px;
+display:flex;
+gap:6px;
+align-items:center;
+color:#111
+}
+
+.dark .buttons a{
+border-color:#444;
+color:#eee
+}
+
+/* NOTE */
+
+.note{
+margin-top:70px;
+padding:18px;
+background:#f6f6f6;
+border-radius:10px
+}
+
+.dark .note{
+background:#1c1c1c
+}
+
+/* SHARE */
+
+.share{
+margin-top:30px;
+display:flex;
+gap:12px;
+flex-wrap:wrap
+}
+
+.share button{
+border:1px solid #ccc;
+padding:10px 14px;
+border-radius:6px;
+background:none;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:6px
+}
+
+.dark .share button{
+border-color:#444;
+color:#eee
+}
+
+.social{
+margin-top:16px
+}
+
+.social a{
+text-decoration:none;
+border:1px solid #ddd;
+padding:8px 12px;
+border-radius:6px;
+display:inline-flex;
+gap:6px;
+align-items:center;
+color:#111
+}
+
+.dark .social a{
+border-color:#444;
+color:#eee
+}
+
+footer{
+text-align:center;
+padding:40px;
+color:#777
+}
+
+/* LEGAL MODAL */
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+align-items:center;
+justify-content:center
+}
+
+.modal-content{
+background:#fff;
+padding:20px;
+max-width:500px;
+border-radius:8px
+}
+
+.dark .modal-content{
+background:#222;
+color:#eee
+}
+
+</style>
+
 </head>
+
 <body>
 
-<!-- ═══════════════════════════
-     SCREEN 1 — GATE
-═══════════════════════════ -->
-<section id="screen-gate" class="screen">
-  <p class="site-label">dontclickonthis.link</p>
+<nav>
 
-  <ul class="gate-lines">
-    <li>Why did you click this link despite being told <strong>not to?</strong> 🤨</li>
-    <li>Why do hoomans always do what they're told <strong>not to!?</strong> 😑</li>
-    <li>Well... here you are anyway.</li>
-    <li>Do you wanna enter <strong>the forbidden site?</strong> 😏</li>
-  </ul>
+<div class="brand">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/UPI-Logo-vector.svg/512px-UPI-Logo-vector.svg.png">
+UPI Apps Guide
+</div>
 
-  <div class="btn-row" id="btn-row">
-    <button class="btn btn-yes" onclick="enterSite()">YES 🙋🏻</button>
-    <button class="btn btn-no"  onclick="sayNo()">NO 🙅🏻</button>
-  </div>
+<div class="toggle">
+Dark mode
+<label class="switch">
+<input type="checkbox" onclick="toggleDark()">
+<span class="slider"></span>
+</label>
+</div>
 
-  <p id="no-msg"></p>
-</section>
+</nav>
 
+<div class="container">
 
-<!-- ═══════════════════════════
-     SCREEN 2 — RICKROLL
-═══════════════════════════ -->
-<section id="screen-roll" class="screen hidden">
+<div class="hero">
 
-  <span class="roll-chip">⚠ forbidden content unlocked</span>
+<h1>6 Underrated UPI Apps You Should Consider Trying in 2026</h1>
 
-  <div class="video-wrap">
-    <iframe id="yt-frame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  </div>
+<p>
 
-  <div class="roll-caption">
-    <h2>You got Rick Rolled in big 2026 🥀</h2>
-    <p class="sub">This meme is so immortal dawg ☠️</p>
-    <p class="never">🎵 Never gonna give you up... 🎵</p>
-  </div>
+India’s digital payments ecosystem has evolved rapidly over the past decade. Unified Payments Interface, commonly known as UPI, has become the backbone of the country’s digital economy.
 
-  <div class="reaction-box">
-    <p class="reaction-label">How's it feel? Pick one</p>
-    <div class="emoji-grid" id="emoji-grid"></div>
-  </div>
+According to data released by the National Payments Corporation of India, the system now processes more than 21 billion transactions every month and handles transactions worth over ₹28 lakh crore in value. The massive growth reflects how deeply UPI has become embedded in everyday life, from grocery purchases to online subscriptions and bill payments.
 
-  <button class="scroll-down-btn" onclick="goToMessage()">↓ scroll down ↓</button>
+While well-known apps such as PhonePe, Google Pay and Paytm dominate the market, there are several other applications offering unique features, rewards, or specialized financial services. Some of these apps focus on cashback campaigns, others integrate credit cards, lending services, or investment tools directly into the payment ecosystem.
 
-</section>
+This article explores six lesser-known but promising UPI applications that offer useful features and may be worth trying if you are looking for alternatives beyond the most popular apps.
 
+</p>
 
-<!-- ═══════════════════════════
-     SCREEN 3 — MESSAGE
-═══════════════════════════ -->
-<section id="screen-msg" class="screen msg-hidden">
+</div>
 
-  <div class="msg-block">
-    <h3>Now that you're here... we've got something to tell you.</h3>
-    <p>You're doing great. Take care of yourself and your loved ones 🤗</p>
-    <p>
-      Few things change no matter how much time passes... this meme is one of them.
-      Family, friends, memories, regrets... and sometimes we ourselves become one of those things.
-      We miss that other version of us that used to exist.
-    </p>
-    <p>
-      It's good to visit that innocent kid version of yourself sometimes,
-      to realise you're doing much better than what their tiny brain expected back then.
-      (Mine just wanted to learn HTML so I could hack NASA 😭)
-    </p>
+<!-- NAVI -->
 
-    <blockquote>"Humour is also a way of saying something serious."</blockquote>
+<div class="app">
 
-    <p>And seriously... sorry for rick rolling you, dawg 🤧</p>
-    <p>
-      If possible, connect with others. Be friendly. Stay positive. Contribute to good things.
-      Because it is <strong>never too late</strong> to be kind, polite, and a loving human being.
-    </p>
-  </div>
+<h2>Navi</h2>
 
-  <div class="divider"></div>
+<div class="rating">
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star-half-stroke star filled"></i>
+</div>
 
-  <div class="links-section">
-    <p class="section-head">Do something good today</p>
-    <div class="link-grid">
-      <a class="link-item" href="https://www.givewell.org" target="_blank" rel="noopener">
-        <span class="link-icon">🌍</span>
-        <span class="link-meta">GiveWell<span class="link-sub">Effective giving research</span></span>
-      </a>
-      <a class="link-item" href="https://www.kiva.org" target="_blank" rel="noopener">
-        <span class="link-icon">🤝</span>
-        <span class="link-meta">Kiva<span class="link-sub">Microloans for real people</span></span>
-      </a>
-      <a class="link-item" href="https://opencollective.com" target="_blank" rel="noopener">
-        <span class="link-icon">💛</span>
-        <span class="link-meta">Open Collective<span class="link-sub">Support open source humans</span></span>
-      </a>
-      <a class="link-item" href="https://www.charitywater.org" target="_blank" rel="noopener">
-        <span class="link-icon">💧</span>
-        <span class="link-meta">Charity: Water<span class="link-sub">Clean water for all</span></span>
-      </a>
-      <a class="link-item" href="https://www.volunteermatch.org" target="_blank" rel="noopener">
-        <span class="link-icon">🙌</span>
-        <span class="link-meta">VolunteerMatch<span class="link-sub">Find local good deeds</span></span>
-      </a>
-      <a class="link-item" href="https://randomactsofkindness.org" target="_blank" rel="noopener">
-        <span class="link-icon">🌱</span>
-        <span class="link-meta">Random Acts of Kindness<span class="link-sub">Tiny ideas, big ripples</span></span>
-      </a>
-    </div>
-  </div>
+<img src="https://images.moneycontrol.com/static-mcnews/2024/11/Navi-app-770x433.jpg">
 
-  <div class="divider"></div>
+<div class="source">Source: Moneycontrol</div>
 
-  <div class="quotes-section">
-    <p class="section-head">A lil boost for the road</p>
+<p>
 
-    <div class="quote-card">
-      <p>"You don't have to be great to start, but you have to start to be great."</p>
-      <span class="quote-attr">Zig Ziglar</span>
-    </div>
-    <div class="quote-card">
-      <p>"In the middle of difficulty lies opportunity."</p>
-      <span class="quote-attr">Albert Einstein</span>
-    </div>
-    <div class="quote-card">
-      <p>"The only person you are destined to become is the person you decide to be."</p>
-      <span class="quote-attr">Ralph Waldo Emerson</span>
-    </div>
-    <div class="quote-card">
-      <p>"Rest if you must, but don't you quit."</p>
-      <span class="quote-attr">John Greenleaf Whittier</span>
-    </div>
-    <div class="quote-card">
-      <p>"It is never too late to be kind, polite, and a loving human being."</p>
-      <span class="quote-attr">someone on the internet... but it still counts</span>
-    </div>
-  </div>
+Navi is a rapidly growing fintech platform founded by entrepreneur Sachin Bansal, the co-founder of Flipkart. The platform aims to simplify financial services through a mobile-first approach.
 
-  <div class="divider"></div>
+The app integrates UPI payments with a range of financial products such as instant personal loans, health insurance and investment services. The interface is intentionally minimal, which makes it accessible even for users who are new to digital finance.
 
-  <div class="goodbye-block">
-    <h2>BYE 🙋🏻</h2>
-    <p>(But not goodbye... because we'll meet again somehow 😝)</p>
-  </div>
+</p>
 
-</section>
+<div class="section-title">Features</div>
+<ul>
+<li>> Fast UPI payments and bill payments</li>
+<li>> Integrated personal loans and insurance</li>
+<li>> Simple minimal interface</li>
+<li>> Occasional cashback campaigns</li>
+</ul>
 
-<footer id="site-footer" style="display:none;">
-  Made with <span class="heart">♥</span> from
-  <a href="#" target="_blank" rel="noopener">randomsite.com</a>
-  &nbsp;·&nbsp; shipping freeware &amp; open source things
+<div class="section-title">Pros</div>
+<ul>
+<li>✓ Clean user interface</li>
+<li>✓ Quick transaction processing</li>
+</ul>
+
+<div class="section-title">Cons</div>
+<ul>
+<li>× Cashback availability varies</li>
+</ul>
+
+</div>
+
+<!-- SUPERMONEY -->
+
+<div class="app">
+
+<h2>Super.money</h2>
+
+<div class="rating">
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-regular fa-star star"></i>
+</div>
+
+<img src="https://images.livemint.com/img/2024/08/23/600x338/SuperMoney_1692786945743.jpg">
+
+<div class="source">Source: LiveMint</div>
+
+<p>
+
+Super.money is a relatively new digital payments platform backed by the Flipkart ecosystem. It gained attention soon after launch due to its focus on cashback rewards and promotional offers.
+
+The app is designed around frequent digital payments and aims to reward everyday transactions with small but consistent cashback incentives. Some campaigns also offer bonuses for merchant payments or referrals.
+
+</p>
+
+<div class="section-title">Features</div>
+<ul>
+<li>> UPI scan and pay</li>
+<li>> Cashback campaigns</li>
+<li>> Credit integrations</li>
+<li>> Merchant rewards</li>
+</ul>
+
+<div class="section-title">Pros</div>
+<ul>
+<li>✓ Frequent promotional offers</li>
+<li>✓ Clean modern design</li>
+</ul>
+
+<div class="section-title">Cons</div>
+<ul>
+<li>× Rewards are usually small</li>
+</ul>
+
+</div>
+
+<!-- KREDITPE -->
+
+<div class="app">
+
+<h2>Kredit.Pe</h2>
+
+<div class="rating">
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+</div>
+
+<img src="https://media.assettype.com/analyticsinsight%2F2024-04%2F4b0f82f5-9b5c-4f39-bc76-6c1dbb8b27c1%2Fkreditpe.jpg">
+
+<div class="source">Source: Analytics Insight</div>
+
+<p>
+
+Kredit.Pe is a fintech platform that blends UPI payments with credit-based rewards. One of its key differentiators is the integration of RuPay credit cards with UPI transactions, allowing users to earn rewards even when making regular payments.
+
+</p>
+
+<div class="section-title">Features</div>
+<ul>
+<li>> UPI payments with rewards</li>
+<li>> RuPay credit card integration</li>
+<li>> Referral rewards</li>
+</ul>
+
+<div class="section-title">Pros</div>
+<ul>
+<li>✓ Credit card reward support</li>
+</ul>
+
+<div class="section-title">Cons</div>
+<ul>
+<li>× Smaller user base</li>
+</ul>
+
+</div>
+
+<!-- BHIM -->
+
+<div class="app">
+
+<h2>BHIM UPI</h2>
+
+<div class="rating">
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+</div>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/30/BHIM_Logo.png">
+
+<div class="source">Source: NPCI</div>
+
+<p>
+
+BHIM is the official UPI application developed by the National Payments Corporation of India. The app focuses primarily on secure bank-to-bank transfers and reliability rather than promotional rewards.
+
+</p>
+
+<div class="section-title">Features</div>
+<ul>
+<li>> Direct bank-to-bank payments</li>
+<li>> Simple and lightweight interface</li>
+<li>> Multi-language support</li>
+</ul>
+
+<div class="section-title">Pros</div>
+<ul>
+<li>✓ Government backed</li>
+<li>✓ Reliable payment infrastructure</li>
+</ul>
+
+<div class="section-title">Cons</div>
+<ul>
+<li>× Limited reward ecosystem</li>
+</ul>
+
+</div>
+
+<!-- BHARATPE -->
+
+<div class="app">
+
+<h2>BharatPe</h2>
+
+<div class="rating">
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+<i class="fa-solid fa-star star"></i>
+</div>
+
+<img src="https://inc42.com/wp-content/uploads/2023/06/BharatPe-app.jpg">
+
+<div class="source">Source: Inc42</div>
+
+<p>
+
+BharatPe is primarily known for enabling merchants to accept UPI payments through QR codes. Over time, the company has expanded into consumer services, lending products and rewards.
+
+</p>
+
+<div class="section-title">Features</div>
+<ul>
+<li>> UPI payments</li>
+<li>> Merchant QR payments</li>
+<li>> Rewards ecosystem</li>
+</ul>
+
+<div class="section-title">Pros</div>
+<ul>
+<li>✓ Strong fintech infrastructure</li>
+</ul>
+
+<div class="section-title">Cons</div>
+<ul>
+<li>× More merchant focused</li>
+</ul>
+
+</div>
+
+<!-- CRED -->
+
+<div class="app">
+
+<h2>CRED</h2>
+
+<div class="rating">
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+<i class="fa-solid fa-star star filled"></i>
+</div>
+
+<img src="https://images.moneycontrol.com/static-mcnews/2023/10/CRED-app.jpg">
+
+<div class="source">Source: Moneycontrol</div>
+
+<p>
+
+CRED is known for its premium user experience and initially gained popularity as a credit card bill payment platform. Over time, it expanded to include UPI payments, lending, and exclusive rewards.
+
+</p>
+
+<div class="section-title">Features</div>
+<ul>
+<li>> Credit card bill tracking</li>
+<li>> UPI payments</li>
+<li>> Premium rewards marketplace</li>
+</ul>
+
+<div class="section-title">Pros</div>
+<ul>
+<li>✓ Excellent user interface</li>
+<li>✓ Premium reward ecosystem</li>
+</ul>
+
+<div class="section-title">Cons</div>
+<ul>
+<li>× Many rewards are vouchers</li>
+</ul>
+
+</div>
+
+<div class="note">
+
+<strong>Note:</strong> Apps like Paytm and Google Pay may not provide cashback frequently today. However, they still run promotional campaigns and seasonal offers that can be quite useful. If you want to maximize rewards or savings, it may still be worthwhile to check those apps occasionally.
+
+</div>
+
+<div class="share">
+
+<button onclick="sharePage()">
+<i class="fa-solid fa-arrow-up-from-bracket"></i>
+Share
+</button>
+
+<button onclick="openLegal()">
+<i class="fa-solid fa-scale-balanced"></i>
+Legal
+</button>
+
+</div>
+
+<div class="social">
+
+<a href="https://instagram.com">
+<i class="fa-brands fa-instagram"></i>
+Connect with me
+</a>
+
+</div>
+
+</div>
+
+<footer>
+
+Made with love from 🇮🇳
+
 </footer>
 
+<div id="legalModal" class="modal">
+<div class="modal-content">
+
+<p>
+
+All the information in this article is publicly available on the internet and compiled for educational purposes. This website has no affiliation with any of the brands or applications mentioned.
+
+The goal of this article is simply to inform readers about alternative UPI apps and help them explore the broader digital payments ecosystem.
+
+</p>
+
+<br>
+
+<button onclick="closeLegal()">Close</button>
+
+</div>
+</div>
 
 <script>
-  const emojiList = ['💀','😭','😂','🫡','😤','❤️','🤯','😐','🕺🏻','💃🏻','😒','💢'];
-  const counts = {};
-  emojiList.forEach(e => counts[e] = 0);
 
-  let pickedEmoji = null;
-  let noCount  = 0;
-  let entered  = false;
-  let msgShown = false;
+function toggleDark(){
+document.body.classList.toggle("dark")
+}
 
-  /* INIT */
-  window.addEventListener('DOMContentLoaded', () => {
-    const gate = document.getElementById('screen-gate');
-    gate.classList.add('visible');
+function sharePage(){
 
-    const lines = gate.querySelectorAll('.gate-lines li');
-    lines.forEach((li, i) => {
-      setTimeout(() => li.classList.add('show'), 300 + i * 430);
-    });
-    setTimeout(() => {
-      document.getElementById('btn-row').classList.add('show');
-    }, 300 + lines.length * 430 + 100);
+if(navigator.share){
+navigator.share({
+title:document.title,
+url:window.location.href
+})
+}else{
+alert("Sharing not supported")
+}
 
-    buildEmojiGrid();
-  });
+}
 
-  /* EMOJI GRID */
-  function buildEmojiGrid() {
-    const grid = document.getElementById('emoji-grid');
-    emojiList.forEach(emoji => {
-      const btn = document.createElement('button');
-      btn.className = 'emoji-btn';
-      btn.dataset.emoji = emoji;
-      btn.innerHTML = `<span class="emoji-glyph">${emoji}</span><span class="emoji-count" id="cnt-${encodeURIComponent(emoji)}">0</span>`;
-      btn.addEventListener('click', () => pickReaction(emoji, btn));
-      grid.appendChild(btn);
-    });
-  }
+function openLegal(){
+document.getElementById("legalModal").style.display="flex"
+}
 
-  function pickReaction(emoji, btn) {
-    const wasPicked = btn.classList.contains('picked');
+function closeLegal(){
+document.getElementById("legalModal").style.display="none"
+}
 
-    if (pickedEmoji && pickedEmoji !== emoji) {
-      counts[pickedEmoji] = Math.max(0, counts[pickedEmoji] - 1);
-      refreshCount(pickedEmoji);
-    }
-
-    document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('picked'));
-
-    if (!wasPicked) {
-      btn.classList.add('picked');
-      counts[emoji]++;
-      refreshCount(emoji);
-      pickedEmoji = emoji;
-    } else {
-      counts[emoji] = Math.max(0, counts[emoji] - 1);
-      refreshCount(emoji);
-      pickedEmoji = null;
-    }
-  }
-
-  function refreshCount(emoji) {
-    const el = document.getElementById('cnt-' + encodeURIComponent(emoji));
-    if (el) el.textContent = counts[emoji];
-  }
-
-  /* NO BUTTON */
-  const noLines = [
-    "Sure... and yet you're still here 👀",
-    "Uh huh. Any second now. 👁️👁️",
-    "The exit is wherever you scroll away 🚪",
-    "Okay... you're basically in at this point 😌"
-  ];
-
-  function sayNo() {
-    const el = document.getElementById('no-msg');
-    el.textContent = noLines[Math.min(noCount, noLines.length - 1)];
-    el.classList.add('show');
-    noCount++;
-  }
-
-  /* YES BUTTON */
-  function enterSite() {
-    if (entered) return;
-    entered = true;
-
-    const gate = document.getElementById('screen-gate');
-    gate.style.transition = 'opacity 0.42s';
-    gate.style.opacity = '0';
-
-    setTimeout(() => {
-      gate.classList.add('hidden');
-      const roll = document.getElementById('screen-roll');
-      roll.classList.remove('hidden');
-
-      document.getElementById('yt-frame').src =
-        'https://www.youtube.com/embed/DLzxrzFCyOs?autoplay=1&rel=0&modestbranding=1';
-
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        roll.classList.add('visible');
-      }));
-
-      setupScrollObserver();
-    }, 420);
-  }
-
-  /* SCROLL DOWN BUTTON */
-  function goToMessage() {
-    showMessage();
-    setTimeout(() => {
-      document.getElementById('screen-msg').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 80);
-  }
-
-  /* INTERSECTION OBSERVER */
-  function setupScrollObserver() {
-    const target = document.getElementById('screen-msg').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 80);
-  }
-
-  /* INTERSECTION OBSERVER */
-  function setupScrollObserver() {
-    const target = document.getElementById('screen-msg');
-    const obs = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) { showMessage(); obs.disconnect(); }
-    }, { threshold: 0.05 });
-    obs.observe(target);
-  }
-
-  function showMessage() {
-    if (msgShown) return;
-    msgShown = true;
-    const msg    = document.getElementById('screen-msg');
-    const footer = document.getElementById('site-footer');
-    msg.classList.remove('msg-hidden');
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      msg.classList.add('visible');
-      footer.style.display = 'block';
-    }));
-  }
 </script>
+
 </body>
 </html>
