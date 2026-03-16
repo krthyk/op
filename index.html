@@ -9,215 +9,284 @@
     <style>
         :root {
             --bg: #ffffff;
-            --nav-bg: rgba(255, 255, 255, 0.85);
+            --nav-bg: rgba(255, 255, 255, 0.88);
             --text-main: #111111;
             --text-muted: #666666;
-            --border: #f2f2f2;
-            --accent: #FFDD00; 
+            --border: #efefef;
+            --accent: #FFDD00;
+            --content-max: 1080px;
+            --side-pad: clamp(16px, 4vw, 48px);
         }
-
         .dark-mode {
             --bg: #0b0b0b;
-            --nav-bg: rgba(11, 11, 11, 0.85);
+            --nav-bg: rgba(11, 11, 11, 0.88);
             --text-main: #ffffff;
             --text-muted: #aaaaaa;
             --border: #222222;
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg); font-family: 'Inter', sans-serif; color: var(--text-main); transition: background-color 0.3s; }
+        svg, svg * { transition: none !important; }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
-        body { background-color: var(--bg); font-family: 'Inter', sans-serif; color: var(--text-main); display: flex; flex-direction: column; align-items: center; }
-
-        /* --- Navigation --- */
+        /* Nav */
         nav {
-            position: sticky; top: 0; width: 100%; max-width: 480px; height: 70px;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px; background: var(--nav-bg); backdrop-filter: blur(12px);
+            position: sticky; top: 0; width: 100%; height: 64px;
+            display: flex; align-items: center; padding: 0 var(--side-pad);
+            background: var(--nav-bg); backdrop-filter: blur(14px);
             z-index: 1000; border-bottom: 1px solid var(--border);
+            transition: background-color 0.3s, border-color 0.3s;
         }
-        .nav-left { display: flex; align-items: center; gap: 12px; }
-        .nav-pfp { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
-        .nav-name { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.2px; }
-        .nav-right { display: flex; gap: 20px; }
-        .nav-icon { cursor: pointer; background: none; border: none; color: var(--text-main); display: flex; align-items: center; }
+        .nav-inner { width: 100%; max-width: var(--content-max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .nav-left  { display: flex; align-items: center; gap: 12px; }
+        .nav-pfp   { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+        .nav-name  { font-weight: 600; font-size: 0.9rem; letter-spacing: -0.2px; color: var(--text-main); }
+        .nav-right { display: flex; gap: 18px; }
+        .nav-icon  { cursor: pointer; background: none; border: none; color: var(--text-main); display: flex; align-items: center; }
 
+        /* Modal */
         #info-modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); z-index: 2000;
-            align-items: center; justify-content: center; padding: 20px;
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.55); backdrop-filter: blur(8px);
+            z-index: 2000; align-items: center; justify-content: center; padding: 20px;
         }
         .modal-content {
-            background: var(--bg); padding: 32px; border-radius: 28px; max-width: 400px; text-align: center;
+            background: var(--bg);
+            padding: 52px 56px 48px;
+            border-radius: 18px;
+            max-width: 560px; width: 100%;
+            /* FIX 2: removed text-align: center so content stretches full width */
+            position: relative;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.22);
+            transition: background-color 0.3s;
         }
-        .modal-content h3 { margin-bottom: 12px; font-size: 1.2rem; }
-        .modal-content p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; line-height: 1.6; }
-        .cta-modal { display: block; background: var(--text-main); color: var(--bg); padding: 14px; border-radius: 14px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .modal-close {
+            position: absolute; top: 14px; right: 14px;
+            background: none; border: none; cursor: pointer;
+            color: var(--text-muted);
+            display: flex; align-items: center; justify-content: center;
+            width: 30px; height: 30px; border-radius: 8px;
+        }
+        .modal-close:hover { color: var(--text-main); background: var(--border); }
+        .modal-content h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 16px; color: var(--text-main); text-align: center; }
+        .modal-content p  { color: var(--text-muted); font-size: 0.88rem; line-height: 1.75; margin-bottom: 32px; display: block; width: 100%; text-align: left; }
+        /* FIX 2: cta-modal is now a full-width block flex element */
+        .cta-modal {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: var(--text-main); color: var(--bg);
+            padding: 14px 26px; border-radius: 10px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem; width: 100%;
+        }
 
-        /* --- Container & Hero --- */
-        .container { width: 100%; max-width: 480px; padding: 24px; }
-        .hero-square { width: 100%; aspect-ratio: 1/1; border-radius: 24px; object-fit: cover; margin-bottom: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        
-        /* --- Header --- */
-        .profile-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .name-stack { display: flex; flex-direction: column; }
-        .profile-header h2 { font-size: 1.7rem; font-weight: 700; letter-spacing: -0.5px; }
-        .niche { color: var(--text-muted); font-size: 1rem; font-weight: 400; margin-top: 10px; } /* Small gap added here */
-        
+        /* Page */
+        .page-wrap { width: 100%; max-width: var(--content-max); margin: 0 auto; padding: 32px var(--side-pad) 0; }
+
+        /* Top strip */
+        .top-strip { display: grid; grid-template-columns: 1fr; gap: 28px; margin-bottom: 48px; }
+        @media (min-width: 680px)  { .top-strip { grid-template-columns: 260px 1fr; align-items: start; gap: 36px; } }
+        @media (min-width: 960px)  { .top-strip { grid-template-columns: 340px 1fr; gap: 52px; } }
+
+        .hero-square { width: 100%; aspect-ratio: 1/1; border-radius: 22px; object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.07); }
+        .profile-right { display: flex; flex-direction: column; padding-top: 4px; }
+        .profile-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 26px; }
+        .profile-header h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700; letter-spacing: -0.5px; color: var(--text-main); }
+        .niche { color: var(--text-muted); font-size: clamp(0.85rem, 1.4vw, 0.97rem); margin-top: 8px; }
         .contact-btn-small {
-            display: flex; align-items: center; gap: 6px; background: transparent; color: var(--text-main);
-            padding: 8px 14px; border-radius: 10px; text-decoration: none; font-size: 0.8rem; font-weight: 600;
-            border: 1px solid var(--border);
+            display: flex; align-items: center; gap: 6px;
+            background: transparent; color: var(--text-main);
+            padding: 8px 14px; border-radius: 10px; text-decoration: none;
+            font-size: 0.78rem; font-weight: 600;
+            border: 1px solid var(--border); white-space: nowrap;
+            transition: border-color 0.3s;
         }
+        .about-content { font-size: 0.93rem; line-height: 1.85; color: var(--text-muted); }
 
-        /* --- Sections --- */
-        .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 12px; display: block; font-weight: 600; }
-        .about-section { margin-bottom: 48px; }
-        .about-content { font-size: 0.95rem; line-height: 1.8; color: var(--text-muted); }
+        .section-label { font-size: 0.64rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 14px; display: block; font-weight: 600; }
 
-        /* --- Reels --- */
-        .carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 14px; margin-bottom: 48px; }
+        /* Shorts */
+        .reels-section { margin-bottom: 48px; }
+        .carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 14px; }
         .carousel-track::-webkit-scrollbar { display: none; }
-        .reel-card { min-width: 85%; scroll-snap-align: center; aspect-ratio: 9/16; border-radius: 20px; overflow: hidden; background: #000; }
+        .reel-card { min-width: 55%; scroll-snap-align: center; aspect-ratio: 9/16; border-radius: 20px; overflow: hidden; background: #000; flex-shrink: 0; }
+        @media (min-width: 680px) { .reel-card { min-width: 40%; } }
+        @media (min-width: 960px) { .reel-card { min-width: 28%; } }
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* --- Follow Section --- */
-        .follow-section { margin-bottom: 48px; }
-        .social-button { 
+        /* Lower grid */
+        .lower-grid { display: grid; grid-template-columns: 1fr; }
+
+        @media (min-width: 680px) and (max-width: 959px) {
+            .lower-grid         { grid-template-columns: 1fr 1fr; column-gap: 32px; }
+            .follow-block       { grid-column: 1 / -1; }
+            .box-linktree       { grid-column: 1; }
+            .box-support        { grid-column: 2; }
+        }
+
+        @media (min-width: 960px) {
+            .lower-grid         { grid-template-columns: 1fr 1fr; column-gap: 48px; align-items: start; }
+            /* FIX 1: all items now span both columns so they stretch full width */
+            .follow-block       { grid-column: 1 / -1; grid-row: 1; }
+            .box-linktree       { grid-column: 1 / -1; grid-row: 2; }
+            .box-support        { grid-column: 1 / -1; grid-row: 3; }
+        }
+
+        .follow-block { margin-bottom: 32px; }
+        .social-button {
             display: flex; align-items: center; justify-content: space-between;
-            width: 100%; padding: 18px 22px; margin-bottom: 14px;
-            background: var(--bg); border: 1px solid var(--border); border-radius: 18px; text-decoration: none; color: var(--text-main);
+            width: 100%; padding: 16px 20px; margin-bottom: 11px;
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 16px; text-decoration: none; color: var(--text-main);
+            transition: border-color 0.3s, background-color 0.3s;
         }
-        .social-left { display: flex; align-items: center; gap: 16px; }
-        .social-user { font-weight: 600; font-size: 0.9rem; flex-grow: 1; text-align: center; }
+        .social-left { display: flex; align-items: center; gap: 14px; }
+        .social-user { font-weight: 600; font-size: 0.87rem; flex-grow: 1; text-align: center; color: var(--text-main); }
 
-        /* --- Box Sections --- */
-        .content-box { border: 1px solid var(--border); padding: 24px; border-radius: 20px; margin-bottom: 24px; }
-        .content-box p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
-        
-        .box-btn {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            width: 100%; padding: 14px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.9rem;
-        }
+        .content-box { border: 1px solid var(--border); padding: 22px; border-radius: 20px; margin-bottom: 20px; transition: border-color 0.3s, background-color 0.3s; }
+        .content-box p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; }
+        .box-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 13px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.87rem; }
         .btn-linktree { background: #39E09B; color: #fff; }
-        .btn-bmc { background: var(--accent); color: #000; }
+        .btn-bmc      { background: var(--accent); color: #000; }
 
-        /* --- Footer --- */
-        footer { 
-            text-align: center; font-size: 0.75rem; color: var(--text-muted); 
-            padding: 40px 0; width: 100%; display: flex; align-items: center; justify-content: center; gap: 4px;
-        }
-        .footer-link { display: flex; align-items: center; color: var(--text-main); font-weight: 700; text-decoration: none; gap: 3px; }
+        footer { text-align: center; font-size: 0.74rem; color: var(--text-muted); padding: 52px 0 36px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .footer-link { color: var(--text-main); font-weight: 700; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="nav-left">
-            <img src="https://images.unsplash.com/photo-1533636721434-0e2d61030955?q=80&w=200&auto=format&fit=crop" class="nav-pfp" alt="Arjun Mehta">
-            <span class="nav-name">arjun.creates</span>
-        </div>
-        <div class="nav-right">
-            <button class="nav-icon" onclick="toggleModal(true)"><i data-lucide="info" size="20"></i></button>
-            <button class="nav-icon" onclick="sharePage()"><i data-lucide="share" size="20"></i></button>
-            <button class="nav-icon" onclick="toggleDarkMode()"><i data-lucide="moon" id="theme-icon" size="20"></i></button>
+        <div class="nav-inner">
+            <div class="nav-left">
+                <img src="https://images.unsplash.com/photo-1533636721434-0e2d61030955?q=80&w=200&auto=format&fit=crop" class="nav-pfp" alt="Arjun Mehta">
+                <span class="nav-name">arjun.creates</span>
+            </div>
+            <div class="nav-right">
+                <button class="nav-icon" onclick="toggleModal(true)" aria-label="Info"><i data-lucide="info" size="20"></i></button>
+                <button class="nav-icon" onclick="sharePage()" aria-label="Share"><i data-lucide="share" size="20"></i></button>
+                <button class="nav-icon" onclick="toggleDarkMode()" aria-label="Toggle theme">
+                    <i data-lucide="moon" id="icon-moon" size="20"></i>
+                    <i data-lucide="sun"  id="icon-sun"  size="20" style="display:none"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
     <div id="info-modal" onclick="toggleModal(false)">
         <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="toggleModal(false)" aria-label="Close">
+                <i data-lucide="x" size="17"></i>
+            </button>
             <h3>About this spot</h3>
-            <p>@arjun.creates aka Arjun Mehta created this spot to share his creative journey and curate his best work in one place. <br><br>You too can create one such professional space for yourself.</p>
-            <a href="https://itsmy.spot" class="cta-modal">Get your own spot now</a>
+            <p>
+                @arjun.creates — aka Arjun Mehta — is a Mumbai-based product designer and tech storyteller who built this space to bring his entire creative universe under one roof. From UI design breakdowns and startup stories to street food diaries and indie music discoveries, this spot is where all of it lives together, unfiltered and personal.<br><br>
+                Think of it as his corner of the internet — a single, beautifully curated page that replaces the endless link-hopping across platforms. Whether you are here to explore his work, follow his journey, or simply get inspired, you are in the right place.<br><br>
+                You too can create your own professional spot just like this — no code, no hassle, just your story told your way.
+            </p>
+            <a href="https://itsmy.spot" class="cta-modal">
+                Get your own spot now&nbsp;<i data-lucide="arrow-right" size="16"></i>
+            </a>
         </div>
     </div>
 
-    <div class="container">
-        <img src="https://images.unsplash.com/photo-1533636721434-0e2d61030955?q=80&w=1000&auto=format&fit=crop" class="hero-square" alt="Arjun Mehta">
+    <div class="page-wrap">
 
-        <div class="profile-header">
-            <div class="name-stack">
-                <h2>Arjun Mehta</h2>
-                <p class="niche">Product Designer & Tech Storyteller</p>
+        <div class="top-strip">
+            <img src="https://images.unsplash.com/photo-1533636721434-0e2d61030955?q=80&w=1000&auto=format&fit=crop"
+                 class="hero-square" alt="Arjun Mehta">
+            <div class="profile-right">
+                <div class="profile-header">
+                    <div>
+                        <h2>Arjun Mehta</h2>
+                        <p class="niche">Product Designer &amp; Tech Storyteller</p>
+                    </div>
+                    <a href="mailto:arjun@itsmy.spot" class="contact-btn-small">
+                        <i data-lucide="message-square" size="11"></i> Talk to me
+                    </a>
+                </div>
+                <span class="section-label">About Me</span>
+                <div class="about-content">
+                    Namaste! I am a Mumbai based designer who is deeply obsessed with the intersection of culture and technology in modern India. Over the last six years I have focused on building digital experiences that help Indian startups scale their vision through clean and user centric design. When I am not iterating on Figma you will usually find me documenting the hidden street food gems of Mumbai or exploring the emerging indie music scene across the country. My ultimate goal is to simplify complex problems one pixel at a time while staying true to the vibrant aesthetic of our local culture.
+                </div>
             </div>
-            <a href="mailto:arjun@itsmy.spot" class="contact-btn-small">
-                <i data-lucide="message-square" size="10"></i> Talk to me
-            </a>
         </div>
 
-        <section class="about-section">
-            <span class="section-label">About Me</span>
-            <div class="about-content">
-                Namaste! I am a Mumbai based designer who is deeply obsessed with the intersection of culture and technology in modern India. Over the last six years I have focused on building digital experiences that help Indian startups scale their vision through clean and user centric design. When I am not iterating on Figma you will usually find me documenting the hidden street food gems of Mumbai or exploring the emerging indie music scene across the country. My ultimate goal is to simplify complex problems one pixel at a time while staying true to the vibrant aesthetic of our local culture.
-              <div></div>
-        </section>
-
-        <span class="section-label">Featured Shorts</span>
-        <div class="carousel-track">
-            <div class="reel-card"><iframe src="https://www.youtube.com/embed/SIdvS2z1b4Y?controls=0" allowfullscreen></iframe></div>
-            <div class="reel-card"><iframe src="https://www.youtube.com/embed/SIdvS2z1b4Y?controls=0" allowfullscreen></iframe></div>
-            <div class="reel-card"><iframe src="https://www.youtube.com/embed/SIdvS2z1b4Y?controls=0" allowfullscreen></iframe></div>
+        <div class="reels-section">
+            <span class="section-label">Featured Shorts</span>
+            <div class="carousel-track">
+                <div class="reel-card"><iframe src="https://www.youtube.com/embed/SIdvS2z1b4Y?controls=0" allowfullscreen></iframe></div>
+                <div class="reel-card"><iframe src="https://www.youtube.com/embed/SIdvS2z1b4Y?controls=0" allowfullscreen></iframe></div>
+                <div class="reel-card"><iframe src="https://www.youtube.com/embed/SIdvS2z1b4Y?controls=0" allowfullscreen></iframe></div>
+            </div>
         </div>
 
-        <span class="section-label">Follow My Journey</span>
-        <div class="follow-section">
-            <a href="#" class="social-button">
-                <div class="social-left"><i data-lucide="instagram"></i></div>
-                <div class="social-user">@arjun_mehta</div>
-                <i data-lucide="chevron-right" size="16" style="opacity: 0.2;"></i>
-            </a>
-            <a href="#" class="social-button">
-                <div class="social-left"><i data-lucide="twitter"></i></div>
-                <div class="social-user">@arjuncreates</div>
-                <i data-lucide="chevron-right" size="16" style="opacity: 0.2;"></i>
-            </a>
-            <a href="#" class="social-button">
-                <div class="social-left"><i data-lucide="youtube"></i></div>
-                <div class="social-user">Arjun Mehta Tech</div>
-                <i data-lucide="chevron-right" size="16" style="opacity: 0.2;"></i>
-            </a>
-            <a href="#" class="social-button">
-                <div class="social-left"><i data-lucide="linkedin"></i></div>
-                <div class="social-user">in/arjunmehta</div>
-                <i data-lucide="chevron-right" size="16" style="opacity: 0.2;"></i>
-            </a>
-            <a href="#" class="social-button">
-                <div class="social-left"><i data-lucide="github"></i></div>
-                <div class="social-user">arjun-codes</div>
-                <i data-lucide="chevron-right" size="16" style="opacity: 0.2;"></i>
-            </a>
-        </div>
+        <div class="lower-grid">
 
-        <div class="content-box">
-            <span class="section-label">Other Links</span>
-            <p>Check out my other links and various resources including the freebies that I have shared across the web for the community</p>
-            <a href="#" class="box-btn btn-linktree">
-                <i data-lucide="link" size="18"></i> Linktree
-            </a>
-        </div>
+            <div class="follow-block">
+                <span class="section-label">Follow My Journey</span>
+                <a href="#" class="social-button">
+                    <div class="social-left"><i data-lucide="instagram"></i></div>
+                    <div class="social-user">@arjun_mehta</div>
+                    <i data-lucide="chevron-right" size="16" style="opacity:0.2"></i>
+                </a>
+                <a href="#" class="social-button">
+                    <div class="social-left"><i data-lucide="twitter"></i></div>
+                    <div class="social-user">@arjuncreates</div>
+                    <i data-lucide="chevron-right" size="16" style="opacity:0.2"></i>
+                </a>
+                <a href="#" class="social-button">
+                    <div class="social-left"><i data-lucide="youtube"></i></div>
+                    <div class="social-user">Arjun Mehta Tech</div>
+                    <i data-lucide="chevron-right" size="16" style="opacity:0.2"></i>
+                </a>
+                <a href="#" class="social-button">
+                    <div class="social-left"><i data-lucide="linkedin"></i></div>
+                    <div class="social-user">in/arjunmehta</div>
+                    <i data-lucide="chevron-right" size="16" style="opacity:0.2"></i>
+                </a>
+                <a href="#" class="social-button">
+                    <div class="social-left"><i data-lucide="github"></i></div>
+                    <div class="social-user">arjun-codes</div>
+                    <i data-lucide="chevron-right" size="16" style="opacity:0.2"></i>
+                </a>
+            </div>
 
-        <div class="content-box" style="margin-bottom: 60px;">
-            <span class="section-label">Support</span>
-            <p>Like my content? Please consider supporting me. Your help no matter how small or big can help me to make more impactful content for you and the community.</p>
-            <a href="#" class="box-btn btn-bmc">
-                <i data-lucide="coffee" size="18"></i> Buy me a coffee
-            </a>
+            <div class="content-box box-linktree">
+                <span class="section-label">Other Links</span>
+                <p>Check out my other links and various resources including the freebies that I have shared across the web for the community.</p>
+                <a href="#" class="box-btn btn-linktree">
+                    <i data-lucide="link" size="18"></i> Linktree
+                </a>
+            </div>
+
+            <div class="content-box box-support" style="margin-bottom:60px">
+                <span class="section-label">Support</span>
+                <p>Like my content? Please consider supporting me. Your help, no matter how small or big, helps me make more impactful content for you and the community.</p>
+                <a href="#" class="box-btn btn-bmc">
+                    <i data-lucide="coffee" size="18"></i> Buy me a coffee
+                </a>
+            </div>
+
         </div>
 
         <footer>
-            powered by <a href="https://itsmy.spot" class="footer-link">itsmy.spot
+            powered by <a href="https://itsmy.spot" class="footer-link">itsmy.spot</a>
         </footer>
+
     </div>
 
     <script>
         lucide.createIcons();
-        function toggleModal(show) { document.getElementById('info-modal').style.display = show ? 'flex' : 'none'; }
+        function toggleModal(show) {
+            document.getElementById('info-modal').style.display = show ? 'flex' : 'none';
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleModal(false); });
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
-            const icon = document.getElementById('theme-icon');
-            const isDark = document.body.classList.contains('dark-mode');
-            icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
-            lucide.createIcons();
+            const dark = document.body.classList.contains('dark-mode');
+            document.getElementById('icon-moon').style.display = dark ? 'none' : '';
+            document.getElementById('icon-sun').style.display  = dark ? '' : 'none';
         }
-        function sharePage() { if (navigator.share) { navigator.share({ title: 'Arjun Mehta | itsmy.spot', url: window.location.href }); } }
+        function sharePage() {
+            if (navigator.share) navigator.share({ title: 'Arjun Mehta | itsmy.spot', url: window.location.href });
+        }
     </script>
 </body>
 </html>
